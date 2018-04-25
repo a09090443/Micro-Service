@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  html, body, div, p, form, label, ul, li, dl, dt, dd, ol, img, button, b, em, strong, small, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    font-style: normal;
+  }
+
+  html {
+    height: 100%;
+    background-image: radial-gradient(circle, #1280e1 0%, #002069 100%);
+  }
+
+  body {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background-color: transparent;
+  }
+
+  .authorize {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 3em;
+    color: #ff0000ab;
+    margin-top: 13%;
+    margin-bottom: 3%;
+  }
+
+  .cue {
+    color: #eee;
+    margin-bottom: 2%;
+    font-size: 1.2em;
+  }
+
+  .btn {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-family: inherit;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 1em;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-transform: none;
+    overflow: visible;
+    width: 166px;
+    height: 48px;
+  }
+
+  .btn:focus, .btn:hover {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+  }
+
+  .btn-success:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+  }
+
+  .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+
+  .btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+</style>
+<body>
+<form id='confirmationForm' name='confirmationForm' action='/oauth/authorize' method='post'>
+  <div class="authorize">
+    <div class="title">确认授权</div>
+    <div class="cue">是否同意授权登陆？</div>
+    <input name='user_oauth_approval' value='true' type='hidden'/>
+    <input type='hidden' th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" name="scope.app" id="result">
+    <button onclick="approval()" class="btn btn-success">同意</button>
+    <button onclick="deny()" class="btn btn-default">拒绝</button>
+  </div>
+</form>
+<script>
+
+  window.onload = function () {
+    document.onkeydown = function (event) {
+      var e = event || window.event;
+      if (e && e.keyCode === 13) {
+        approval()
+      }
+    };
+  };
+
+  function approval() {
+    document.getElementById("result").value = true;
+    document.getElementById("confirmationForm").submit()
+  }
+
+  function deny() {
+    document.getElementById("result").value = false;
+    document.getElementById("confirmationForm").submit()
+  }
+</script>
+</body>
+</html>

@@ -8,7 +8,6 @@ spring:
     username: dev
     password: 1qaz@WSX
     driver-class-name: com.mysql.jdbc.Driver
-    
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,7 +17,12 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
         format_sql: true
-        
+  thymeleaf:
+#    prefix: classpath:/templates/
+    cache: false  
+    encoding: UTF-8
+    mode: HTML5
+    
 server:
   port: 8081
 #  context-path: /auth
