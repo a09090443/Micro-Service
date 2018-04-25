@@ -28,9 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new LoginSuccessHandler();
     }
     
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+    
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -53,8 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    	auth.parentAuthenticationManager(authenticationManager).userDetailsService(userDetailsService)
-        .passwordEncoder(passwordEncoder());
+//    	auth.parentAuthenticationManager(authenticationManager).userDetailsService(userDetailsService)
+//        .passwordEncoder(passwordEncoder());
+    	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
 }

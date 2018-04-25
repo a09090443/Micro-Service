@@ -8,24 +8,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class TestController {
 
-	@GetMapping("/service2")
-    public String test1() {
-        return "resource2 service";
+	@GetMapping("/service1")
+    public String service1() {
+        return "This is service1";
     }
 
-	@GetMapping("/service22")
-    public String test2() {
-        return "This is test22222";
+	@GetMapping("/service2")
+    public String service2() {
+        return "This is service2";
     }
 
 	@GetMapping("/service3")
-    public String test3() {
-        return "This is test3333333";
+    public String service3() {
+        return "This is service3";
     }
 
 	@GetMapping("/service4")
-    public String test4() {
-        return "This is test44";
+    public String service4() {
+        return "This is service4";
     }
 
 }
