@@ -122,7 +122,7 @@ CREATE TABLE `oauth_client_details` (
 
 LOCK TABLES `oauth_client_details` WRITE;
 /*!40000 ALTER TABLE `oauth_client_details` DISABLE KEYS */;
-INSERT INTO `oauth_client_details` VALUES ('acme','oauth2-resource','acmesecret','app','authorization_code','',NULL,NULL,NULL,NULL,'true'),('api_service','oauth2-resource','secret','read,write','authorization_code',NULL,NULL,NULL,NULL,NULL,'true'),('oauth_client',NULL,'secret','read,write,test','password,refresh_token','','',100,86400,NULL,'true'),('sso_service','oauth2-resource','secret','read,write','authorization_code',NULL,NULL,NULL,NULL,NULL,'true'),('test','oauth2-resource','secret','read,write,test','authorization_code,refresh_token','','',1800,86400,NULL,'true'),('test1','resource-server','secret','user_info','authorization_code,refresh_token','http://www.baidu.com','',1800,86400,NULL,'true'),('test2','oauth2-resource','secret','user_info','authorization_code,refresh_token','','',1800,86400,NULL,'true');
+INSERT INTO `oauth_client_details` VALUES ('api_service','oauth2-resource','secret','read,write','authorization_code',NULL,NULL,NULL,NULL,NULL,'true'),('auth_test','oauth2-resource','secret','read,write','authorization_code',NULL,NULL,NULL,NULL,NULL,'true'),('client_test','oauth2-resource','secret','read,write','client_credentials',NULL,NULL,NULL,NULL,NULL,'true'),('implicit_test','oauth2-resource','secret','read,write','implicit',NULL,NULL,NULL,NULL,NULL,'true'),('password_test','oauth2-resource','secret','read,write','password,refresh_token',NULL,NULL,NULL,NULL,NULL,'true'),('sso_service','oauth2-resource','secret','read,write','authorization_code',NULL,NULL,NULL,NULL,NULL,'true');
 /*!40000 ALTER TABLE `oauth_client_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-20 23:07:50
+-- Dump completed on 2018-04-27 22:54:00
