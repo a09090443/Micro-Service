@@ -40,7 +40,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.and().authorizeRequests()
 		.antMatchers("/jwt1").hasRole("ADMIN")
 		.antMatchers("/jwt2").authenticated()
-		.antMatchers("/jwt3").access("#oauth2.hasScope('user_info')")
+		.antMatchers("/jwt3").access("#oauth2.hasScope('read')")
 		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 
