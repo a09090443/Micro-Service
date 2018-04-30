@@ -36,7 +36,7 @@ Micro-Services Project
 #### 1. Authorization Url
   - http://127.0.0.1:8081/oauth/authorize?response_type=code&redirect_uri=http://127.0.0.1:8081/api/test1&client_id=auth_test&client_secret=secret
   
-  - http://127.0.0.1:8081/oauth/token?grant_type=authorization_code&code=pNM4a2&redirect_uri=http://127.0.0.1:8081/api/test1&client_id=auth_test&client_secret=secret
+  - http://127.0.0.1:8081/oauth/token?grant_type=authorization_code&code=ti6eIJ&redirect_uri=http://127.0.0.1:8081/api/test1&client_id=auth_test&client_secret=secret
 #### 2. resource owner password credentials Url
   - http://127.0.0.1:8081/oauth/token?grant_type=password&username=admin&password=admin&client_id=password_test&client_secret=secret
 #### 3. implicit Url
@@ -44,6 +44,14 @@ Micro-Services Project
 #### 4. client credentials
   - http://127.0.0.1:8081/oauth/token?grant_type=client_credentials&client_id=client_test&client_secret=secret
 
-### Request Url(HTTP Method:GET)
+### Request Url(HTTP Method:GET,POST)
 ---
   - http://127.0.0.1:8082/service2?access_token=token_id
+
+### Check Token Url(HTTP Method:GET,POST)
+---
+  - http://localhost:8081/oauth/check_token?token=token_id
+
+### Refresh Token Url(HTTP Method:POST)
+---
+  - http://localhost:8081/oauth/token?grant_type=refresh_token&refresh_token=refresh_token_id&client_id=auth_test&client_secret=secret
