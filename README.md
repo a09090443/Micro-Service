@@ -11,6 +11,11 @@ Micro-Services Project
 4. oauth-sso
    - port:8084
 
+### Login Info
+---
+  - Username:`admin`
+  - Password:`admin`
+
 ### Grant Types
 ---
 ##### 1. Authorization Code
