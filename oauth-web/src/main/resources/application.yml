@@ -1,0 +1,22 @@
+server:
+    port: 8085
+#    context-path: /ui
+    session:
+      cookie:
+        name: UISESSION
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      clientId: sso_service
+      clientSecret: secret
+      accessTokenUri: http://127.0.0.1:8081/oauth/token
+      userAuthorizationUri: http://127.0.0.1:8081/oauth/authorize
+    resource:
+#      userInfoUri: http://127.0.0.1:8081/user/me
+      filter-order: 3
+      token-info-uri: http://127.0.0.1:8081/oauth/check_token
+spring:
+  thymeleaf:
+    cache: false
