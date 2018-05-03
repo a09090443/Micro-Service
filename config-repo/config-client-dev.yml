@@ -1,5 +1,6 @@
 demo:
     env: dev
+    
 datasource:
     url: jdbc:mysql://192.168.1.151:3306/dev_oauth?characterEncoding=UTF-8
     username: dev
