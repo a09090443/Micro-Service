@@ -20,7 +20,6 @@ public class ApplicationSupport implements DisposableBean, ApplicationContextAwa
 
     // 获取bean对象
     public static Object getBean(String name) {
-//        Assert.hasText(name);
         return applicationContext.getBean(name);
     }
 
