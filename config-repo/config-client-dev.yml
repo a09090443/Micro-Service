@@ -6,3 +6,7 @@ datasource:
     username: dev
     password: 1qaz@WSX
     driverClassName: com.mysql.jdbc.Driver
+
+logging:
+  level:
+    org.springframework.security: DEBUG
