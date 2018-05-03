@@ -5,4 +5,4 @@ datasource:
     url: jdbc:mysql://192.168.1.151:3306/dev_oauth?characterEncoding=UTF-8
     username: dev
     password: 1qaz@WSX
-    driver-class-name: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.jdbc.Driver
