@@ -2,7 +2,7 @@ demo:
     env: product
     
 datasource:
-    url: jdbc:mysql://192.168.1.151:3306/dev_oauth?characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.1.151:3306/dev_oauth_pro?characterEncoding=UTF-8
     username: dev
     password: 1qaz@WSX
     driverClassName: com.mysql.jdbc.Driver
