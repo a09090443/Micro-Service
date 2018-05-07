@@ -1,6 +1,6 @@
 spring:
   application:
-    name: config-client
+    name: oauth-jdbc-client
   cloud:
     config:
       profile: dev
