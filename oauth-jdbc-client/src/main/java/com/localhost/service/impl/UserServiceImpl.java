@@ -53,11 +53,11 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public void saveUser(UserInfo userInfo) {
+	public Boolean saveUser(UserInfo userInfo) {
 		UserInfo checkUser = userInfoRepository.findByLoginId(userInfo.getLoginId());
 		if (!Objects.isNull(checkUser)) {
 			logger.error("This login_id has been registered!!");
-			return;
+			return false;
 			// throw new Exception("This login_id has been registered!!");
 		}
 
@@ -88,14 +88,21 @@ public class UserServiceImpl implements IUserService {
 		} catch (Exception e) {
 			logger.error("Save user : " + userInfo.getFirstName() + userInfo.getLastName() + " error.");
 			logger.error(e.getMessage());
-			return;
+			return false;
 		}
-
+		return true;
 	}
 
 	@Override
-	public void delUser(UserInfo userInfo) throws Exception {
-		userInfoRepository.deleteByLoginId(userInfo.getLoginId());
+	public Boolean delUser(UserInfo userInfo) {
+		try {
+			userInfoRepository.deleteByLoginId(userInfo.getLoginId());
+		} catch (Exception e) {
+			logger.error("Delete Login Id: " + userInfo.getLoginId() + " error!!");
+			logger.error(e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 }
