@@ -12,4 +12,6 @@ public interface IUserInfoRepository extends JpaRepository<UserInfo, Long> {
 	public UserInfo findByEmail(String email);
 
 	public UserInfo findTopByOrderByLoginIdDesc();
+	
+	public void deleteByLoginId(String loginId);
 }
