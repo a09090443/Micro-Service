@@ -48,7 +48,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `oauth_client_details` WRITE;
 /*!40000 ALTER TABLE `oauth_client_details` DISABLE KEYS */;
-INSERT INTO `oauth_client_details` VALUES ('api_service','oauth2-resource','secret','read,write','client_credentials',NULL,NULL,NULL,NULL,NULL,'true'),('auth_test','oauth2-resource','secret','read,write','authorization_code,refresh_token',NULL,NULL,NULL,NULL,NULL,'true'),('client_test','oauth2-resource','secret','read,write','client_credentials',NULL,NULL,NULL,NULL,NULL,'true'),('implicit_test','oauth2-resource','secret','read,write','implicit',NULL,NULL,NULL,NULL,NULL,'true'),('password_test','oauth2-resource','secret','read,write','password,refresh_token',NULL,NULL,NULL,NULL,NULL,'true'),('sso_service','oauth2-resource','secret','read,write','authorization_code',NULL,NULL,NULL,NULL,NULL,'true');
+INSERT INTO `oauth_client_details` VALUES ('api_service','oauth2-resource','secret','read,write','client_credentials',NULL,NULL,NULL,NULL,NULL,'true'),('auth_test','oauth2-resource','secret','any,read,write','authorization_code,refresh_token',NULL,NULL,NULL,NULL,NULL,'true'),('client_test','oauth2-resource','secret','read,write','client_credentials',NULL,NULL,NULL,NULL,NULL,'true'),('implicit_test','oauth2-resource','secret','read,write','implicit',NULL,NULL,NULL,NULL,NULL,'true'),('password_test','oauth2-resource','secret','read,write','password,refresh_token',NULL,NULL,NULL,NULL,NULL,'true'),('sso_service','oauth2-resource','secret','read,write','authorization_code,implicit',NULL,NULL,NULL,NULL,NULL,'true');
 /*!40000 ALTER TABLE `oauth_client_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES ('000001','admin','$2a$10$edhXzouCrFzV/8WhlT4pn.V.fro7J4rvAMFfjpFTxHmQj7.N4meDa','&#26368;&#39640;','&#25351;&#25582;&#23448;','admin@localhost.com','&#22825;&#22530;&#36335; 001 &#34399;','1992-01-01','000001.jpg','1234567890','','2017-12-31 02:30:49'),('000002','test1','$2a$10$edhXzouCrFzV/8WhlT4pn.V.fro7J4rvAMFfjpFTxHmQj7.N4meDa','&#26368;&#39640;','&#25351;&#25582;&#23448;','admin@localhost.com','&#22825;&#22530;&#36335; 001 &#34399;','1992-01-01','000001.jpg','1234567890','','2017-12-31 02:30:49');
+INSERT INTO `user_info` VALUES ('000001','admin','$2a$10$edhXzouCrFzV/8WhlT4pn.V.fro7J4rvAMFfjpFTxHmQj7.N4meDa','&#26368;&#39640;','&#25351;&#25582;&#23448;','admin@localhost.com','&#22825;&#22530;&#36335; 001 &#34399;','1992-01-01','000001.jpg','1234567890','','2017-12-31 02:30:49'),('000002','test1','$2a$10$edhXzouCrFzV/8WhlT4pn.V.fro7J4rvAMFfjpFTxHmQj7.N4meDa','&#26368;&#39640;','&#25351;&#25582;&#23448;','test1@localhost.com','&#22825;&#22530;&#36335; 001 &#34399;','1992-01-01','000001.jpg','1234567890','','2017-12-31 02:30:49');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-30 17:58:38
+-- Dump completed on 2018-05-09 22:35:05
