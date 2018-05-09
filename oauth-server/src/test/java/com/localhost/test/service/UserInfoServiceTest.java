@@ -12,14 +12,14 @@ import com.localhost.model.UserInfo;
 import com.localhost.service.IUserService;
 import com.localhost.test.base.TestBase;
 
-public class UserInfoServiceTest extends TestBase{
+public class UserInfoServiceTest extends TestBase {
 
 	@Autowired
 	private IUserService userService;
 
 	private String LOGING_ID = "Junit";
 	private String EMAIL = "Junit@localhost.com";
-	
+
 	@Before
 	public void testSaveUserInfo() {
 		UserInfo userInfo = new UserInfo();
@@ -38,7 +38,7 @@ public class UserInfoServiceTest extends TestBase{
 			e.printStackTrace();
 		}
 	}
-	
+
 	@After
 	public void testDelUserInfo() {
 		UserInfo userInfo = new UserInfo();
@@ -49,8 +49,8 @@ public class UserInfoServiceTest extends TestBase{
 			e.printStackTrace();
 		}
 	}
-	
-//	@Ignore
+
+	// @Ignore
 	@Test
 	public void testFindUserInfoByLoginId() {
 		String loginId = LOGING_ID;
@@ -58,8 +58,8 @@ public class UserInfoServiceTest extends TestBase{
 		assertNotNull(userInfo);
 		assertEquals(loginId, userInfo.getLoginId());
 	}
-	
-//	@Ignore
+
+	// @Ignore
 	@Test
 	public void testFindUserInfoByEmail() {
 		String email = EMAIL;

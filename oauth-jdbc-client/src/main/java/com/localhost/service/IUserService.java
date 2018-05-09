@@ -14,5 +14,7 @@ public interface IUserService {
 	
 	public UserInfo findMaxLoginId();
 
-	public void saveUser(UserInfo userInfo) throws Exception;
+	public Boolean saveUser(UserInfo userInfo);
+	
+	public Boolean delUser(UserInfo userInfo);
 }
