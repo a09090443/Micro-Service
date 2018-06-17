@@ -53,6 +53,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers("/userApi/GET/**").authenticated()
 		.antMatchers("/userApi/POST/**").access("#oauth2.hasScope('user_info')")
 		.antMatchers("/userApi/DELETE/**").access("#oauth2.hasScope('any') and hasRole('ADMIN')")
+		.antMatchers("/oauthApi/GET/**").authenticated()
 		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 
