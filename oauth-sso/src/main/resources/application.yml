@@ -1,9 +1,8 @@
 server:
-    port: 8084
-#    context-path: /ui
-    session:
-      cookie:
-        name: UISESSION
+  port: 8084
+  session:
+    cookie:
+      name: UISESSION
 security:
   basic:
     enabled: false
@@ -14,9 +13,14 @@ security:
       accessTokenUri: http://127.0.0.1:8081/oauth/token
       userAuthorizationUri: http://127.0.0.1:8081/oauth/authorize
     resource:
-#      userInfoUri: http://127.0.0.1:8081/user/me
       filter-order: 3
       token-info-uri: http://127.0.0.1:8081/oauth/check_token
 spring:
   thymeleaf:
     cache: false
+    encoding: UTF-8
+    mode: HTML5
+custom:
+  server:
+    oauth: 127.0.0.1:8081
+    api: 127.0.0.1:8082

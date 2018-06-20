@@ -28,12 +28,12 @@ public class UiWebConfig extends WebMvcConfigurerAdapter {
 		super.addViewControllers(registry);
 		registry.addViewController("/").setViewName("forward:/index");
 		registry.addViewController("/index");
-		registry.addViewController("/securedPage");
+//		registry.addViewController("/securedPage");
 	}
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}
 
 }
