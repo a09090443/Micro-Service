@@ -10,7 +10,6 @@ import com.localhost.config.ConfigBean;
 
 @SpringBootApplication()
 @EnableConfigurationProperties({ ConfigBean.class })
-// @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,classes = Application.class)
 public class Application {
 
 	@Bean

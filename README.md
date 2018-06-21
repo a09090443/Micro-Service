@@ -55,3 +55,7 @@ Micro-Services Project
 ### Refresh Token Url(HTTP Method:POST)
 ---
   - http://localhost:8081/oauth/token?grant_type=refresh_token&refresh_token=refresh_token_id&client_id=auth_test&client_secret=secret
+
+### Web management
+---
+  - http://localhost:8084

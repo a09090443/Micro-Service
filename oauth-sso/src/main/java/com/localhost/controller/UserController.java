@@ -20,17 +20,17 @@ import com.localhost.service.IOauthService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	private IOauthService oauthService;
-	
-	@RequestMapping(value="/oauth",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/oauth", method = RequestMethod.GET)
 	public ModelAndView oauthIndex() {
 		ModelAndView modelAndView = new ModelAndView("pages/user/oauth");
-	    return modelAndView;
+		return modelAndView;
 	}
 
-	@RequestMapping(value="/oauth/users",method=RequestMethod.GET)
+	@RequestMapping(value = "/oauth/users", method = RequestMethod.GET)
 	public @ResponseBody List<OauthClientDetails> getOauthUsers() {
 		String result = null;
 		try {
@@ -41,7 +41,9 @@ public class UserController {
 		ObjectMapper mapper = new ObjectMapper();
 		List<OauthClientDetails> oauthClientDetailsList = null;
 		try {
-			oauthClientDetailsList = (List<OauthClientDetails>) mapper.readValue(result, new TypeReference<List<OauthClientDetails>>(){});
+			oauthClientDetailsList = (List<OauthClientDetails>) mapper.readValue(result,
+					new TypeReference<List<OauthClientDetails>>() {
+					});
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,5 +51,5 @@ public class UserController {
 
 		return oauthClientDetailsList;
 	}
-	
+
 }
