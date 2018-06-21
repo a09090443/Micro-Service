@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: oauth-web-client
+  cloud:
+    config:
+      profile: dev
+      uri: http://127.0.0.1:8888
+      label: spring_config
+
+server:
+  port: 8085
