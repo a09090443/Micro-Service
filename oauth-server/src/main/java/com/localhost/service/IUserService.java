@@ -12,5 +12,9 @@ public interface IUserService {
 	
 	public UserInfo findUserByEmail(String email);
 
-	public void addUser(UserInfo userInfo) throws Exception;
+	public UserInfo findMaxLoginId();
+	
+	public void saveUser(UserInfo userInfo) throws Exception;
+	
+	public void delUser(UserInfo userInfo) throws Exception;
 }

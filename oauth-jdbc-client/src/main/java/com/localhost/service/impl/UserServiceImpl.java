@@ -1,6 +1,7 @@
 package com.localhost.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,40 +24,40 @@ public class UserServiceImpl implements IUserService {
 	private Integer maxUserId;
 
 	@Autowired
-	private IUserInfoRepository userInfoDAO;
+	private IUserInfoRepository userInfoRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<UserInfo> findAllUsers() throws Exception {
-		return userInfoDAO.findAll();
+		return userInfoRepository.findAll();
 	}
 
 	@Override
 	public UserInfo findUserByLoginId(String loginId) {
-		UserInfo userInfo = userInfoDAO.findByLoginId(loginId);
+		UserInfo userInfo = userInfoRepository.findByLoginId(loginId);
 		return userInfo;
 	}
 
 	@Override
 	public UserInfo findUserByEmail(String email) {
-		UserInfo userInfo = userInfoDAO.findByEmail(email);
+		UserInfo userInfo = userInfoRepository.findByEmail(email);
 		return userInfo;
 	}
 
 	@Override
 	public UserInfo findMaxLoginId() {
-		UserInfo userInfo = userInfoDAO.findTopByOrderByLoginIdDesc();
+		UserInfo userInfo = userInfoRepository.findTopByOrderByLoginIdDesc();
 		return userInfo;
 	}
 
 	@Override
-	public void saveUser(UserInfo userInfo) {
-		UserInfo checkUser = userInfoDAO.findByLoginId(userInfo.getLoginId());
-		if (null != checkUser) {
+	public Boolean saveUser(UserInfo userInfo) {
+		UserInfo checkUser = userInfoRepository.findByLoginId(userInfo.getLoginId());
+		if (!Objects.isNull(checkUser)) {
 			logger.error("This login_id has been registered!!");
-			return;
+			return false;
 			// throw new Exception("This login_id has been registered!!");
 		}
 
@@ -64,11 +65,11 @@ public class UserServiceImpl implements IUserService {
 		String currentTime;
 
 		if (null == maxUserId) {
-			UserInfo latestUserInfo = userInfoDAO.findTopByOrderByLoginIdDesc();
-			if (latestUserInfo.getLoginId().equals("0")) {
+			UserInfo latestUserInfo = userInfoRepository.findTopByOrderByLoginIdDesc();
+			if (Objects.isNull(latestUserInfo)) {
 				maxUserId = 0;
 			} else {
-				maxUserId = Integer.valueOf(latestUserInfo.getLoginId());
+				maxUserId = Integer.valueOf(latestUserInfo.getUserId());
 			}
 		}
 
@@ -83,13 +84,25 @@ public class UserServiceImpl implements IUserService {
 		userInfo.setImage(newLoginId + "." + ImageUtils.IMAGE_TYPE_JPG);
 
 		try {
-			userInfoDAO.save(userInfo);
+			userInfoRepository.save(userInfo);
 		} catch (Exception e) {
 			logger.error("Save user : " + userInfo.getFirstName() + userInfo.getLastName() + " error.");
 			logger.error(e.getMessage());
-			return;
+			return false;
 		}
+		return true;
+	}
 
+	@Override
+	public Boolean delUser(UserInfo userInfo) {
+		try {
+			userInfoRepository.deleteByLoginId(userInfo.getLoginId());
+		} catch (Exception e) {
+			logger.error("Delete Login Id: " + userInfo.getLoginId() + " error!!");
+			logger.error(e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 }

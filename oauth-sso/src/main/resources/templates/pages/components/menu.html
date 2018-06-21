@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+	<div th:fragment="menu">
+		<ul class="nav" id="side-menu">
+			<li class="sidebar-search">
+				<div class="input-group custom-search-form">
+					<input type="text" class="form-control" placeholder="Search..." />
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div> <!-- /input-group -->
+			</li>
+			<li><a href="/main/"><i class="fa fa-dashboard fa-fw"></i>
+					Dashboard</a></li>
+			<li><a href="#"><i class="fa fa-user fa-fw"></i> Users
+					management<span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li><a href="/user/oauth">Oauth users</a></li>
+					<li><a href="buttons.html">Login users</a></li>
+				</ul></li>
+		</ul>
+	</div>
+</body>
+</html>

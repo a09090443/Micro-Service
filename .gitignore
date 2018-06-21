@@ -1,0 +1,15 @@
+
+oauth-jdbc-client/\.mvn/
+
+oauth-jwt-client/\.mvn/
+
+oauth-server/\.mvn/
+
+oauth-sso/\.mvn/
+/.metadata/
+
+\.recommenders/
+
+RemoteSystemsTempFiles/
+
+config-server/\.mvn/

@@ -11,7 +11,8 @@ public class UiSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
+        http.csrf().disable()
+            .antMatcher("/**")
             .authorizeRequests()
             .antMatchers("/", "/login**")
             .permitAll()

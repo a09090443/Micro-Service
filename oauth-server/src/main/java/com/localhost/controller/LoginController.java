@@ -55,21 +55,21 @@ public class LoginController {
 	@ResponseBody
 	public String checkcode(HttpServletRequest request, HttpSession session) throws Exception {
 		String checkCode = request.getParameter("checkCode");
-		Object simple = session.getAttribute("simpleCaptcha"); // 验证码对象
+		Object simple = session.getAttribute("simpleCaptcha");
 		if (simple == null) {
-			request.setAttribute("errorMsg", "验证码已失效，请重新输入！");
-			return "验证码已失效，请重新输入！";
+			request.setAttribute("errorMsg", "verify code is not available, please enter again!");
+			return "verify code is not available, please enter again!";
 		}
 
 		String captcha = simple.toString();
 		Date now = new Date();
 		Long codeTime = Long.valueOf(session.getAttribute("codeTime") + "");
 		if (StringUtils.isEmpty(checkCode) || captcha == null || !(checkCode.equalsIgnoreCase(captcha))) {
-			request.setAttribute("errorMsg", "验证码错误！");
-			return "验证码错误！";
+			request.setAttribute("errorMsg", "verify code is wrong！");
+			return "verify code is wrong！";
 		} else if ((now.getTime() - codeTime) / 1000 / 60 > 5) {// 验证码有效长度为5分钟
-			request.setAttribute("errorMsg", "验证码已失效，请重新输入！");
-			return "验证码已失效，请重新输入！";
+			request.setAttribute("errorMsg", "verify code is not available, please enter again!");
+			return "verify code is not available, please enter again!";
 		} else {
 			session.removeAttribute("simpleCaptcha");
 			return "1";

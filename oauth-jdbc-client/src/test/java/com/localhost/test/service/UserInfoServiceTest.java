@@ -1,9 +1,12 @@
 package com.localhost.test.service;
 
-import org.junit.Ignore;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.localhost.model.UserInfo;
 import com.localhost.service.IUserService;
@@ -13,52 +16,55 @@ public class UserInfoServiceTest extends TestBase{
 
 	@Autowired
 	private IUserService userService;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
-	@Ignore
+	private String LOGING_ID = "Junit";
+	private String EMAIL = "Junit@localhost.com";
+	
+	@Before
+	public void testSaveUserInfo() {
+		UserInfo userInfo = new UserInfo();
+		userInfo.setLoginId(LOGING_ID);
+		userInfo.setFirstName(LOGING_ID);
+		userInfo.setLastName(LOGING_ID);
+		userInfo.setEmail(EMAIL);
+		userInfo.setAddress("address 10 st");
+		userInfo.setBirthday("1984-01-01");
+		userInfo.setImage("000003.jpg");
+		userInfo.setPhone("1234567890");
+		userInfo.setPassword("1234");
+		try {
+			userService.saveUser(userInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@After
+	public void testDelUserInfo() {
+		UserInfo userInfo = new UserInfo();
+		userInfo.setLoginId(LOGING_ID);
+		try {
+			userService.delUser(userInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+//	@Ignore
 	@Test
 	public void testFindUserInfoByLoginId() {
-		String loginId = "admin";
+		String loginId = LOGING_ID;
 		UserInfo userInfo = userService.findUserByLoginId(loginId);
-		System.out.println(userInfo);
+		assertNotNull(userInfo);
+		assertEquals(loginId, userInfo.getLoginId());
 	}
 	
+//	@Ignore
 	@Test
 	public void testFindUserInfoByEmail() {
-		String email = "admin@localhost.com";
+		String email = EMAIL;
 		UserInfo userInfo = userService.findUserByEmail(email);
-		System.out.println(userInfo);
-	}
-	
-//	@Test
-//	public void testSaveUserInfo() {
-//		UserInfo userInfo = new UserInfo();
-//		userInfo.setUserId("000003");
-//		userInfo.setLoginId("test2");
-//		userInfo.setPassword(passwordEncoder.encode("1234"));
-//		userInfo.setFirstName("test");
-//		userInfo.setLastName("2");
-//		userInfo.setEmail("test2@localhost.com");
-//		userInfo.setAddress("test223333");
-//		userInfo.setBirthday("1984-01-01");
-//		userInfo.setImage("000003.jpg");
-//		userInfo.setPhone("1234567890");
-//		userInfo.setActivated(true);
-//		userInfo.setRegisterTime("2017-12-31 02:30:49");
-//		try {
-//			userService.saveUser(userInfo);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-	
-	@Test
-	public void testFindMaxLoginId() {
-		UserInfo userInfo = userService.findMaxLoginId();
-		System.out.println(userInfo);
+		assertEquals(email, userInfo.getEmail());
 	}
 
 }
