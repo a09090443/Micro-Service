@@ -19,7 +19,10 @@
     <modules>
         <module>config-server</module>
         <module>oauth-server</module>
+        <module>oauth-jdbc-client</module>
         <module>oauth-jwt-client</module>
+        <module>oauth-sso</module>
+        <module>oauth-web</module>
     </modules>
 
 	<properties>
