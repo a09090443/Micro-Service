@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.zipe</groupId>
+	<artifactId>micro-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.12.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+    <modules>
+        <module>config-server</module>
+        <module>oauth-server</module>
+        <module>oauth-jdbc-client</module>
+        <module>oauth-jwt-client</module>
+        <module>oauth-sso</module>
+        <module>oauth-web</module>
+    </modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<maven-compiler.version>3.6.1</maven-compiler.version>
+		<spring-cloud.version>Edgware.SR3</spring-cloud.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
+		<commons-collections4.version>4.1</commons-collections4.version>
+		<commons-collections.version>3.2.2</commons-collections.version>
+		<commons-beanutils.version>1.9.3</commons-beanutils.version>
+		<fasterxml.version>1.3.3</fasterxml.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+		    <dependency>
+			    <groupId>com.fasterxml</groupId>
+			    <artifactId>classmate</artifactId>
+			    <version>${fasterxml.version}</version>
+		    </dependency>
+
+		    <!-- Commons -->
+		    <dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-lang3</artifactId>
+			    <version>${commons-lang3.version}</version>
+		    </dependency>
+
+		    <dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-collections4</artifactId>
+			    <version>${commons-collections4.version}</version>
+		    </dependency>
+
+		    <dependency>
+			    <groupId>commons-collections</groupId>
+			    <artifactId>commons-collections</artifactId>
+			    <version>${commons-collections.version}</version>
+		    </dependency>
+
+		    <dependency>
+			    <groupId>commons-beanutils</groupId>
+			    <artifactId>commons-beanutils</artifactId>
+			    <version>${commons-beanutils.version}</version>
+		    </dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
+

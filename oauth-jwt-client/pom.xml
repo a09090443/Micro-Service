@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.localhost</groupId>
 	<artifactId>oauth-jwt-client</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>oauth-jwt-client</name>
 	<description>Srping Oauth Rest Server via jwt</description>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.12.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<artifactId>micro-service</artifactId>
+		<groupId>com.zipe</groupId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Edgware.SR3</spring-cloud.version>
-		<fasterxml.version>1.3.3</fasterxml.version>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -44,7 +34,6 @@
 		<dependency>
 			<groupId>com.fasterxml</groupId>
 			<artifactId>classmate</artifactId>
-			<version>${fasterxml.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -61,6 +50,7 @@
 	</dependencyManagement>
 
 	<build>
+        <finalName>${artifactId}-${version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -69,11 +59,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.1</version>
+				<version>${maven-compiler.version}</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 					<compilerArguments>
 						<extdirs>${project.basedir}/src/main/webapp/WEB-INF/lib</extdirs>
 					</compilerArguments>
@@ -81,6 +71,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>
