@@ -28,25 +28,25 @@ Micro-Services Project
 ---
 The HTTP service has resources in the following form:
 > /{application}/{profile}[/{label}]
-  - http://127.0.0.1:8888/oauth-jdbc-client/dev/spring_config
+  - http://127.0.0.1:8888/oauth-jdbc-client/dev/develop
 
 > /{application}-{profile}.yml
   - http://127.0.0.1:8888/oauth-jdbc-client-dev.yml
 
 > /{label}/{application}-{profile}.yml
-  - http://127.0.0.1:8888/spring_config/oauth-jdbc-client-dev.yml
+  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.yml
 
 > /{application}-{profile}.properties
   - http://127.0.0.1:8888/oauth-jdbc-client-dev.properties
 
 > /{label}/{application}-{profile}.properties
-  - http://127.0.0.1:8888/spring_config/oauth-jdbc-client-dev.properties
+  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.properties
 
 > /{application}-{profile}.json
   - http://127.0.0.1:8888/oauth-jdbc-client-dev.json
 
 > /{label}/{application}-{profile}.json
-  - http://127.0.0.1:8888/spring_config/oauth-jdbc-client-dev.json
+  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.json
 
 ### Login Info
 ---
