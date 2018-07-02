@@ -1,0 +1,19 @@
+demo:
+    env: dev
+
+security:
+  oauth2:
+    resource:
+      id: oauth2-resource
+      token-info-uri: http://127.0.0.1:8081/oauth/check_token
+      prefer-token-info: true
+      filter-order: 3
+    client:
+      client-id: api_service
+      client-secret: secret
+      access-token-uri: http://127.0.0.1:8081/oauth/token
+      user-authorization-uri: http://127.0.0.1:8081/oauth/authorize
+
+logging:
+  level:
+    org.springframework.security: DEBUG

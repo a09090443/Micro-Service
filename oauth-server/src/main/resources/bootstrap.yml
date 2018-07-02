@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: oauth-server-dev
+  cloud:
+    config:
+      profile: dev
+      uri: http://127.0.0.1:8888
+      label: develop
+
+server:
+  port: 8081

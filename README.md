@@ -10,6 +10,43 @@ Micro-Services Project
    - port:8083
 4. oauth-sso
    - port:8084
+5. config-server
+   - port:8888
+6. config-repo
+
+### Config Repo
+---
+##### Config file list
+1. application.yml : common config environment
+2. oauth-server-[dev, pro].yml : oauth-server config environment
+3. oauth-jdbc-client-[dev, pro].yml : oauth-jdbc-client config environment
+4. oauth-jwt-client-[dev, pro].yml : oauth-jwt-client config environment
+5. oauth-sso-client-[dev, pro].yml : oauth-sso config environment
+6. oauth-web-client-[dev, pro].yml : oauth-web config environment
+
+### Config Server
+---
+The HTTP service has resources in the following form:
+> /{application}/{profile}[/{label}]
+  - http://127.0.0.1:8888/oauth-jdbc-client/dev/develop
+
+> /{application}-{profile}.yml
+  - http://127.0.0.1:8888/oauth-jdbc-client-dev.yml
+
+> /{label}/{application}-{profile}.yml
+  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.yml
+
+> /{application}-{profile}.properties
+  - http://127.0.0.1:8888/oauth-jdbc-client-dev.properties
+
+> /{label}/{application}-{profile}.properties
+  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.properties
+
+> /{application}-{profile}.json
+  - http://127.0.0.1:8888/oauth-jdbc-client-dev.json
+
+> /{label}/{application}-{profile}.json
+  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.json
 
 ### Login Info
 ---
@@ -55,3 +92,7 @@ Micro-Services Project
 ### Refresh Token Url(HTTP Method:POST)
 ---
   - http://localhost:8081/oauth/token?grant_type=refresh_token&refresh_token=refresh_token_id&client_id=auth_test&client_secret=secret
+
+### Web management
+---
+  - http://localhost:8084
