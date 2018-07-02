@@ -12,7 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Service;
 
-import com.localhost.config.ConfigBean;
+import com.zipe.config.ConfigBean;
 import com.zipe.service.IOauthService;
 import com.zipe.url.constant.Url;
 import com.zipe.utils.HttpUtility;

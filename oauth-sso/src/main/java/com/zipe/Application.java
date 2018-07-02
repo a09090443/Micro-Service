@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextListener;
 
-import com.localhost.config.ConfigBean;
+import com.zipe.config.ConfigBean;
 
 @SpringBootApplication()
 @EnableConfigurationProperties({ ConfigBean.class })

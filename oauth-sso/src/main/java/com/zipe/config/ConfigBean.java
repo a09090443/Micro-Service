@@ -1,4 +1,4 @@
-package com.localhost.config;
+package com.zipe.config;
 
 import java.util.Map;
 
