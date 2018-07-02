@@ -27,6 +27,11 @@ security:
       filter-order: 3
       token-info-uri: http://127.0.0.1:8081/oauth/check_token
 
+custom:
+  server:
+    oauth: 127.0.0.1:8081
+    api: 127.0.0.1:8082
+
 logging:
   level:
     org.springframework.security: DEBUG
