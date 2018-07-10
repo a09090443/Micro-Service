@@ -9,5 +9,12 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     
 logging:
+  file: ~/logs/oauth-jdbc-client-dev.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
   level:
     org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    guru.springframework.controllers: DEBUG
+    org.hibernate: DEBUG
