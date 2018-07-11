@@ -33,5 +33,12 @@ custom:
     api: 127.0.0.1:8082
 
 logging:
+  file: /tmp/logs/oauth-sso-client.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
   level:
     org.springframework.security: INFO
+    org.springframework.web: INFO
+    guru.springframework.controllers: INFO
+    org.hibernate: INFO
