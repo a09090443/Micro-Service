@@ -8,5 +8,12 @@ datasource:
     driverClassName: com.mysql.jdbc.Driver
 
 logging:
+  file: /tmp/logs/oauth-server.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
   level:
     org.springframework.security: INFO
+    org.springframework.web: INFO
+    guru.springframework.controllers: INFO
+    org.hibernate: INFO
