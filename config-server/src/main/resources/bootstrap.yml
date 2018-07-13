@@ -15,4 +15,4 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@127.0.0.1:1111/eureka # 指定服务注册中心
+      defaultZone: http://admin:admin@127.0.0.1:1111/eureka
