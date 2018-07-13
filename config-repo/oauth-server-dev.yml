@@ -1,6 +1,7 @@
-demo:
-    env: dev
-    
+properties:
+  env: dev
+  log-level: DEBUG
+  
 spring:
   datasource:
     url: jdbc:mysql://192.168.1.151:3306/dev_oauth?characterEncoding=UTF-8
@@ -9,12 +10,12 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     
 logging:
-  file: /tmp/logs/oauth-server-dev.log
+  file: /tmp/logs/${spring.application.name}-${spring.profiles.active}.log
   pattern:
     console: "%d %-5level %logger : %msg%n"
     file: "%d %-5level [%thread] %logger : %msg%n"
   level:
-    org.springframework.security: DEBUG
-    org.springframework.web: DEBUG
-    guru.springframework.controllers: DEBUG
-    org.hibernate: DEBUG
+    org.springframework.security: ${properties.log-level}
+    org.springframework.web: ${properties.log-level}
+    guru.springframework.controllers: ${properties.log-level}
+    org.hibernate: ${properties.log-level}
