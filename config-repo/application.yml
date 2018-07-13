@@ -24,4 +24,4 @@ eureka:
     port: 1111
   client:
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka
+      defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
