@@ -1,10 +1,7 @@
 properties:
   project: oauth-sso-client
-  env: dev
-  log-level: DEBUG
-  server:
-    oauth: 127.0.0.1:8081
-    api: 127.0.0.1:8082
+  env: production
+  log-level: INFO
 
 server:
     session:

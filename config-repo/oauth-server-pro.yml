@@ -1,6 +1,6 @@
 properties:
   project: oauth-server
-  env: dev
+  env: production
   log-level: INFO
     
 datasource:
