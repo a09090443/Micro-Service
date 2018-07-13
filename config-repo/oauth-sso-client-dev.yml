@@ -1,7 +1,7 @@
 properties:
   project: oauth-sso-client
   env: dev
-  log-level: DEBUG
+  log-level: INFO
 
 server:
     session:

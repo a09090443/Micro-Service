@@ -1,7 +1,7 @@
 properties:
   project: oauth-jdbc-client
   env: dev
-  log-level: DEBUG
+  log-level: INFO
   
 spring:
   datasource:
