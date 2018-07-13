@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     
 logging:
-  file: ~/logs/oauth-jdbc-client-dev.log
+  file: /tmp/logs/oauth-jdbc-client-dev.log
   pattern:
     console: "%d %-5level %logger : %msg%n"
     file: "%d %-5level [%thread] %logger : %msg%n"
