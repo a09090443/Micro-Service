@@ -26,7 +26,6 @@ eureka:
     service-url:
       defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
 
-    
 logging:
   file: /tmp/logs/${properties.project}-${properties.env}.log
   pattern:
