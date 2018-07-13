@@ -10,7 +10,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     
 logging:
-  file: /tmp/logs/${spring.config.name}-${properties.env}.log
+  file: /tmp/logs/${name}-${properties.env}.log
   pattern:
     console: "%d %-5level %logger : %msg%n"
     file: "%d %-5level [%thread] %logger : %msg%n"
