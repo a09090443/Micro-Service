@@ -23,9 +23,9 @@ security:
     client:
       clientId: sso_service
       clientSecret: secret
-      accessTokenUri: http://127.0.0.1:8081/oauth/token
-      userAuthorizationUri: http://127.0.0.1:8081/oauth/authorize
+      accessTokenUri: http://${properties.server.oauth}/oauth/token
+      userAuthorizationUri: http://${properties.server.oauth}/oauth/authorize
     resource:
 #      userInfoUri: http://127.0.0.1:8081/user/me
       filter-order: 3
-      token-info-uri: http://127.0.0.1:8081/oauth/check_token
+      token-info-uri: http://${properties.server.oauth}/oauth/check_token
