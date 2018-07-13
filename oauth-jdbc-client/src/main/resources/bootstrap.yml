@@ -1,9 +1,11 @@
 spring:
   application:
     name: oauth-jdbc-client
+  profiles:
+    active: dev, pro
   cloud:
     config:
-      profile: dev
+#      profile: dev
       uri: http://127.0.0.1:8888
       label: develop
 

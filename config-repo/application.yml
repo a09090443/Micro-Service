@@ -25,7 +25,7 @@ security:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: 127.0.0.1
     port: 1111
   client:
     service-url:
