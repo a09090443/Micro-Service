@@ -1,4 +1,5 @@
 properties:
+  project: oauth-server
   env: dev
   log-level: DEBUG
   
@@ -8,14 +9,4 @@ spring:
     username: dev
     password: 1qaz@WSX
     driver-class-name: com.mysql.jdbc.Driver
-    
-logging:
-  file: /tmp/logs/${name}-${properties.env}.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.security: ${properties.log-level}
-    org.springframework.web: ${properties.log-level}
-    guru.springframework.controllers: ${properties.log-level}
-    org.hibernate: ${properties.log-level}
+
