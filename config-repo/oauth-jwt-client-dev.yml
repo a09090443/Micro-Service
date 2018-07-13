@@ -1,5 +1,7 @@
-demo:
-    env: dev
+properties:
+  project: oauth-jwt-client
+  env: dev
+  log-level: DEBUG
 
 security:
   oauth2:
@@ -13,14 +15,3 @@ security:
       client-secret: secret
       access-token-uri: http://127.0.0.1:8081/oauth/token
       user-authorization-uri: http://127.0.0.1:8081/oauth/authorize
-
-logging:
-  file: /tmp/logs/oauth-jwt-client-dev.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.security: DEBUG
-    org.springframework.web: DEBUG
-    guru.springframework.controllers: DEBUG
-    org.hibernate: DEBUG
