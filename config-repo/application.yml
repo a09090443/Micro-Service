@@ -1,7 +1,7 @@
 properties:
   server:
-    oauth: 127.0.0.1:8081
-    api: 127.0.0.1:8082
+    oauth: 192.168.1.151:8081
+    api: 192.168.1.151:8082
 
 spring:
   jpa:
@@ -9,7 +9,7 @@ spring:
       ddl-auto: update
     show-sql: true
     properties:  
-      hibernate:  
+      hibernate: 
         dialect: org.hibernate.dialect.MySQL5Dialect
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
         format_sql: true
