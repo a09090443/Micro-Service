@@ -1,13 +1,15 @@
 #!/bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 
-project_name=$1
+read -a new_string <<< "$1"
+
+project_name=${new_string[0]}
+port=${new_string[1]}
 version=$2
-port=$3
 
 jar_file_name="$project_name-$version".jar
-source_dir=/home/zipe/micro-service/
-target_dir=/home/zipe/tmp/
+source_dir=~/micro-service/
+target_dir=~/deploy/
 project_dir_path=$target_dir$project_name
 
 file_full_path="$source_dir$jar_file_name"
@@ -33,6 +35,6 @@ else
         exit 1
 fi
 
-fuser -k "$port"/tcp;java -jar "$project_dir_path/$jar_file_name" >/dev/null  2>&1  &
+fuser -k "$port"/tcp;java -jar "$project_dir_path/$jar_file_name" >~/log/"$project_name"  2>&1  &
 
 echo "success"
