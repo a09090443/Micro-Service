@@ -2,6 +2,8 @@ Micro-Services Project
 ======================
 #### Services list
 ---
+1. eureka-server
+   - port:1111
 1. oauth-server
    - port:8081
 2. oauth-jdbc-client
@@ -13,6 +15,15 @@ Micro-Services Project
 5. config-server
    - port:8888
 6. config-repo
+
+### Eureka Server
+---
+#### Login Info
+  - Username:`admin`
+  - Password:`admin`
+
+#### Eureka monitor Url:
+  - http://127.0.0.1:1111
 
 ### Config Repo
 ---
