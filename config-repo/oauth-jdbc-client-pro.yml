@@ -1,5 +1,7 @@
-demo:
-    env: product
+properties:
+  project: oauth-jdbc-client
+  env: production
+  log-level: INFO
     
 spring:
   datasource:
@@ -7,15 +9,4 @@ spring:
     username: dev
     password: 1qaz@WSX
     driver-class-name: com.mysql.jdbc.Driver
-    
-    
-logging:
-  file: /tmp/logs/oauth-jdbc-client.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.security: INFO
-    org.springframework.web: INFO
-    guru.springframework.controllers: INFO
-    org.hibernate: INFO
+

@@ -1,5 +1,7 @@
-demo:
-    env: product
+properties:
+  project: oauth-sso-client
+  env: production
+  log-level: INFO
 
 server:
     session:
@@ -14,31 +16,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 security:
-  basic:
-    enabled: false
   oauth2:
     client:
       clientId: sso_service
       clientSecret: secret
-      accessTokenUri: http://127.0.0.1:8081/oauth/token
-      userAuthorizationUri: http://127.0.0.1:8081/oauth/authorize
+      accessTokenUri: http://${properties.server.oauth}/oauth/token
+      userAuthorizationUri: http://${properties.server.oauth}/oauth/authorize
     resource:
 #      userInfoUri: http://127.0.0.1:8081/user/me
       filter-order: 3
-      token-info-uri: http://127.0.0.1:8081/oauth/check_token
-
-custom:
-  server:
-    oauth: 127.0.0.1:8081
-    api: 127.0.0.1:8082
-
-logging:
-  file: /tmp/logs/oauth-sso-client.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.security: INFO
-    org.springframework.web: INFO
-    guru.springframework.controllers: INFO
-    org.hibernate: INFO
+      token-info-uri: http://${properties.server.oauth}/oauth/check_token

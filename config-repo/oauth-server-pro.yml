@@ -1,19 +1,10 @@
-demo:
-    env: product
+properties:
+  project: oauth-server
+  env: production
+  log-level: INFO
     
 datasource:
     url: jdbc:mysql://192.168.1.151:3306/dev_oauth_pro?characterEncoding=UTF-8
     username: dev
     password: 1qaz@WSX
     driverClassName: com.mysql.jdbc.Driver
-
-logging:
-  file: /tmp/logs/oauth-server.log
-  pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
-  level:
-    org.springframework.security: INFO
-    org.springframework.web: INFO
-    guru.springframework.controllers: INFO
-    org.hibernate: INFO

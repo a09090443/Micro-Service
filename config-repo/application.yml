@@ -1,10 +1,15 @@
+properties:
+  server:
+    oauth: 192.168.1.151:8081
+    api: 192.168.1.151:8082
+
 spring:
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:  
-      hibernate:  
+      hibernate: 
         dialect: org.hibernate.dialect.MySQL5Dialect
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
         format_sql: true
@@ -17,3 +22,23 @@ spring:
 security:
   basic:
     enabled: false
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    port: 1111
+  client:
+    service-url:
+      defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
+
+logging:
+  file: /tmp/logs/${properties.project}-${properties.env}.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    root: ${properties.log-level}
+    org.springframework.security: ${properties.log-level}
+    org.springframework.web: ${properties.log-level}
+    guru.springframework.controllers: ${properties.log-level}
+    org.hibernate: ${properties.log-level}
