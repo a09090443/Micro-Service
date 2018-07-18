@@ -45,6 +45,6 @@ else
         exit 1
 fi
 
-fuser -k "$port"/tcp;java -jar "$project_dir_path/$jar_file_name" >~/log/"$project_name"  2>&1  &
+fuser -k "$port"/tcp;java -jar "$project_dir_path/$jar_file_name" >~/log/"$project_name.log"  2>&1  &
 
 echo "success"
