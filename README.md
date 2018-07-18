@@ -1,5 +1,21 @@
 Micro-Services Project
 ======================
+#### How to start each service
+1. Install maven in operator system.
+2. using maven command to compile project.
+   - change to root directory (Micro-Service)
+   - execute maven command:`mvn package -Dmaven.test.skip=true`
+3. after compile and you will find jar file in each project target directory, e.g.,
+   - oauth-server:jar file in `oauth-server/target`
+4. you have to follow start sequence:
+   1. eureka-server:`java -jar ./eureka-server/target/eureka-server-0.0.1-SNAPSHOT.jar`
+   2. config-server:`java -jar ./config-server/target/config-server-0.0.1-SNAPSHOT.jar`
+   3. oauth-server:`java -jar ./oauth-server/target/oauth-server-0.0.1-SNAPSHOT.jar`
+   4. oauth-jdbc-client:`java -jar ./oauth-jdbc-client/target/oauth-jdbc-client-0.0.1-SNAPSHOT.jar`
+   5. oauth-jwt-client:`java -jar ./oauth-jwt-client/target/oauth-jwt-client-0.0.1-SNAPSHOT.jar`
+   6. oauth-sso:`java -jar ./oauth-sso/target/oauth-sso-0.0.1-SNAPSHOT.jar`
+   7. oauth-web:`java -jar ./oauth-sso/target/oauth-web-0.0.1-SNAPSHOT.jar`
+
 #### Services list
 ---
 1. eureka-server
