@@ -20,6 +20,14 @@ Micro-Services Project
    6. oauth-sso:`java -jar ./oauth-sso/target/oauth-sso-0.0.1-SNAPSHOT.jar`
    7. oauth-web:`java -jar ./oauth-sso/target/oauth-web-0.0.1-SNAPSHOT.jar`
 
+## TODO LIST
+
+* [x] [Spring Boot](http://#)
+* [x] [Spring Security](http://#)
+* [x] [Spring Oauth2](http://#)
+* [x] [Spring Config](http://#)
+* [x] [Spring Eureka](http://#)
+
 #### Services list
 ---
 1. eureka-server
