@@ -89,6 +89,12 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 		</dependency>
+		
+		<!-- Customize utility -->
+		<dependency>
+			<groupId>com.zipe</groupId>
+			<artifactId>utility</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
