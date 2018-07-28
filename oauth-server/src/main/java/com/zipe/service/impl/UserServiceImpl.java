@@ -10,11 +10,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.usefulness.utils.date.DateUtils;
-import com.usefulness.utils.image.ImageUtils;
 import com.zipe.model.UserInfo;
 import com.zipe.repository.IUserInfoRepository;
 import com.zipe.service.IUserService;
+import com.zipe.utils.date.DateUtils;
+import com.zipe.utils.image.ImageUtils;
 
 @Transactional
 @Service("userService")
