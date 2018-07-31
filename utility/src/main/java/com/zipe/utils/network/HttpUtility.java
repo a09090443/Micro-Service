@@ -1,4 +1,4 @@
-package com.zipe.utils;
+package com.zipe.utils.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,11 +30,9 @@ public class HttpUtility {
 	/**
 	 * Makes an HTTP request using GET method to the specified URL.
 	 *
-	 * @param requestURL
-	 *            the URL of the remote server
+	 * @param requestURL the URL of the remote server
 	 * @return An HttpURLConnection object
-	 * @throws IOException
-	 *             thrown if any I/O error occurred
+	 * @throws IOException thrown if any I/O error occurred
 	 */
 	public static HttpURLConnection sendGetRequest(String requestURL) throws IOException {
 		URL url = new URL(requestURL);
@@ -50,13 +48,10 @@ public class HttpUtility {
 	/**
 	 * Makes an HTTP request using POST method to the specified URL.
 	 *
-	 * @param requestURL
-	 *            the URL of the remote server
-	 * @param params
-	 *            A map containing POST data in form of key-value pairs
+	 * @param requestURL the URL of the remote server
+	 * @param params A map containing POST data in form of key-value pairs
 	 * @return An HttpURLConnection object
-	 * @throws IOException
-	 *             thrown if any I/O error occurred
+	 * @throws IOException thrown if any I/O error occurred
 	 */
 	public static HttpURLConnection sendPostRequest(String requestURL, Map<String, String> params) throws IOException {
 		URL url = new URL(requestURL);
@@ -95,8 +90,7 @@ public class HttpUtility {
 	 * if the server returns only a single line of String.
 	 *
 	 * @return a String of the server's response
-	 * @throws IOException
-	 *             thrown if any I/O error occurred
+	 * @throws IOException thrown if any I/O error occurred
 	 */
 	public static String readSingleLineRespone() throws IOException {
 		InputStream inputStream = null;
@@ -119,8 +113,7 @@ public class HttpUtility {
 	 * used if the server returns multiple lines of String.
 	 *
 	 * @return an array of Strings of the server's response
-	 * @throws IOException
-	 *             thrown if any I/O error occurred
+	 * @throws IOException thrown if any I/O error occurred
 	 */
 	public static String[] readMultipleLinesRespone() throws IOException {
 		InputStream inputStream = null;
