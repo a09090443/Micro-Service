@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.zipe.config.ConfigBean;
 import com.zipe.service.IOauthService;
 import com.zipe.url.constant.Url;
-import com.zipe.utils.HttpUtility;
+import com.zipe.utils.network.HttpUtility;
 
 @Service("oauthService")
 public class OauthServiceImpl implements IOauthService {
@@ -38,7 +38,7 @@ public class OauthServiceImpl implements IOauthService {
 		Url url = new Url();
 		String fullRequestUrl = null;
 		try {
-			String apiServer = configBean.getServer().get("api");
+			String apiServer = configBean.getServer().get("jdbc-api");
 			fullRequestUrl = url.getUrlPath(apiServer.split(":")[0], apiServer.split(":")[1], Url.OAUTH_GET_USERS,
 					false);
 
