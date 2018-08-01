@@ -74,7 +74,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">Oauth user list</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -91,8 +91,11 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>clientId</th>
-                                        <th>resourceIds</th>
+                                        <th>Client Id</th>
+                                        <th>Resource Ids</th>
+                                        <th>Client Secret</th>
+                                        <th>Scope</th>
+                                        <th>Authorized Grant Types</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -125,6 +128,14 @@
         	    "type": "GET",
         	    "dataSrc": ""
         	  },
+        	  "columnDefs": [
+      		    { "width": "1%", "targets": 0 },
+    		    { "width": "10%", "targets": 1 },
+    		    { "width": "15%", "targets": 2 },
+    		    { "width": "25%", "targets": 3 },
+    		    { "width": "25%", "targets": 4 },
+    		    { "width": "24%", "targets": 5 }
+        	  ],
               "columns": [
             	  {
                       "className":      'details-control',
@@ -133,8 +144,12 @@
                       "defaultContent": ''
                   },
                   { "data": "clientId" },
-                  { "data": "resourceIds" }
-              ]
+                  { "data": "resourceIds" },
+                  { "data": "clientSecret" },
+                  { "data": "scope" },
+                  { "data": "authorizedGrantTypes" }
+              ],
+              "order": [[1, 'asc']]
         });
         
         // Add event listener for opening and closing details
@@ -158,18 +173,6 @@
     function format ( d ) {
         // `d` is the original data object for the row
         return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-            '<tr>'+
-                '<td>Client Secret:</td>'+
-                '<td>'+d.clientSecret+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Scope:</td>'+
-                '<td>'+d.scope+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Authorized Grant Types:</td>'+
-                '<td>'+d.authorizedGrantTypes+'</td>'+
-            '</tr>'+
             '<tr>'+
                 '<td>Web Server Redirect Uri:</td>'+
                 '<td>'+d.webServerRedirectUri+'</td>'+
