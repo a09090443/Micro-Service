@@ -128,12 +128,12 @@ The HTTP service has resources in the following form:
 
 ### Check Token Url(HTTP Method:GET,POST)
 ---
-  - http://localhost:8081/oauth/check_token?token=token_id
+  - http://127.0.0.1:8081/oauth/check_token?token=token_id
 
 ### Refresh Token Url(HTTP Method:POST)
 ---
-  - http://localhost:8081/oauth/token?grant_type=refresh_token&refresh_token=refresh_token_id&client_id=auth_test&client_secret=secret
+  - http://127.0.0.1:8081/oauth/token?grant_type=refresh_token&refresh_token=refresh_token_id&client_id=auth_test&client_secret=secret
 
 ### Web management
 ---
-  - http://localhost:8084
+  - http://127.0.0.1:8084
