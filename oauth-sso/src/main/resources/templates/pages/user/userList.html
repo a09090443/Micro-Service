@@ -69,7 +69,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Oauth user list</h1>
+                    <h1 class="page-header">User list</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -86,11 +86,11 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Client Id</th>
-                                        <th>Resource Ids</th>
-                                        <th>Client Secret</th>
-                                        <th>Scope</th>
-                                        <th>Authorized Grant Types</th>
+                                        <th>User Id</th>
+                                        <th>Login Id</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Activated</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -119,17 +119,17 @@
         var jsonData = JSON.stringify([[${oauth_users}]]);
         var table = $('#dataTables-example').DataTable({
         	"ajax": {
-        	    "url": "/user/oauth/users",
+        	    "url": "/user/login/users",
         	    "type": "GET",
         	    "dataSrc": ""
         	  },
         	  "columnDefs": [
       		    { "width": "1%", "targets": 0 },
-    		    { "width": "10%", "targets": 1 },
-    		    { "width": "15%", "targets": 2 },
+    		    { "width": "14%", "targets": 1 },
+    		    { "width": "20%", "targets": 2 },
     		    { "width": "25%", "targets": 3 },
     		    { "width": "25%", "targets": 4 },
-    		    { "width": "24%", "targets": 5 }
+    		    { "width": "15%", "targets": 5 }
         	  ],
               "columns": [
             	  {
@@ -138,11 +138,11 @@
                       "data":           null,
                       "defaultContent": ''
                   },
-                  { "data": "clientId" },
-                  { "data": "resourceIds" },
-                  { "data": "clientSecret" },
-                  { "data": "scope" },
-                  { "data": "authorizedGrantTypes" }
+                  { "data": "userId" },
+                  { "data": "loginId" },
+                  { "data": "firstName" },
+                  { "data": "lastName" },
+                  { "data": "activated"}
               ],
               "order": [[1, 'asc']]
         });
@@ -169,28 +169,20 @@
         // `d` is the original data object for the row
         return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
             '<tr>'+
-                '<td>Web Server Redirect Uri:</td>'+
-                '<td>'+d.webServerRedirectUri+'</td>'+
+                '<td>Email:</td>'+
+                '<td>'+d.email+'</td>'+
             '</tr>'+
             '<tr>'+
-                '<td>Authorities:</td>'+
-                '<td>'+d.authorities+'</td>'+
+                '<td>Birthday:</td>'+
+                '<td>'+d.birthday+'</td>'+
             '</tr>'+
             '<tr>'+
-                '<td>Access Token Validity:</td>'+
-                '<td>'+d.accessTokenValidity+'</td>'+
+                '<td>Address:</td>'+
+                '<td>'+d.address+'</td>'+
             '</tr>'+
             '<tr>'+
-                '<td>Refresh Token Validity:</td>'+
-                '<td>'+d.refreshTokenValidity+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Additional Information:</td>'+
-                '<td>'+d.additionalInformation+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Autoapprove:</td>'+
-                '<td>'+d.autoapprove+'</td>'+
+                '<td>Phone:</td>'+
+                '<td>'+d.phone+'</td>'+
             '</tr>'+
         '</table>';
     }
