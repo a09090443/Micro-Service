@@ -2,9 +2,14 @@ package com.zipe.test.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,14 +17,15 @@ import com.zipe.model.UserInfo;
 import com.zipe.service.IUserService;
 import com.zipe.test.base.TestBase;
 
-public class UserInfoServiceTest extends TestBase{
+public class UserInfoServiceTest extends TestBase {
 
 	@Autowired
 	private IUserService userService;
 
 	private String LOGING_ID = "Junit";
 	private String EMAIL = "Junit@localhost.com";
-	
+
+	@Ignore
 	@Before
 	public void testSaveUserInfo() {
 		UserInfo userInfo = new UserInfo();
@@ -38,7 +44,8 @@ public class UserInfoServiceTest extends TestBase{
 			e.printStackTrace();
 		}
 	}
-	
+
+	@Ignore
 	@After
 	public void testDelUserInfo() {
 		UserInfo userInfo = new UserInfo();
@@ -49,8 +56,20 @@ public class UserInfoServiceTest extends TestBase{
 			e.printStackTrace();
 		}
 	}
-	
+
 //	@Ignore
+	@Test
+	public void testFindUsers() {
+		List<UserInfo> userInfoList = new ArrayList<UserInfo>();
+		try {
+			userInfoList = userService.findAllUsers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertTrue(userInfoList.size() > 0);
+	}
+
+	@Ignore
 	@Test
 	public void testFindUserInfoByLoginId() {
 		String loginId = LOGING_ID;
@@ -58,8 +77,8 @@ public class UserInfoServiceTest extends TestBase{
 		assertNotNull(userInfo);
 		assertEquals(loginId, userInfo.getLoginId());
 	}
-	
-//	@Ignore
+
+	@Ignore
 	@Test
 	public void testFindUserInfoByEmail() {
 		String email = EMAIL;

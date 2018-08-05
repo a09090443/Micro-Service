@@ -1,5 +1,7 @@
 package com.zipe.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,12 @@ public class UserController {
 	
 	@Autowired
 	private IUserService userService;
+
+	@GetMapping("/GET/users")
+	public List<UserInfo> users() throws Exception {
+		List<UserInfo> userInfoList = userService.findAllUsers();
+		return userInfoList;
+	}
 
 	@GetMapping("/GET/user/{loginId}")
 	public UserInfo user(@PathVariable String loginId) {

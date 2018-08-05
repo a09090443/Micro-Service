@@ -8,22 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zipe.config.ConfigBean;
-import com.zipe.service.IOauthService;
+import com.zipe.service.ILoginUserService;
 import com.zipe.service.common.CommonService;
 import com.zipe.url.constant.Url.URI;
 
-@Service("oauthService")
-public class OauthServiceImpl extends CommonService implements IOauthService {
-	private static final Logger logger = LoggerFactory.getLogger(OauthServiceImpl.class);
+@Service("loginUserService")
+public class LoginUserServiceImpl extends CommonService implements ILoginUserService {
+	private static final Logger logger = LoggerFactory.getLogger(LoginUserServiceImpl.class);
 
 	@Autowired
 	public ConfigBean configBean;
 
-	@Override
-	public String getOauthUsers() throws Exception {
-
+	public String getUsers() throws Exception {
+		
 		LinkedHashMap<String, String> parametersMap = new LinkedHashMap<String, String>();
-		String result = this.sendUrl("jdbc-api", parametersMap, URI.OAUTH_GET_USERS.getUri(), false);
+		String result =this.sendUrl("jdbc-api", parametersMap, URI.GET_USERS.getUri(), false);
 		return result;
 	}
 
