@@ -5,7 +5,15 @@ properties:
   
 spring:
   datasource:
+    type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://192.168.1.151:3306/dev_oauth?characterEncoding=UTF-8
     username: dev
     password: 1qaz@WSX
     driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+       minimumIdle: 5
+       maximumPoolSize: 20
+       idleTimeout: 30000
+       poolName: SpringBootJPAHikariCP
+       maxLifetime: 2000000
+       connectionTimeout: 30000
