@@ -18,7 +18,7 @@ spring:
 #    prefix: classpath:/templates/
     cache: false  
     encoding: UTF-8
-    mode: HTML5
+    mode: LEGACYHTML5
 
 security:
   basic:
