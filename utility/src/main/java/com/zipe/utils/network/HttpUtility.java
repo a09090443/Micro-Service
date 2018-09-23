@@ -9,9 +9,22 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * This class encapsulates methods for requesting a server via HTTP GET/POST and
@@ -54,8 +67,10 @@ public class HttpUtility {
 	 * @throws IOException thrown if any I/O error occurred
 	 */
 	public static HttpURLConnection sendPostRequest(String requestURL, Map<String, String> params) throws IOException {
+
 		URL url = new URL(requestURL);
 		httpConn = (HttpURLConnection) url.openConnection();
+		httpConn.setRequestMethod("POST");
 		httpConn.setUseCaches(false);
 
 		httpConn.setDoInput(true); // true indicates the server returns response
