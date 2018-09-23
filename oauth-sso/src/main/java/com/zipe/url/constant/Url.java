@@ -25,12 +25,19 @@ public class Url {
 		return sb.toString();
 	}
 
-	public String setUrlParameters(String url, Map<String, String> paraMap) {
+	public String setUrlParameters(String url, Map<String, String> paraMap, String httpMethod) {
 
 		StringBuilder sb = new StringBuilder();
 		int mapSizeCount = 0;
-
+		sb.append(url);
+		if("POST".equalsIgnoreCase(httpMethod)) {
+			return sb.toString();
+		}
+		
 		for (Map.Entry<String, String> entry : paraMap.entrySet()) {
+			if (mapSizeCount == 0) {
+				sb.append("?");
+			}
 			// int code = entry.getKey().hashCode() + entry.getValue().hashCode();
 			sb.append(entry.getKey() + "=" + entry.getValue());
 			mapSizeCount++;
@@ -39,12 +46,15 @@ public class Url {
 			}
 		}
 
-		return url + "?" + sb.toString();
+		return sb.toString();
 	}
 
 	public enum URI {
 		OAUTH_GET_USERS("/oauthApi/GET/users"), 
-		GET_USERS("/userApi/GET/users");
+		GET_USERS("/userApi/GET/users"),
+		GET_AUTHORITIES("/userApi/GET/authorities"),
+		GET_PERSONALTITLES("/userApi/GET/personalTitles"),
+		SAVE_USER("/userApi/POST/user");
 
 		private String uri;
 

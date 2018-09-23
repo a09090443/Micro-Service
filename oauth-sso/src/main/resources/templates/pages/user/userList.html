@@ -79,6 +79,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             DataTables Advanced Tables
+                            <button id="add" class="btn btn-info">Add User</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -86,11 +87,13 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>User Id</th>
                                         <th>Login Id</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Email</th>
                                         <th>Activated</th>
+                                        <th>Password</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -116,20 +119,22 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script th:inline="javascript">
     $(document).ready(function() {
-        var jsonData = JSON.stringify([[${oauth_users}]]);
         var table = $('#dataTables-example').DataTable({
         	"ajax": {
         	    "url": "/user/login/users",
         	    "type": "GET",
-        	    "dataSrc": ""
+        	    "dataSrc": "",
+        	    "contentType": "application/json; charset=utf-8"
         	  },
         	  "columnDefs": [
       		    { "width": "1%", "targets": 0 },
-    		    { "width": "14%", "targets": 1 },
-    		    { "width": "20%", "targets": 2 },
-    		    { "width": "25%", "targets": 3 },
-    		    { "width": "25%", "targets": 4 },
-    		    { "width": "15%", "targets": 5 }
+    		    { "width": "21%", "targets": 1 },
+    		    { "width": "16%", "targets": 2 },
+    		    { "width": "15%", "targets": 3 },
+                  { "width": "14%", "targets": 4 },
+                  { "width": "13%", "targets": 5 },
+    		    { "width": "10%", "targets": 6, "defaultContent": '<button id="passwordChange" class="btn btn-primary btn-xs btn-block">Change</button>' },
+    		    { "width": "10%", "targets": -1, "defaultContent": '<button id="edit" class="btn btn-primary btn-xs btn-block">Edit</button>' }
         	  ],
               "columns": [
             	  {
@@ -138,20 +143,140 @@
                       "data":           null,
                       "defaultContent": ''
                   },
-                  { "data": "userId" },
                   { "data": "loginId" },
                   { "data": "firstName" },
                   { "data": "lastName" },
-                  { "data": "activated"}
+                  { "data": "email" },
+                  { "data": "activated"},
+                  { "data": null},
+                  { "data": null}
               ],
               "order": [[1, 'asc']]
         });
-        
+        //Add user page
+        $('#add').click(function () {
+
+            // Get Authorities
+            $.ajax({
+                type :"GET",
+                url  : "/user/login/authorities",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8'
+            }).done(function(data) {
+                $('#addUserForm #authorities').html("");
+                let options;
+                data.forEach(function(element) {
+                    options += '<option value="' + element.authorityId + '">' + element.name + '</option>';
+                });
+                $('#addUserForm #authorities').append(options);
+
+                $('#addUserForm #authorities').multiselect("destroy").multiselect({
+                    includeSelectAllOption : true,
+                    buttonWidth:260
+                });
+            });
+
+            // Get Personal Titles
+            $.ajax({
+                type: "GET",
+                url: "/user/login/personalTitles",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8'
+            }).done(function(data) {
+                $('#addUserForm #personalTitles').html("");
+                let options;
+                data.forEach(function(element) {
+                    options += '<option value="' + element.titleId + '">' + element.titleName + '</option>';
+                });
+                $('#addUserForm #personalTitles').append(options);
+
+                $('#addUserForm #personalTitles').multiselect("destroy").multiselect({
+                    includeSelectAllOption: true,
+                    buttonWidth: 260
+                });
+            });
+
+            $('#addUser').modal('show');
+        } );
+
+        //Edit user page
+        $('#dataTables-example tbody').on( 'click', '#edit', function () {
+            var oriData = table.row( $(this).parents('tr') ).data();
+
+            // Get Authorities
+            $.ajax({
+	                type :"GET",
+	                url  : "/user/login/authorities",
+	                dataType: "json",
+	                contentType: 'application/json; charset=UTF-8',
+	                success : function(data) {
+	                	 $('#editUserForm #authorities').html("");
+	                	 let options;
+	                	 data.forEach(function(element) {
+	                		options += '<option value="' + element.authorityId + '">' + element.name + '</option>';
+	                 });
+	                	 $('#editUserForm #authorities').append(options);
+
+	   	             $('#editUserForm #authorities').multiselect("destroy").multiselect({
+	   	            	includeSelectAllOption : true,
+	   	         		buttonWidth:260
+	   	         	 });
+
+	   	             oriData.authorities.forEach(function(element) {
+	   	        		$('#editUserForm #authorities').multiselect('select', element.authorityId);
+	   	        	 });
+                }
+            })
+
+            // Get Personal Titles
+            $.ajax({
+                type: "GET",
+                url: "/user/login/personalTitles",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8'
+            }).done(function(data) {
+                $('#editUserForm #personalTitles').html("");
+                let options;
+                data.forEach(function(element) {
+                    options += '<option value="' + element.titleId + '">' + element.titleName + '</option>';
+                });
+                $('#editUserForm #personalTitles').append(options);
+
+                $('#editUserForm #personalTitles').multiselect("destroy").multiselect({
+                    includeSelectAllOption: true,
+                    buttonWidth: 260
+                });
+                oriData.personalTitle.forEach(function(element) {
+                    $('#editUserForm #personalTitles').multiselect('select', element.titleId);
+                });
+            });
+
+            $("#editUserForm input[name$='userId']").val(oriData.userId);
+            $('#editUserForm #loginId').val(oriData.loginId);
+            $("#editUserForm input[name$='loginId']").val(oriData.loginId);
+            $('#editUserForm #firstName').val(oriData.firstName);
+            $('#editUserForm #lastName').val(oriData.lastName);
+            $('#editUserForm #email').val(oriData.email);
+            $('#editUserForm #birthday').datepicker({
+            	format: 'yyyy-mm-dd',
+            	defaultDate: "1990-01-01",
+            	viewMode: 'years'
+            }).datepicker("update",oriData.birthday);
+
+            $('#editUserForm #phone').val(oriData.phone);
+            $('#editUserForm #address').val(oriData.address);
+
+            $('#editUser').modal('show');
+        } );
+
+        $('#dataTables-example tbody').on( 'click', '#passwordChange', function () {
+            $('#changePassword').modal('show');
+        });
         // Add event listener for opening and closing details
         $('#dataTables-example tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row( tr );
-     
+
             if ( row.child.isShown() ) {
                 // This row is already open - close it
                 row.child.hide();
@@ -162,16 +287,46 @@
                 row.child( format(row.data()) ).show();
                 tr.addClass('shown');
             }
-        } );
+        });
+        document.getElementById("sendAddUserForm").addEventListener("click", function () {
+            $('#addUserForm').submit();
+        });
+        document.getElementById("sendEditUserForm").addEventListener("click", function () {
+            $('#editUserForm').submit();
+        });
+        document.getElementById("sendPasswordForm").addEventListener("click", function () {
+            $('#passwordForm').submit();
+        });
     });
-    
+
     function format ( d ) {
-        // `d` is the original data object for the row
+    	let authorities = "";
+    	let authorityId = "";
+    	let i=0;
+    	d.authorities.forEach(function(element) {
+    		if(i > 0){
+    			authorities += ",";
+    			authorityId += ",";
+    		}
+    		authorities += element.name;
+    		authorityId += element.authorityId;
+    		i++;
+    	});
+
+    	let personalTitles = "";
+    	let personalTitleIds = "";
+    	let j=0;
+    	d.personalTitle.forEach(function(element) {
+    		if(j > 0){
+    			personalTitle += ",";
+    			personalTitleIds += ",";
+    		}
+    		personalTitles += element.titleName;
+    		personalTitleIds += element.titleId;
+    		j++;
+    	});
+
         return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-            '<tr>'+
-                '<td>Email:</td>'+
-                '<td>'+d.email+'</td>'+
-            '</tr>'+
             '<tr>'+
                 '<td>Birthday:</td>'+
                 '<td>'+d.birthday+'</td>'+
@@ -184,10 +339,25 @@
                 '<td>Phone:</td>'+
                 '<td>'+d.phone+'</td>'+
             '</tr>'+
+            '<tr>'+
+	            '<td>Autorities:</td>'+
+	            '<td>'+authorities+'</td>'+
+            '</tr>'+
+            '<tr>'+
+	            '<td>Persinal Titles:</td>'+
+	            '<td>'+personalTitles+'</td>'+
+	        '</tr>'+
+
         '</table>';
     }
     </script>
 
 </body>
+<!-- add user -->
+<div th:replace="pages/user/addUser :: addUser"></div>
+<!-- edit user -->
+<div th:replace="pages/user/editUser :: editUser"></div>
+<!-- change password -->
+<div th:replace="pages/user/changePassword :: changePassword"></div>
 
 </html>

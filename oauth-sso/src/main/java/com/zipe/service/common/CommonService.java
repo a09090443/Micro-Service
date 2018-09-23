@@ -29,7 +29,7 @@ public abstract class CommonService {
 
 	}
 
-	protected String sendUrl(String apiServerName, Map<String, String> parametersMap, String uri, boolean isHttps)
+	synchronized protected String sendUrl(String apiServerName, Map<String, String> parametersMap, String uri, boolean isHttps, String httpMethod)
 			throws Exception {
 		if (StringUtils.isBlank(this.getTokenId())) {
 			throw new Exception("The token id is blank or empty!");
@@ -43,7 +43,8 @@ public abstract class CommonService {
 			fullRequestUrl = url.getUrlPath(apiServer.split(":")[0], apiServer.split(":")[1], uri, isHttps);
 
 			parametersMap.put("access_token", this.getTokenId());
-			fullRequestUrl = url.setUrlParameters(fullRequestUrl, parametersMap);
+			
+			fullRequestUrl = url.setUrlParameters(fullRequestUrl, parametersMap, httpMethod);
 			logger.info("Send the request url:" + fullRequestUrl);
 
 		} catch (Exception e) {
@@ -52,8 +53,15 @@ public abstract class CommonService {
 		}
 
 		try {
-			HttpUtility.sendGetRequest(fullRequestUrl);
-
+			switch(httpMethod) {
+			case "POST":
+				HttpUtility.sendPostRequest(fullRequestUrl, parametersMap);
+				break;
+			case "GET":
+				HttpUtility.sendGetRequest(fullRequestUrl);
+				break;
+			}
+			
 			result = HttpUtility.readSingleLineRespone();
 			// result = http.readMultipleLinesRespone();
 		} catch (IOException e) {
@@ -62,6 +70,7 @@ public abstract class CommonService {
 			throw e;
 		} finally {
 			HttpUtility.disconnect();
+			parametersMap.clear();
 		}
 
 		return result;

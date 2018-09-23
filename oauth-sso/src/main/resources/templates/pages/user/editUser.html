@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+	<div th:fragment="editUser">
+		<div class="panel-body">
+			<!-- Modal -->
+			<div class="modal fade" id="editUser" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h2 class="modal-title" id="myModalLabel">User Edit</h2>
+						</div>
+						<div class="modal-body">
+							<form id="editUserForm" action="/user/login/save" method="POST">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-md-4 mb-5">
+									      <label for="loginId">Login Id</label>
+									      <input type="text" class="form-control" id="loginId" placeholder="Login Id" disabled="true" />
+									    </div>
+										<div class="col-md-4 mb-5">
+											<label for="firstName">First Name</label>
+											<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" />
+										</div>
+										<div class="col-md-4 mb-5">
+											<label for="lastName">Last Name</label>
+											<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" />
+										</div>
+									</div>
+	                                <div class="row">
+									    <div class="col-md-4 mb-5">
+									      <label for="email">Email</label>
+									      <input type="text" class="form-control" id="email" name="email" placeholder="Email" required="true" />
+									    </div>
+										<div class="col-md-4 mb-5">
+											<label for="birthday">Birthday</label>
+											<input type="text" class="form-control" id="birthday" name="birthday" placeholder="Birthday" required="true" />
+										</div>
+										<div class="col-md-4 mb-5">
+											<label for="phone">Phone</label>
+											<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required="true" />
+										</div>
+	                                </div>
+	                                <div class="row">
+									    <div class="col-md-4 mb-5">
+									      <label for="authorities">Authorities</label>
+										    <select id="authorities" name="authorities" multiple="multiple" >
+											</select>
+									    </div>
+										<div class="col-md-4 mb-5">
+											<label for="personalTitles">Personal Titles</label>
+											<select id="personalTitles" name="personalTitles" multiple="multiple" >
+											</select>
+										</div>
+	                                </div>
+	                                <div class="row">
+	                                    <div class="col-md-12 mb-5">
+									      <label for="address">Address</label>
+									      <input type="text" class="form-control" id="address" name="address" placeholder="Address" required="true" />
+									    </div>
+	                                </div>
+								</div>
+								<input type="hidden" name="loginId"/>
+								<input type="hidden" name="userId"/>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" id="sendEditUserForm">Save changes</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		<!-- .panel-body -->
+	</div>
+</body>
+</html>
