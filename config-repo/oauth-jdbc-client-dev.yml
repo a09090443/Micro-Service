@@ -2,7 +2,7 @@ properties:
   project: oauth-jdbc-client
   env: dev
   log-level: INFO
-  
+
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
@@ -11,9 +11,9 @@ spring:
     password: 1qaz@WSX
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
-       minimumIdle: 5
-       maximumPoolSize: 20
-       idleTimeout: 30000
-       poolName: SpringBootJPAHikariCP
-       maxLifetime: 2000000
-       connectionTimeout: 30000
+      minimumIdle: 5
+      maximumPoolSize: 20
+      idleTimeout: 30000
+      poolName: SpringBootJPAHikariCP
+      maxLifetime: 2000000
+      connectionTimeout: 30000
