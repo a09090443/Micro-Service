@@ -38,7 +38,8 @@
 		<commons-codec.version>1.11</commons-codec.version>
 		<fasterxml.version>1.3.3</fasterxml.version>
         <hicari.version>3.2.0</hicari.version>
-        <json.version>20180813</json.version>
+		<json.version>20180813</json.version>
+		<jettison.version>1.4.0</jettison.version>
 		<utility.version>${project.version}</utility.version>
 	</properties>
 
@@ -84,6 +85,11 @@
 			    <artifactId>json</artifactId>
 			    <version>${json.version}</version>
 		    </dependency>
+			<dependency>
+				<groupId>org.codehaus.jettison</groupId>
+				<artifactId>jettison</artifactId>
+				<version>${jettison.version}</version>
+			</dependency>
 
 		    <dependency>
 			    <groupId>com.zipe</groupId>
