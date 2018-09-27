@@ -1,6 +1,6 @@
 properties:
   server:
-    oauth: 192.168.1.151:8081
+    oauth: 127.0.0.1:8081
     jdbc-api: 127.0.0.1:8082
 
 spring:
