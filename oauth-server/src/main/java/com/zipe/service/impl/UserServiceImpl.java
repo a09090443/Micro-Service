@@ -1,8 +1,10 @@
 package com.zipe.service.impl;
 
-import java.util.List;
-import java.util.Objects;
-
+import com.zipe.model.UserInfo;
+import com.zipe.repository.IUserInfoRepository;
+import com.zipe.service.IUserService;
+import com.zipe.utils.date.DateUtils;
+import com.zipe.utils.image.ImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zipe.model.UserInfo;
-import com.zipe.repository.IUserInfoRepository;
-import com.zipe.service.IUserService;
-import com.zipe.utils.date.DateUtils;
-import com.zipe.utils.image.ImageUtils;
+import java.util.List;
+import java.util.Objects;
 
 @Transactional
 @Service("userService")

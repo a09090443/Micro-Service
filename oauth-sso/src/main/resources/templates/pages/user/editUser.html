@@ -17,7 +17,7 @@
 							<h2 class="modal-title" id="myModalLabel">User Edit</h2>
 						</div>
 						<div class="modal-body">
-							<form id="editUserForm" action="/user/login/save" method="POST">
+							<form id="editUserForm" action="/user/login/save" data-toggle="validator" role="form" method="POST">
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-md-4 mb-5">
@@ -47,18 +47,35 @@
 											<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required="true" />
 										</div>
 	                                </div>
-	                                <div class="row">
-									    <div class="col-md-4 mb-5">
-									      <label for="authorities">Authorities</label>
-										    <select id="authorities" name="authorities" multiple="multiple" >
+									<div class="row">
+										<div class="col-md-4 mb-5">
+											<label for="authorities">Authorities</label>
+											<select id="authorities" name="authorities" multiple="multiple" >
 											</select>
-									    </div>
+										</div>
 										<div class="col-md-4 mb-5">
 											<label for="personalTitles">Personal Titles</label>
 											<select id="personalTitles" name="personalTitles" multiple="multiple" >
 											</select>
 										</div>
-	                                </div>
+										<div class="col-md-4 mb-5">
+											<label for="activated">Activated</label>
+											<select class="form-control" id="activated" name="activated" >
+												<option value="false">false</option>
+												<option value="true">true</option>
+											</select>
+										</div>
+									</div>
+									<div class="row" id="addPassword">
+										<div class="col-md-4 mb-5">
+											<label for="password">Password</label>
+											<input type="password" class="form-control" data-minlength="20" id="password" name="password" placeholder="New Password" required="true"/>
+										</div>
+										<div class="col-md-4 mb-5">
+											<label for="personalTitles">Confirm Password</label>
+											<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" data-match="#password" data-match-error="Whoops, these don't match" required="true"/>
+										</div>
+									</div>
 	                                <div class="row">
 	                                    <div class="col-md-12 mb-5">
 									      <label for="address">Address</label>
@@ -67,7 +84,8 @@
 	                                </div>
 								</div>
 								<input type="hidden" name="loginId"/>
-								<input type="hidden" name="userId"/>
+                                <input type="hidden" name="userId"/>
+                                <input type="hidden" name="id"/>
 							</form>
 						</div>
 						<div class="modal-footer">

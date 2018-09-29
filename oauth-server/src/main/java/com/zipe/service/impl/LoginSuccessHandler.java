@@ -1,11 +1,10 @@
 package com.zipe.service.impl;
 
+import com.zipe.model.UserInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-
-import com.zipe.model.UserInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

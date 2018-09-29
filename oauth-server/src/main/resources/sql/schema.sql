@@ -16,20 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `authority`
---
-
-DROP TABLE IF EXISTS `authority`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `authority` (
-  `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`authority_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `oauth_access_token`
 --
 
@@ -116,6 +102,20 @@ CREATE TABLE `oauth_refresh_token` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `authority`
+--
+
+DROP TABLE IF EXISTS `authority`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `authority` (
+  `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`authority_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `personal_title`
 --
 
@@ -130,23 +130,6 @@ CREATE TABLE `personal_title` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `user_authority`
---
-
-DROP TABLE IF EXISTS `user_authority`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_authority` (
-  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
-  `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`user_id`,`authority_id`),
-  KEY `FKgvxjs381k6f48d5d2yi11uh89` (`authority_id`),
-  CONSTRAINT `FKal1t5uf78i79dlx2ry5qqw6c0` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`),
-  CONSTRAINT `FKgvxjs381k6f48d5d2yi11uh89` FOREIGN KEY (`authority_id`) REFERENCES `authority` (`authority_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `user_info`
 --
 
@@ -154,19 +137,38 @@ DROP TABLE IF EXISTS `user_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
-  `login_id` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `last_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   `birthday` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `activated` bit(1) NOT NULL,
-  `register_time` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  `activated` bit(1) DEFAULT NULL,
+  `register_time` varchar(19) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_hixwjgx0ynne0cq4tqvoawoda` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `user_authority`
+--
+
+DROP TABLE IF EXISTS `user_authority`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_authority` (
+  `id` int(11) NOT NULL,
+  `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`,`authority_id`),
+  KEY `FKgvxjs381k6f48d5d2yi11uh89` (`authority_id`),
+  CONSTRAINT `FKevf1ge6d1vkwb6bdm0t7jcid8` FOREIGN KEY (`id`) REFERENCES `user_info` (`id`),
+  CONSTRAINT `FKgvxjs381k6f48d5d2yi11uh89` FOREIGN KEY (`authority_id`) REFERENCES `authority` (`authority_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,13 +180,15 @@ DROP TABLE IF EXISTS `user_title`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_title` (
-  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
   `title_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`user_id`,`title_id`),
+  PRIMARY KEY (`id`,`title_id`),
   KEY `FK8dfrc4mibfms3tieybcdviwr2` (`title_id`),
-  CONSTRAINT `FKm32axjpdbpfyw4yrhlow01w9m` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`),
+  CONSTRAINT `FK3mbowwkqsvn5qofdbwld0eo4a` FOREIGN KEY (`id`) REFERENCES `user_info` (`id`),
   CONSTRAINT `FK8dfrc4mibfms3tieybcdviwr2` FOREIGN KEY (`title_id`) REFERENCES `personal_title` (`title_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

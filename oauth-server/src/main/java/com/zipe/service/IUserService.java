@@ -1,8 +1,8 @@
 package com.zipe.service;
 
-import java.util.List;
-
 import com.zipe.model.UserInfo;
+
+import java.util.List;
 
 public interface IUserService {
 	

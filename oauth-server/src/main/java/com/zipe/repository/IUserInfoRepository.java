@@ -1,8 +1,7 @@
 package com.zipe.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.zipe.model.UserInfo;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IUserInfoRepository extends JpaRepository<UserInfo, Long> {
 	

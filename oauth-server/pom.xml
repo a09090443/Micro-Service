@@ -89,6 +89,11 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${hicari.version}</version>
+		</dependency>
 
 		<!-- Customize utility -->
 		<dependency>

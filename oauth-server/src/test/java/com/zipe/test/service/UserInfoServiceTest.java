@@ -1,16 +1,15 @@
 package com.zipe.test.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
+import com.zipe.model.UserInfo;
+import com.zipe.service.IUserService;
+import com.zipe.test.base.TestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zipe.model.UserInfo;
-import com.zipe.service.IUserService;
-import com.zipe.test.base.TestBase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class UserInfoServiceTest extends TestBase {
 

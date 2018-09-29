@@ -3,10 +3,10 @@ package com.zipe.test.repository;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.zipe.model.UserInfo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zipe.model.UserInfo;
 import com.zipe.repository.IUserInfoRepository;
 import com.zipe.test.base.TestBase;
 
