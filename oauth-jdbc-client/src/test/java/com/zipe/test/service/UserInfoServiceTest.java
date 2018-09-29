@@ -7,13 +7,13 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zipe.model.UserInfo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zipe.model.UserInfo;
 import com.zipe.service.IUserService;
 import com.zipe.test.base.TestBase;
 

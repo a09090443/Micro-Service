@@ -6,188 +6,389 @@
     <!-- common meta -->
     <div th:replace="pages/components/header :: header-meta"></div>
 
-	<!-- common css -->
-	<div th:replace="pages/components/header :: header-css"></div>
-	<!-- datatable css -->
-	<div th:replace="pages/components/header :: header-datatable-css"></div>
+    <!-- common css -->
+    <div th:replace="pages/components/header :: header-css"></div>
+    <!-- datatable css -->
+    <div th:replace="pages/components/header :: header-datatable-css"></div>
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/main/">SB Admin v2.0</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse" th:replace="pages/components/menu :: menu">
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">User list</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            DataTables Advanced Tables
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>User Id</th>
-                                        <th>Login Id</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Activated</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/main/">SB Admin v2.0</a>
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.navbar-header -->
 
+        <ul class="nav navbar-top-links navbar-right">
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse" th:replace="pages/components/menu :: menu">
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">User list</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        DataTables Advanced Tables
+                        <button id="add" class="btn btn-info">Add User</button>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <table width="100%" class="table table-striped table-bordered table-hover"
+                               id="dataTables-example">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Login Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Activated</th>
+                                <th>Id</th>
+                                <th>Password</th>
+                                <th>Edit</th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-wrapper -->
 
-	<!-- common javascript -->
-	<div th:replace="pages/components/footer :: footer-javascript"></div>
-	<!-- datatables javascript -->
-	<div th:replace="pages/components/footer :: footer-datatables-javascript"></div>
+</div>
+<!-- /#wrapper -->
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script th:inline="javascript">
-    $(document).ready(function() {
-        var jsonData = JSON.stringify([[${oauth_users}]]);
+<!-- common javascript -->
+<div th:replace="pages/components/footer :: footer-javascript"></div>
+<!-- datatables javascript -->
+<div th:replace="pages/components/footer :: footer-datatables-javascript"></div>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script th:inline="javascript">
+    $(document).ready(function () {
         var table = $('#dataTables-example').DataTable({
-        	"ajax": {
-        	    "url": "/user/login/users",
-        	    "type": "GET",
-        	    "dataSrc": ""
-        	  },
-        	  "columnDefs": [
-      		    { "width": "1%", "targets": 0 },
-    		    { "width": "14%", "targets": 1 },
-    		    { "width": "20%", "targets": 2 },
-    		    { "width": "25%", "targets": 3 },
-    		    { "width": "25%", "targets": 4 },
-    		    { "width": "15%", "targets": 5 }
-        	  ],
-              "columns": [
-            	  {
-                      "className":      'details-control',
-                      "orderable":      false,
-                      "data":           null,
-                      "defaultContent": ''
-                  },
-                  { "data": "userId" },
-                  { "data": "loginId" },
-                  { "data": "firstName" },
-                  { "data": "lastName" },
-                  { "data": "activated"}
-              ],
-              "order": [[1, 'asc']]
+            "ajax": {
+                "url": "/user/login/users",
+                "type": "GET",
+                "dataSrc": "",
+                "contentType": "application/json; charset=utf-8"
+            },
+            "columnDefs": [
+                {"width": "1%", "targets": 0},
+                {"width": "21%", "targets": 1},
+                {"width": "16%", "targets": 2},
+                {"width": "15%", "targets": 3},
+                {"width": "14%", "targets": 4},
+                {"width": "13%", "targets": 5},
+                {
+                    "width": "0%",
+                    "targets": 6,
+                    "visible": false
+                },
+                {
+                    "width": "10%",
+                    "targets": 7,
+                    "defaultContent": '<button id="passwordChange" class="btn btn-primary btn-xs btn-block">Change</button>'
+                },
+                {
+                    "width": "10%",
+                    "targets": -1,
+                    "defaultContent": '<button id="edit" class="btn btn-primary btn-xs btn-block">Edit</button>'
+                }
+            ],
+            "columns": [
+                {
+                    "className": 'details-control',
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": ''
+                },
+                {"data": "loginId"},
+                {"data": "firstName"},
+                {"data": "lastName"},
+                {"data": "email"},
+                {"data": "activated"},
+                {"data": "id"},
+                {"data": null},
+                {"data": null}
+            ],
+            "order": [[1, 'asc']]
         });
-        
+        //Add user page
+        $('#add').click(function () {
+
+            $('#loginId').removeAttr('disabled');
+            $("#addPassword").show();
+            // Get Authorities
+            $.ajax({
+                type: "GET",
+                url: "/user/login/authorities",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8'
+            }).done(function (data) {
+                $('#authorities').html("");
+                let options;
+                data.forEach(function (element) {
+                    options += '<option value="' + element.authorityId + '">' + element.name + '</option>';
+                });
+                $('#authorities').append(options);
+
+                $('#authorities').multiselect("destroy").multiselect({
+                    includeSelectAllOption: true,
+                    buttonWidth: 260
+                });
+            });
+
+            // Get Personal Titles
+            $.ajax({
+                type: "GET",
+                url: "/user/login/personalTitles",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8'
+            }).done(function (data) {
+                $('#personalTitles').html("");
+                let options;
+                data.forEach(function (element) {
+                    options += '<option value="' + element.titleId + '">' + element.titleName + '</option>';
+                });
+                $('#birthday').datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    todayHighlight: true,
+                    defaultViewDate: { year: 1980, month: 01, day: 01 },
+                    viewMode: 'years'
+                });
+
+                $('#personalTitles').append(options);
+
+                $('#personalTitles').multiselect("destroy").multiselect({
+                    includeSelectAllOption: true,
+                    buttonWidth: 260
+                });
+            });
+
+            $('#editUser').modal('show');
+        });
+
+        //Edit user page
+        $('#dataTables-example tbody').on('click', '#edit', function () {
+            var oriData = table.row($(this).parents('tr')).data();
+            $("#addPassword").hide();
+            // Get Authorities
+            $.ajax({
+                type: "GET",
+                url: "/user/login/authorities",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8',
+                success: function (data) {
+                    $('#authorities').html("");
+                    let options;
+                    data.forEach(function (element) {
+                        options += '<option value="' + element.authorityId + '">' + element.name + '</option>';
+                    });
+                    $('#authorities').append(options);
+
+                    $('#authorities').multiselect("destroy").multiselect({
+                        includeSelectAllOption: true,
+                        buttonWidth: 260
+                    });
+
+                    oriData.authorities.forEach(function (element) {
+                        $('#authorities').multiselect('select', element.authorityId);
+                    });
+                }
+            })
+
+            // Get Personal Titles
+            $.ajax({
+                type: "GET",
+                url: "/user/login/personalTitles",
+                dataType: "json",
+                contentType: 'application/json; charset=UTF-8'
+            }).done(function (data) {
+                $('#personalTitles').html("");
+                let options;
+                data.forEach(function (element) {
+                    options += '<option value="' + element.titleId + '">' + element.titleName + '</option>';
+                });
+
+                $('#personalTitles').append(options);
+
+                $('#personalTitles').multiselect("destroy").multiselect({
+                    includeSelectAllOption: true,
+                    buttonWidth: 260
+                });
+                oriData.personalTitle.forEach(function (element) {
+                    $('#personalTitles').multiselect('select', element.titleId);
+                });
+            });
+
+            $("input[name$='id']").val(oriData.id);
+            $("input[name$='userId']").val(oriData.userId);
+            $('#loginId').val(oriData.loginId);
+            $("input[name$='loginId']").val(oriData.loginId);
+            $('#firstName').val(oriData.firstName);
+            $('#lastName').val(oriData.lastName);
+            $('#email').val(oriData.email);
+            $('#birthday').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+                defaultViewDate: { year: 1980, month: 01, day: 01 },
+                viewMode: 'years'
+            }).datepicker("update", oriData.birthday);
+
+            $('#phone').val(oriData.phone);
+            $('#address').val(oriData.address);
+            $('#activated').val(oriData.activated.toString());
+
+            $('#editUser').modal('show');
+        });
+
+        $('#dataTables-example tbody').on('click', '#passwordChange', function () {
+            $('#changePassword').modal('show');
+        });
         // Add event listener for opening and closing details
         $('#dataTables-example tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
-            var row = table.row( tr );
-     
-            if ( row.child.isShown() ) {
+            var row = table.row(tr);
+
+            if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child.hide();
                 tr.removeClass('shown');
             }
             else {
                 // Open this row
-                row.child( format(row.data()) ).show();
+                row.child(format(row.data())).show();
                 tr.addClass('shown');
             }
-        } );
+        });
+
+        document.getElementById("sendEditUserForm").addEventListener("click", function () {
+            let loginId = $('#loginId').val();
+            if(loginId != null || loginId != ""){
+                $("input[name$='loginId']").val(loginId);
+            }
+
+            $('#editUserForm').submit();
+        });
+        document.getElementById("sendPasswordForm").addEventListener("click", function () {
+            $('#passwordForm').submit();
+        });
     });
-    
-    function format ( d ) {
-        // `d` is the original data object for the row
-        return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-            '<tr>'+
-                '<td>Email:</td>'+
-                '<td>'+d.email+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Birthday:</td>'+
-                '<td>'+d.birthday+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Address:</td>'+
-                '<td>'+d.address+'</td>'+
-            '</tr>'+
-            '<tr>'+
-                '<td>Phone:</td>'+
-                '<td>'+d.phone+'</td>'+
-            '</tr>'+
-        '</table>';
+
+    function format(d) {
+        let authorities = "";
+        let authorityId = "";
+        let i = 0;
+        d.authorities.forEach(function (element) {
+            if (i > 0) {
+                authorities += ",";
+                authorityId += ",";
+            }
+            authorities += element.name;
+            authorityId += element.authorityId;
+            i++;
+        });
+
+        let personalTitles = "";
+        let personalTitleIds = "";
+        let j = 0;
+
+        d.personalTitle.forEach(function (element) {
+            if (j > 0) {
+                personalTitles += ",";
+                personalTitleIds += ",";
+            }
+            personalTitles += element.titleName;
+            personalTitleIds += element.titleId;
+            j++;
+        });
+        return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+            '<tr>' +
+            '<td>Birthday:</td>' +
+            '<td>' + d.birthday + '</td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td>Address:</td>' +
+            '<td>' + d.address + '</td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td>Phone:</td>' +
+            '<td>' + d.phone + '</td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td>Autorities:</td>' +
+            '<td>' + authorities + '</td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td>Persinal Titles:</td>' +
+            '<td>' + personalTitles + '</td>' +
+            '</tr>' +
+            '</table>';
     }
-    </script>
+</script>
 
 </body>
+<!-- edit user -->
+<div th:replace="pages/user/editUser :: editUser"></div>
+<!-- change password -->
+<div th:replace="pages/user/changePassword :: changePassword"></div>
 
 </html>

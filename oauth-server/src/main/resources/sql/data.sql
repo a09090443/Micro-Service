@@ -86,7 +86,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_authority` WRITE;
 /*!40000 ALTER TABLE `user_authority` DISABLE KEYS */;
-INSERT INTO `user_authority` VALUES ('000001','01'),('000001','02'),('000002','01');
+INSERT INTO `user_title` VALUES ((SELECT 1 FROM user_info info WHERE info.login_id='admin'),'01');
 /*!40000 ALTER TABLE `user_authority` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES ('000001','admin','$2a$10$edhXzouCrFzV/8WhlT4pn.V.fro7J4rvAMFfjpFTxHmQj7.N4meDa','&#26368;&#39640;','&#25351;&#25582;&#23448;','admin@localhost.com','&#22825;&#22530;&#36335; 001 &#34399;','1992-01-01','000001.jpg','1234567890','','2017-12-31 02:30:49'),('000002','test1','$2a$10$edhXzouCrFzV/8WhlT4pn.V.fro7J4rvAMFfjpFTxHmQj7.N4meDa','&#26368;&#39640;','&#25351;&#25582;&#23448;','test1@localhost.com','&#22825;&#22530;&#36335; 001 &#34399;','1992-01-01','000001.jpg','1234567890','','2017-12-31 02:30:49');
+INSERT INTO `user_info` VALUES ('000001','admin','$2a$10$edhXzouCrFzV/8WhlT4pn.V.fro7J4rvAMFfjpFTxHmQj7.N4meDa','&#26368;&#39640;','&#25351;&#25582;&#23448;','admin@localhost.com','&#22825;&#22530;&#36335; 001 &#34399;','1992-01-01','000001.jpg','1234567890','','2017-12-31 02:30:49');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,7 +106,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user_title` WRITE;
 /*!40000 ALTER TABLE `user_title` DISABLE KEYS */;
-INSERT INTO `user_title` VALUES ('000001','01'),('000002','02');
+INSERT INTO `user_title` VALUES ((SELECT 1 FROM user_info info WHERE info.login_id='admin'),'01');
 /*!40000 ALTER TABLE `user_title` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
