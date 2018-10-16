@@ -16,7 +16,8 @@
 	</parent>
 
     <modules>
-        <module>eureka-server</module>
+		<module>eureka-server</module>
+		<module>zuul-server</module>
         <module>config-server</module>
         <module>oauth-server</module>
         <module>oauth-jdbc-client</module>
