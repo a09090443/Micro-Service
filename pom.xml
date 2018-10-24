@@ -23,7 +23,8 @@
         <module>oauth-jdbc-client</module>
         <module>oauth-jwt-client</module>
         <module>oauth-sso</module>
-        <module>oauth-web</module>
+		<module>oauth-web</module>
+		<module>feign-test</module>
         <module>utility</module>
     </modules>
 
