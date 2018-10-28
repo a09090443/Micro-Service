@@ -1,6 +1,6 @@
 spring:
   application:
-    name: oauth-jdbc-client
+    name: feign-test
   cloud:
     config:
       profile: dev
