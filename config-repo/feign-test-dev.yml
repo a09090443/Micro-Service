@@ -11,6 +11,8 @@ server:
 ribbon:
   ReadTimeout:  30000
   ConnectTimeout:  15000
+  eureka:
+    enabled: true
 
 hystrix:
   command:
@@ -21,6 +23,8 @@ hystrix:
             timeoutInMilliseconds: 10000
 
 feign:
+  hystrix:
+    enabled: true
   client:
     config:
       feignName:
