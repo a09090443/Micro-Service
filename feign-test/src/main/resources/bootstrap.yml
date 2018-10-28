@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: oauth-jdbc-client
+  cloud:
+    config:
+      profile: dev
+      uri: http://192.168.1.151:8888
+      label: develop
+
+server:
+  port: 8090
