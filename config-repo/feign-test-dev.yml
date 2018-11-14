@@ -14,9 +14,31 @@ ribbon:
   eureka:
     enabled: true
 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
 feign:
+  hystrix:
+    enabled: true
   client:
     config:
       feignName:
         connectTimeout: 5000
         readTimeout: 5000
+
+security:
+  oauth2:
+    client:
+      accessTokenUri: ${properties.server.oauth}/oauth/token
+      userAuthorizationUri: ${properties.server.oauth}/oauth/authorize
+      client-id: feign_service
+      client-secret: secret
+      #scope: read, write
+    resource:
+      token-info-uri: ${properties.server.oauth}/oauth/check_token
+      user-info-uri: ${properties.server.oauth}/user
