@@ -34,11 +34,11 @@ feign:
 security:
   oauth2:
     client:
-      accessTokenUri: ${properties.server.oauth}/oauth/token
-      userAuthorizationUri: ${properties.server.oauth}/oauth/authorize
+      accessTokenUri: http://${properties.server.oauth}/oauth/token
+      userAuthorizationUri: http://${properties.server.oauth}/oauth/authorize
       client-id: feign_service
       client-secret: secret
       #scope: read, write
     resource:
-      token-info-uri: ${properties.server.oauth}/oauth/check_token
-      user-info-uri: ${properties.server.oauth}/user
+      token-info-uri: http://${properties.server.oauth}/oauth/check_token
+      user-info-uri: http://${properties.server.oauth}/user
