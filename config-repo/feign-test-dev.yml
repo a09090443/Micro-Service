@@ -38,6 +38,7 @@ security:
       userAuthorizationUri: http://${properties.server.oauth}/oauth/authorize
       client-id: feign_service
       client-secret: secret
+      grant-type: client_credentials
       #scope: read, write
     resource:
       token-info-uri: http://${properties.server.oauth}/oauth/check_token
