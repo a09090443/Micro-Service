@@ -24,8 +24,7 @@
         <module>oauth-jwt-client</module>
         <module>oauth-sso</module>
 		<module>oauth-web</module>
-		<module>feign-test</module>
-        <module>utility</module>
+		<module>utility</module>
     </modules>
 
 	<properties>
