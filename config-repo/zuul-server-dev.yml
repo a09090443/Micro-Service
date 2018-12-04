@@ -17,6 +17,14 @@ security:
   sessions: stateless
 
 eureka:
+  instance:
+    hostname: 192.168.1.151
+    port: 1111
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
   client:
     fetch-registry: true
     register-with-eureka: false # 表示是否將自己註冊到Eureka Server，默認為true。由於當前應用就是Eureka Server，故而設置為false。
+    service-url:
+      defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
