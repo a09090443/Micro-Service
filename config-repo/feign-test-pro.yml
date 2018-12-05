@@ -1,0 +1,28 @@
+properties:
+  project: feign-test
+  env: dev
+  log-level: INFO
+
+server:
+    session:
+      cookie:
+        name: UISESSION
+
+ribbon:
+  ReadTimeout:  30000
+  ConnectTimeout:  15000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000

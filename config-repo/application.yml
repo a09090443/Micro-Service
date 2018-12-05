@@ -1,7 +1,8 @@
 properties:
   server:
     oauth: 127.0.0.1:8081
-    jdbc-api: 127.0.0.1:8082
+    jdbc-api: 192.168.1.151:8082
+    api-gateway: 192.168.1.151:2020
 
 spring:
   jpa:
@@ -26,9 +27,14 @@ security:
 
 eureka:
   instance:
-    hostname: 127.0.0.1
+    hostname: 192.168.1.151
     port: 1111
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
   client:
+    healthcheck:
+      enabled: true
     service-url:
       defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
 

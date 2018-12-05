@@ -111,6 +111,11 @@
 			<groupId>org.codehaus.jettison</groupId>
 			<artifactId>jettison</artifactId>
 		</dependency>
+		<!-- Customize utility -->
+		<dependency>
+			<groupId>com.zipe</groupId>
+			<artifactId>utility</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

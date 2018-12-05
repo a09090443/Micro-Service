@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: zuul-server
+  cloud:
+    config:
+      profile: dev
+      uri: http://192.168.1.151:8888
+      label: develop
+
+server:
+  port: 2020
+
+zuul:
+  routes:
+    jdbc:
+      path: /jdbc/**
+      serviceId: OAUTH-JDBC-CLIENT
