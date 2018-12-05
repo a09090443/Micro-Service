@@ -2,6 +2,7 @@ properties:
   server:
     oauth: 127.0.0.1:8081
     jdbc-api: 192.168.1.151:8082
+    api-gateway: 192.168.1.151:2020
 
 spring:
   jpa:
