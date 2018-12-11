@@ -15,3 +15,6 @@ zuul:
     jdbc:
       path: /jdbc/**
       serviceId: OAUTH-JDBC-CLIENT
+    jwt:
+      path: /jwt/**
+      serviceId: OAUTH-JWT-CLIENT
