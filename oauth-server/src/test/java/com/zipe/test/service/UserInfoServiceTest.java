@@ -1,12 +1,18 @@
 package com.zipe.test.service;
 
+import com.zipe.model.Authority;
+import com.zipe.model.PersonalTitle;
 import com.zipe.model.UserInfo;
 import com.zipe.service.IUserService;
 import com.zipe.test.base.TestBase;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -19,6 +25,7 @@ public class UserInfoServiceTest extends TestBase {
 	private String LOGING_ID = "Junit";
 	private String EMAIL = "Junit@localhost.com";
 
+	@Ignore
 	@Before
 	public void testSaveUserInfo() {
 		UserInfo userInfo = new UserInfo();
@@ -31,6 +38,20 @@ public class UserInfoServiceTest extends TestBase {
 		userInfo.setImage("000003.jpg");
 		userInfo.setPhone("1234567890");
 		userInfo.setPassword("1234");
+		Authority auth = new Authority();
+		auth.setAuthorityId("01");
+		auth.setName("ROLE_ADMIN");
+		Set<Authority> authoritySet = new HashSet<Authority>();
+		authoritySet.add(auth);
+
+		PersonalTitle personal = new PersonalTitle();
+		personal.setTitleId("01");
+		personal.setTitleName("ADMIN");
+		Set<PersonalTitle> personalTitleSet = new HashSet<PersonalTitle>();
+		personalTitleSet.add(personal);
+
+		userInfo.setAuthorities(authoritySet);
+		userInfo.setPersonalTitle(personalTitleSet);
 		try {
 			userService.saveUser(userInfo);
 		} catch (Exception e) {
@@ -38,6 +59,7 @@ public class UserInfoServiceTest extends TestBase {
 		}
 	}
 
+	@Ignore
 	@After
 	public void testDelUserInfo() {
 		UserInfo userInfo = new UserInfo();
