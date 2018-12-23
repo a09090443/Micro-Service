@@ -12,6 +12,7 @@ Micro-Services Project
 * [x] [Spring Oauth2](http://#)
 * [x] [Spring Config](http://#)
 * [x] [Spring Eureka](http://#)
+* [x] [Spring Zuul](http://#)
 
 #### How to start each service
 1. Install maven in operator system.
@@ -28,6 +29,7 @@ Micro-Services Project
    5. oauth-jwt-client:`java -jar ./oauth-jwt-client/target/oauth-jwt-client-0.0.1-SNAPSHOT.jar`
    6. oauth-sso:`java -jar ./oauth-sso/target/oauth-sso-0.0.1-SNAPSHOT.jar`
    7. oauth-web:`java -jar ./oauth-sso/target/oauth-web-0.0.1-SNAPSHOT.jar`
+   8. zuul-server:`java -jar ./zuul-server/target/zuul-server-0.0.1-SNAPSHOT.jar`
 
 
 #### Services list
@@ -44,6 +46,8 @@ Micro-Services Project
    - port:8084
 5. config-server
    - port:8888
+7. config-repo
+   - port:2020
 6. config-repo
 
 ### Eureka Server
@@ -64,6 +68,7 @@ Micro-Services Project
 4. oauth-jwt-client-[dev, pro].yml : oauth-jwt-client config environment
 5. oauth-sso-client-[dev, pro].yml : oauth-sso config environment
 6. oauth-web-client-[dev, pro].yml : oauth-web config environment
+6. zuul-server-[dev, pro].yml : zuul-server config environment
 
 ### Config Server
 ---
