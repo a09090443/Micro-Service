@@ -41,7 +41,6 @@
         <hicari.version>3.2.0</hicari.version>
 		<json.version>20180813</json.version>
 		<jettison.version>1.4.0</jettison.version>
-		<dockerfile-version>1.4.9</dockerfile-version>
 		<utility.version>${project.version}</utility.version>
 	</properties>
 
