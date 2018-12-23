@@ -163,11 +163,11 @@ DROP TABLE IF EXISTS `user_authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_authority` (
-  `id` int(11) NOT NULL,
+  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`,`authority_id`),
+  PRIMARY KEY (`user_id`,`authority_id`),
   KEY `FKgvxjs381k6f48d5d2yi11uh89` (`authority_id`),
-  CONSTRAINT `FKevf1ge6d1vkwb6bdm0t7jcid8` FOREIGN KEY (`id`) REFERENCES `user_info` (`id`),
+  CONSTRAINT `FKal1t5uf78i79dlx2ry5qqw6c0` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`),
   CONSTRAINT `FKgvxjs381k6f48d5d2yi11uh89` FOREIGN KEY (`authority_id`) REFERENCES `authority` (`authority_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -180,11 +180,11 @@ DROP TABLE IF EXISTS `user_title`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_title` (
-  `id` int(11) NOT NULL,
+  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `title_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`,`title_id`),
+  PRIMARY KEY (`user_id`,`title_id`),
   KEY `FK8dfrc4mibfms3tieybcdviwr2` (`title_id`),
-  CONSTRAINT `FK3mbowwkqsvn5qofdbwld0eo4a` FOREIGN KEY (`id`) REFERENCES `user_info` (`id`),
+  CONSTRAINT `FKm32axjpdbpfyw4yrhlow01w9m` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`),
   CONSTRAINT `FK8dfrc4mibfms3tieybcdviwr2` FOREIGN KEY (`title_id`) REFERENCES `personal_title` (`title_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
