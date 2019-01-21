@@ -29,7 +29,7 @@ public class UserInfo {
     private Set<Authority> authorities;
     private Set<PersonalTitle> personalTitle;
 
-    @Id
+
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.AUTO)
     public int getId() {
@@ -40,6 +40,7 @@ public class UserInfo {
         this.id = id;
     }
 
+    @Id
     @Basic
     @Column(name = "user_id", nullable = false, length = 6, unique=true)
     public String getUserId() {
@@ -170,7 +171,7 @@ public class UserInfo {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_authority",
-            joinColumns = @JoinColumn(name = "id"),
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id")
     )
     public Set<Authority> getAuthorities() {
@@ -184,7 +185,7 @@ public class UserInfo {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_title",
-            joinColumns = @JoinColumn(name = "id"),
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "title_id")
     )
     public Set<PersonalTitle> getPersonalTitle() {
