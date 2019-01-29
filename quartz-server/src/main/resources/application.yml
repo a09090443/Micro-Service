@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://192.168.1.151:3306/dev_network?characterEncoding=UTF-8
+    username: dev
+    password: 1qaz@WSX
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 20
+      idleTimeout: 30000
+      poolName: SpringBootJPAHikariCP
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+      connection.provider_class: org.hibernate.hikaricp.internal.HikariCPConnectionProvider
+    show-sql: true
+    properties:  
+      hibernate: 
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        format_sql: true
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      schema: classpath:org/quartz/impl/jdbcjobstore/tables_mysql_innodb.sql
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 5
+
+logging:
+  file: /tmp/logs/quartz-dev.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    root: ${properties.log-level}
+    org.springframework.security: ${properties.log-level}
+    org.springframework.web: ${properties.log-level}
+    guru.springframework.controllers: ${properties.log-level}
+    org.hibernate: ${properties.log-level}
+
+server:
+  port: 8086
