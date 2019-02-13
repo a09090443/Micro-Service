@@ -11,8 +11,8 @@ public class ScheduleJobDetail {
     private String description;
     @NotEmpty
     private String classPath;
-    @NotEmpty
-    private String status;
+
+    private int status;
 
     private String startDate;
 
@@ -58,11 +58,11 @@ public class ScheduleJobDetail {
         this.classPath = classPath;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

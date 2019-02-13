@@ -16,13 +16,28 @@ public abstract class AbstractJob {
     private Scheduler scheduler;
 
     public ScheduleJobDetail executeJobProcess(ScheduleJobDetail scheduleJobDetail, JobDataMap jobDataMap) throws ClassNotFoundException, ParseException, SchedulerException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date startTime = sdf.parse(scheduleJobDetail.getStartDate() + " " + scheduleJobDetail.getTime());
         Date endTime = sdf.parse(scheduleJobDetail.getEndDate() + " " + scheduleJobDetail.getTime());
+        try {
+            JobDetail jobDetail = buildJobDetail(scheduleJobDetail, jobDataMap);
+            Trigger trigger = buildJobTrigger(jobDetail, startTime, endTime, scheduleJobDetail);
 
-        JobDetail jobDetail = buildJobDetail(scheduleJobDetail, jobDataMap);
-        Trigger trigger = buildJobTrigger(jobDetail, startTime, endTime, scheduleJobDetail);
-        scheduler.scheduleJob(jobDetail, trigger);
+            scheduler.scheduleJob(jobDetail, trigger);
+        } catch (SchedulerException e) {
+            throw e;
+        }
+
+        return null;
+    }
+
+    public ScheduleJobDetail deleteJobProcess(ScheduleJobDetail scheduleJobDetail) throws SchedulerException {
+        JobKey jobKey = JobKey.jobKey(scheduleJobDetail.getJobName(), scheduleJobDetail.getGroup());
+        try {
+            scheduler.deleteJob(jobKey);
+        } catch (SchedulerException e) {
+            throw e;
+        }
         return null;
     }
 
@@ -30,7 +45,7 @@ public abstract class AbstractJob {
 
         Class clazz = Class.forName(scheduleJobDetail.getClassPath());
         return JobBuilder.newJob(clazz)
-                .withIdentity(UUID.randomUUID().toString(), scheduleJobDetail.getGroup())
+                .withIdentity(scheduleJobDetail.getJobName(), scheduleJobDetail.getGroup())
                 .withDescription(scheduleJobDetail.getDescription())
                 .usingJobData(jobDataMap)
                 .storeDurably()

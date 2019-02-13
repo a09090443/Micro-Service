@@ -4,19 +4,15 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "schedule_job", schema = "dev_network", catalog = "")
-public class ScheduleJobEntity {
+@Table(name = "schedule_job_log", schema = "dev_network", catalog = "")
+public class ScheduleJobLogEntity {
     private Integer id;
     private String jobName;
-    private String jobGroup;
     private String jobDescription;
-    private String jobClass;
     private Integer status;
-    private Integer timeUnit;
-    private Integer repeatInterval;
-    private Integer executeTimes;
     private String startTime;
     private String endTime;
+    private String message;
 
     @Id
     @GeneratedValue
@@ -40,16 +36,6 @@ public class ScheduleJobEntity {
     }
 
     @Basic
-    @Column(name = "job_group")
-    public String getJobGroup() {
-        return jobGroup;
-    }
-
-    public void setJobGroup(String jobGroup) {
-        this.jobGroup = jobGroup;
-    }
-
-    @Basic
     @Column(name = "job_description")
     public String getJobDescription() {
         return jobDescription;
@@ -60,16 +46,6 @@ public class ScheduleJobEntity {
     }
 
     @Basic
-    @Column(name = "job_class")
-    public String getJobClass() {
-        return jobClass;
-    }
-
-    public void setJobClass(String jobClass) {
-        this.jobClass = jobClass;
-    }
-
-    @Basic
     @Column(name = "status")
     public Integer getStatus() {
         return status;
@@ -77,36 +53,6 @@ public class ScheduleJobEntity {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    @Basic
-    @Column(name = "time_unit")
-    public Integer getTimeUnit() {
-        return timeUnit;
-    }
-
-    public void setTimeUnit(Integer timeUnit) {
-        this.timeUnit = timeUnit;
-    }
-
-    @Basic
-    @Column(name = "repeat_interval")
-    public Integer getRepeatInterval() {
-        return repeatInterval;
-    }
-
-    public void setRepeatInterval(Integer repeatInterval) {
-        this.repeatInterval = repeatInterval;
-    }
-
-    @Basic
-    @Column(name = "execute_times")
-    public Integer getExecuteTimes() {
-        return executeTimes;
-    }
-
-    public void setExecuteTimes(Integer executeTimes) {
-        this.executeTimes = executeTimes;
     }
 
     @Basic
@@ -129,26 +75,32 @@ public class ScheduleJobEntity {
         this.endTime = endTime;
     }
 
+    @Basic
+    @Column(name = "message")
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ScheduleJobEntity that = (ScheduleJobEntity) o;
+        ScheduleJobLogEntity that = (ScheduleJobLogEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(jobName, that.jobName) &&
-                Objects.equals(jobGroup, that.jobGroup) &&
                 Objects.equals(jobDescription, that.jobDescription) &&
-                Objects.equals(jobClass, that.jobClass) &&
                 Objects.equals(status, that.status) &&
-                Objects.equals(timeUnit, that.timeUnit) &&
-                Objects.equals(repeatInterval, that.repeatInterval) &&
-                Objects.equals(executeTimes, that.executeTimes) &&
                 Objects.equals(startTime, that.startTime) &&
-                Objects.equals(endTime, that.endTime);
+                Objects.equals(endTime, that.endTime) &&
+                Objects.equals(message, that.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, jobName, jobGroup, jobDescription, jobClass, status, timeUnit, repeatInterval, executeTimes, startTime, endTime);
+        return Objects.hash(id, jobName, jobDescription, status, startTime, endTime, message);
     }
 }
