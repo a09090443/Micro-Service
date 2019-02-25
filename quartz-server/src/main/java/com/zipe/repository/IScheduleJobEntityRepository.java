@@ -8,4 +8,6 @@ import java.util.List;
 public interface IScheduleJobEntityRepository extends JpaRepository<ScheduleJobEntity, Long> {
 
     public ScheduleJobEntity findById(int id);
+
+    public ScheduleJobEntity findByJobName(String jobName);
 }

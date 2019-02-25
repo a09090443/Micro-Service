@@ -1,5 +1,7 @@
 package com.zipe.payload;
 
+import org.quartz.JobDataMap;
+
 import javax.validation.constraints.NotEmpty;
 
 public class ScheduleJobDetail {
@@ -25,6 +27,10 @@ public class ScheduleJobDetail {
     private int repeatTimes;
 
     private int timeUnit;
+
+    private JobDataMap jobDataMap;
+
+    private String errorMessage;
 
     public String getJobName() {
         return jobName;
@@ -112,5 +118,21 @@ public class ScheduleJobDetail {
 
     public void setTimeUnit(int timeUnit) {
         this.timeUnit = timeUnit;
+    }
+
+    public JobDataMap getJobDataMap() {
+        return jobDataMap;
+    }
+
+    public void setJobDataMap(JobDataMap jobDataMap) {
+        this.jobDataMap = jobDataMap;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

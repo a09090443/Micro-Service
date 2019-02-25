@@ -30,7 +30,7 @@ public class ScheduleJobEntity {
     }
 
     @Basic
-    @Column(name = "job_name")
+    @Column(name = "job_name", unique=true)
     public String getJobName() {
         return jobName;
     }

@@ -177,3 +177,33 @@ CREATE INDEX IDX_QRTZ_FT_T_G ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_NAME,TRIG
 CREATE INDEX IDX_QRTZ_FT_TG ON QRTZ_FIRED_TRIGGERS(SCHED_NAME,TRIGGER_GROUP);
 
 commit;
+
+# schedule job table
+
+CREATE TABLE `schedule_job` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `job_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `job_group` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `job_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `job_class` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(1) NOT NULL,
+  `time_unit` int(1) NOT NULL,
+  `repeat_interval` int(10) NOT NULL,
+  `execute_times` int(10) NOT NULL,
+  `start_time` varchar(19) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `end_time` varchar(19) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `job_name` (`job_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+CREATE TABLE `schedule_job_log` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
+  `job_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `job_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(1) NOT NULL,
+  `start_time` varchar(19) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `end_time` varchar(19) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `message` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
