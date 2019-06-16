@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -26,36 +27,36 @@ public class UserController extends BaseController {
 	@Autowired
 	private IUserService userService;
 
-	@GetMapping("/GET/users")
+	@GetMapping("/users")
 	public List<UserInfo> users() throws Exception {
 		List<UserInfo> userInfoList = userService.findAllUsers();
 		return userInfoList;
 	}
 
-	@GetMapping("/GET/authorities")
+	@GetMapping("/authorities")
 	public List<Authority> authorities() throws Exception {
 		List<Authority> authorityList = userService.getAuthorities();
 		return authorityList;
 	}
 	
-	@GetMapping("/GET/personalTitles")
+	@GetMapping("/personalTitles")
 	public List<PersonalTitle> personalTitles() throws Exception {
 		List<PersonalTitle> personalTitleList = userService.getPersonalTitles();
 		return personalTitleList;
 	}
 
-	@GetMapping("/GET/user/{loginId}")
+	@GetMapping("/user/{loginId}")
 	public UserInfo user(@PathVariable String loginId) {
 		UserInfo userInfo = userService.findUserByLoginId(loginId);
 		return userInfo;
 	}
 
-	@GetMapping("/GET/test")
+	@GetMapping("/test")
 	public Authentication test(Authentication user) {
 		return user;
 	}
 
-	@RequestMapping(value = "/POST/user", method = RequestMethod.POST)
+	@PostMapping(value = "/user")
 	public String updateAndCreate(@RequestParam("userForm") String userForm) {
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfoVO userInfoVO;
@@ -86,12 +87,12 @@ public class UserController extends BaseController {
 		return "success";
 	}
 
-	@GetMapping("/POST/users")
+	@GetMapping(value = "/users")
 	public Authentication update(Authentication user) {
 		return user;
 	}
 
-	@GetMapping("/DELETE/user/{loginId}")
+	@DeleteMapping("/user/{loginId}")
 	public String delete(@PathVariable String loginId) {
 		UserInfo userInfo = new UserInfo();
 		userInfo.setLoginId(loginId);
@@ -107,10 +108,10 @@ public class UserController extends BaseController {
 	
 	public static String[] getNullPropertyNames (Object source) {
 	    final BeanWrapper src = new BeanWrapperImpl(source);
-	    java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+	    PropertyDescriptor[] pds = src.getPropertyDescriptors();
 
 	    Set<String> emptyNames = new HashSet<String>();
-	    for(java.beans.PropertyDescriptor pd : pds) {
+	    for(PropertyDescriptor pd : pds) {
 	        Object srcValue = src.getPropertyValue(pd.getName());
 	        if (srcValue == null) emptyNames.add(pd.getName());
 	    }
