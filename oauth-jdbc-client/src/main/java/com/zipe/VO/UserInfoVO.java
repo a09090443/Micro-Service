@@ -1,4 +1,4 @@
-package com.zipe.vo;
+package com.zipe.VO;
 
 public class UserInfoVO {
     private String id;

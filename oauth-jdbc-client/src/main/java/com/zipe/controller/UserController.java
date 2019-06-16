@@ -1,6 +1,6 @@
 package com.zipe.controller;
 
-import com.zipe.vo.UserInfoVO;
+import com.zipe.VO.UserInfoVO;
 import com.zipe.base.controller.BaseController;
 import com.zipe.model.UserInfo;
 import com.zipe.model.Authority;
