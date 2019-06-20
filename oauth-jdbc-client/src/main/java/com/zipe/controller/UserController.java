@@ -56,8 +56,39 @@ public class UserController extends BaseController {
 		return user;
 	}
 
+	@PatchMapping(value = "/user/{loginId}")
+	public String update(@PathVariable String loginId, @RequestParam("userForm") String userForm) {
+		ObjectMapper mapper = new ObjectMapper();
+		UserInfoVO userInfoVO;
+		try {
+			userInfoVO = mapper.readValue(userForm, UserInfoVO.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		UserInfo userInfo = userService.findUserByLoginId(userInfoVO.getLoginId());
+
+		if(null == userInfo){
+			return "user not found";
+		}
+		//Ignore null properties
+		myCopyProperties(userInfoVO, userInfo);
+		Set<Authority> authoritySet = userService.getAuthoritiesByAuthorityId(userInfoVO.getAuthorities());
+		userInfo.setAuthorities(authoritySet);
+		Set<PersonalTitle> personalTitleSet = userService.getPersonalTitlesByTitleId(userInfoVO.getPersonalTitles());
+		userInfo.setPersonalTitle(personalTitleSet);
+
+		try {
+			userService.saveUser(userInfo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "success";
+	}
+
 	@PostMapping(value = "/user")
-	public String updateAndCreate(@RequestParam("userForm") String userForm) {
+	public String create(@RequestParam("userForm") String userForm) {
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfoVO userInfoVO;
 		try {
@@ -87,10 +118,10 @@ public class UserController extends BaseController {
 		return "success";
 	}
 
-	@GetMapping(value = "/users")
-	public Authentication update(Authentication user) {
-		return user;
-	}
+//	@GetMapping(value = "/users")
+//	public Authentication update(Authentication user) {
+//		return user;
+//	}
 
 	@DeleteMapping("/user/{loginId}")
 	public String delete(@PathVariable String loginId) {
