@@ -1,10 +1,6 @@
 package com.zipe.utils.network;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -75,27 +71,55 @@ public class HttpUtility {
 
 		httpConn.setDoInput(true); // true indicates the server returns response
 
-		StringBuffer requestParams = new StringBuffer();
+		setRequestParams(params);
+		return httpConn;
+	}
 
-		if (params != null && params.size() > 0) {
+	/**
+	 * Makes an HTTP request using DELTE method to the specified URL.
+	 *
+	 * @param requestURL the URL of the remote server
+	 * @param params A map containing POST data in form of key-value pairs
+	 * @return An HttpURLConnection object
+	 * @throws IOException thrown if any I/O error occurred
+	 */
+	public static HttpURLConnection sendDeleteRequest(String requestURL, Map<String, String> params) throws IOException {
 
-			httpConn.setDoOutput(true); // true indicates POST request
+		URL url = new URL(requestURL);
+		httpConn = (HttpURLConnection) url.openConnection();
+		httpConn.setRequestMethod("DELETE");
+		httpConn.setUseCaches(false);
 
-			// creates the params string, encode them using URLEncoder
-			Iterator<String> paramIterator = params.keySet().iterator();
-			while (paramIterator.hasNext()) {
-				String key = paramIterator.next();
-				String value = params.get(key);
-				requestParams.append(URLEncoder.encode(key, "UTF-8"));
-				requestParams.append("=").append(URLEncoder.encode(value, "UTF-8"));
-				requestParams.append("&");
-			}
+		httpConn.setDoInput(true); // true indicates the server returns response
+		httpConn.setRequestProperty(
+				"Content-Type", "application/x-www-form-urlencoded");
 
-			// sends POST data
-			OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
-			writer.write(requestParams.toString());
-			writer.flush();
-		}
+		setRequestParams(params);
+
+		return httpConn;
+	}
+
+	/**
+	 * Makes an HTTP request using PUT method to the specified URL.
+	 *
+	 * @param requestURL the URL of the remote server
+	 * @param params A map containing POST data in form of key-value pairs
+	 * @return An HttpURLConnection object
+	 * @throws IOException thrown if any I/O error occurred
+	 */
+	public static HttpURLConnection sendPutRequest(String requestURL, Map<String, String> params) throws IOException {
+
+		URL url = new URL(requestURL);
+		httpConn = (HttpURLConnection) url.openConnection();
+		httpConn.setRequestMethod("PUT");
+		httpConn.setUseCaches(false);
+
+		httpConn.setDoInput(true); // true if we want to read server's response
+		httpConn.setDoInput(true); // true indicates the server returns response
+		httpConn.setRequestProperty(
+				"Content-Type", "application/x-www-form-urlencoded");
+
+		setRequestParams(params);
 
 		return httpConn;
 	}
@@ -157,5 +181,23 @@ public class HttpUtility {
 		if (httpConn != null) {
 			httpConn.disconnect();
 		}
+	}
+
+	private static void setRequestParams(Map<String, String> params) throws IOException {
+		StringBuffer requestParams = new StringBuffer();
+
+		// creates the params string, encode them using URLEncoder
+		Iterator<String> paramIterator = params.keySet().iterator();
+		while (paramIterator.hasNext()) {
+			String key = paramIterator.next();
+			String value = params.get(key);
+			requestParams.append(URLEncoder.encode(key, "UTF-8"));
+			requestParams.append("=").append(URLEncoder.encode(value, "UTF-8"));
+			requestParams.append("&");
+		}
+		// sends DELETE data
+		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
+		writer.write(requestParams.toString());
+		writer.flush();
 	}
 }
