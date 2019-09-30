@@ -7,7 +7,7 @@ properties:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: false
       connection.provider_class: org.hibernate.hikaricp.internal.HikariCPConnectionProvider
     show-sql: true
     properties:  
