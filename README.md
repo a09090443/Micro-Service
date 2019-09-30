@@ -1,4 +1,6 @@
 [![JDK](http://img.shields.io/badge/JDK-v8.0-yellow.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![Spring](http://img.shields.io/badge/Spring-5.1.2-yellow.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[![Spring Boot](http://img.shields.io/badge/Spring_Boot-1.5.12-yellow.svg)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 [![Build](http://img.shields.io/badge/Build-Maven_2-green.svg)](https://maven.apache.org/)
 [![License](http://img.shields.io/badge/License-Apache_2-red.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
@@ -12,6 +14,8 @@ Micro-Services Project
 * [x] [Spring Oauth2](http://#)
 * [x] [Spring Config](http://#)
 * [x] [Spring Eureka](http://#)
+* [x] [Spring Feign](http://#)
+* [x] [Spring Histrix](http://#)
 
 #### How to start each service
 1. Install maven in operator system.
@@ -32,19 +36,47 @@ Micro-Services Project
 
 #### Services list
 ---
-1. eureka-server
-   - port:1111
-1. oauth-server
-   - port:8081
-2. oauth-jdbc-client
-   - port:8082
-3. oauth-jwt-client
-   - port:8083
-4. oauth-sso
-   - port:8084
-5. config-server
-   - port:8888
-6. config-repo
+<table>
+<tbody><tr>
+<td>Server name</td>  <td>Comment</td>  <td>端口</td>
+</tr>
+<tr>
+<td>eureka-server</td>  <td>Discovery and register service center</td>  <td>1111</td>
+</tr>
+<tr>
+<td>config-server</td>  <td>Cloud config server</td>  <td>8888</td>
+</tr>
+<tr>
+<td>oauth-server</td>  <td>Securing access server</td>  <td>8081</td>
+</tr>
+<tr>
+<td>oauth-jdbc-client</td>  <td>Provider RESTFul API by JDBC access</td>  <td>8082</td>
+</tr>
+<tr>
+<td>oauth-jwt-client</td>  <td>Provider RESTFul API by JWT access</td>  <td>8083</td>
+</tr>
+<tr>
+<td>oauth-sso</td>  <td>Admin manage system</td>  <td>8084</td>
+</tr>
+<tr>
+<td>oauth-web</td>  <td>Admin manage system</td>  <td>8085</td>
+</tr>
+<tr>
+<td>feign</td>  <td>Light load balance server</td>  <td>8093</td>
+</tr>
+<tr>
+<td>hystrix-dashboard</td>  <td>Hystrix monitor server</td>  <td>8095</td>
+</tr>
+<tr>
+<td>hystrix-feign</td>  <td>Hystrix Feign Server</td>  <td>8094</td>
+</tr>
+<tr>
+<td>loadbalance-1</td>  <td>Load balance server 1</td>  <td>8091</td>
+</tr>
+<tr>
+<td>loadbalance-2</td>  <td>Load balance server 2</td>  <td>8092</td>
+</tr>
+</tbody></table>
 
 ### Eureka Server
 ---
