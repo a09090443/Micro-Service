@@ -24,7 +24,9 @@
         <module>oauth-jwt-client</module>
         <module>oauth-sso</module>
 		<module>oauth-web</module>
-		<module>feign-test</module>
+		<module>feign-server</module>
+		<module>hystrix-dashboard-server</module>
+		<module>hystrix-feign-server</module>
         <module>utility</module>
     </modules>
 
