@@ -1,6 +1,6 @@
 spring:
   application:
-    name: feign-test
+    name: hytrix-dashboard-server
   cloud:
     config:
       profile: dev
@@ -18,4 +18,4 @@ eureka:
       defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
 
 server:
-  port: 8090
+  port: 8091

@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @RequestMapping("/test")
-    public String test() {
-        return "loadbalance1";
-    }
-
-    @RequestMapping(value = "/test1/{applicationName}", method = RequestMethod.GET)
-    public String test1(@PathVariable String applicationName) {
+    @RequestMapping(value = "/load/{applicationName}", method = RequestMethod.GET)
+    public String load(@PathVariable String applicationName) {
         return "loadbalance1:" + applicationName;
     }
 }
