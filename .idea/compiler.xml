@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="utility" />
+        <module name="oauth-server" />
+        <module name="oauth-jwt-client" />
+        <module name="zuul-server" />
+        <module name="oauth-jdbc-client" />
+        <module name="loadbalance-2" />
+        <module name="loadbalance-1" />
+        <module name="hystrix-feign-server" />
+        <module name="hystrix-dashboard-server" />
+        <module name="eureka-server" />
+        <module name="oauth-sso" />
+        <module name="feign-server" />
+        <module name="oauth-web" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-extdirs $PROJECT_DIR$/config-server/src/main/webapp/WEB-INF/lib" />
+      <module name="eureka-server" options="-extdirs $PROJECT_DIR$/eureka-server/src/main/webapp/WEB-INF/lib" />
+      <module name="hystrix-dashboard-server" options="-extdirs $PROJECT_DIR$/hystrix-dashboard-server/src/main/webapp/WEB-INF/lib" />
+      <module name="hystrix-feign-server" options="-extdirs $PROJECT_DIR$/hystrix-feign-server/src/main/webapp/WEB-INF/lib" />
+      <module name="loadbalance-2" options="-parameters" />
+      <module name="oauth-jdbc-client" options="-extdirs $PROJECT_DIR$/oauth-jdbc-client/src/main/webapp/WEB-INF/lib" />
+      <module name="oauth-jwt-client" options="-extdirs $PROJECT_DIR$/oauth-jwt-client/src/main/webapp/WEB-INF/lib" />
+      <module name="oauth-server" options="-extdirs $PROJECT_DIR$/oauth-server/src/main/webapp/WEB-INF/lib" />
+      <module name="oauth-sso" options="-extdirs $PROJECT_DIR$/oauth-sso/src/main/webapp/WEB-INF/lib" />
+      <module name="oauth-web" options="-extdirs $PROJECT_DIR$/oauth-web/src/main/webapp/WEB-INF/lib" />
+      <module name="zuul-server" options="-extdirs $PROJECT_DIR$/zuul-server/src/main/webapp/WEB-INF/lib" />
+    </option>
+  </component>
+</project>

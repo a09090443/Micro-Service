@@ -27,8 +27,9 @@ security:
 
 eureka:
   instance:
-    hostname: 192.168.1.151
-    port: 1111
+    hostname: 192.168.1.154
+    port: 8001
+    register-with-eureka: true # Auto register Eureka server, default is true.
     preferIpAddress: true
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2

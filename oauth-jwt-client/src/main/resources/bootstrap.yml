@@ -4,8 +4,8 @@ spring:
   cloud:
     config:
       profile: dev
-      uri: http://192.168.1.151:8888
+      uri: http://192.168.1.154:8000
       label: develop
 
 server:
-  port: 8083
+  port: 8011

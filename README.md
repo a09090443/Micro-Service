@@ -39,43 +39,46 @@ Micro-Services Project
 ---
 <table>
 <tbody><tr>
-<td>Server name</td>  <td>Comment</td>  <td>端口</td>
+<td>Server name</td>  <td>Comment</td>  <td>port</td>
 </tr>
 <tr>
-<td>eureka-server</td>  <td>Discovery and register service center</td>  <td>1111</td>
+<td>config-server</td>  <td>Cloud config server</td>  <td>8000</td>
 </tr>
 <tr>
-<td>config-server</td>  <td>Cloud config server</td>  <td>8888</td>
+<td>eureka-server</td>  <td>Discovery and register service center</td>  <td>8001</td>
 </tr>
 <tr>
-<td>oauth-server</td>  <td>Securing access server</td>  <td>8081</td>
+<td>oauth-server</td>  <td>Securing access server</td>  <td>8002</td>
 </tr>
 <tr>
-<td>oauth-jdbc-client</td>  <td>Provider RESTFul API by JDBC access</td>  <td>8082</td>
+<td>oauth-jdbc-client</td>  <td>Provider RESTFul API by JDBC access</td>  <td>8010</td>
 </tr>
 <tr>
-<td>oauth-jwt-client</td>  <td>Provider RESTFul API by JWT access</td>  <td>8083</td>
+<td>oauth-jwt-client</td>  <td>Provider RESTFul API by JWT access</td>  <td>8011</td>
 </tr>
 <tr>
-<td>oauth-sso</td>  <td>Admin manage system</td>  <td>8084</td>
+<td>loadbalance-1</td>  <td>Load balance server 1</td>  <td>8012</td>
 </tr>
 <tr>
-<td>oauth-web</td>  <td>Admin manage system</td>  <td>8085</td>
+<td>loadbalance-2</td>  <td>Load balance server 2</td>  <td>8013</td>
 </tr>
 <tr>
-<td>feign</td>  <td>Light load balance server</td>  <td>8093</td>
+<td>oauth-sso</td>  <td>Admin manage system</td>  <td>8080</td>
 </tr>
 <tr>
-<td>hystrix-dashboard</td>  <td>Hystrix monitor server</td>  <td>8095</td>
+<td>oauth-web</td>  <td>Admin manage system</td>  <td>8081</td>
 </tr>
 <tr>
-<td>hystrix-feign</td>  <td>Hystrix Feign Server</td>  <td>8094</td>
+<td>zuul-server</td>  <td>Gateway server</td>  <td>8090</td>
 </tr>
 <tr>
-<td>loadbalance-1</td>  <td>Load balance server 1</td>  <td>8091</td>
+<td>hystrix-dashboard</td>  <td>Hystrix monitor server</td>  <td>8100</td>
 </tr>
 <tr>
-<td>loadbalance-2</td>  <td>Load balance server 2</td>  <td>8092</td>
+<td>hystrix-feign</td>  <td>Hystrix Feign Server</td>  <td>8101</td>
+</tr>
+<tr>
+<td>feign-server</td>  <td>Light load balance server</td>  <td>8102</td>
 </tr>
 </tbody></table>
 
