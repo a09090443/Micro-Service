@@ -22,9 +22,9 @@ public class Application {
         return loadbalance.test();
     }
 
-    @RequestMapping(value = "/test1/{applicationName}", method = RequestMethod.GET)
-    public String test1(@PathVariable(value = "applicationName") String applicationName) {
-        return loadbalance.test1(applicationName);
+    @RequestMapping(value = "/load/{applicationName}", method = RequestMethod.GET)
+    public String load(@PathVariable(value = "applicationName") String applicationName) {
+        return loadbalance.load(applicationName);
     }
 
     public static void main(String[] args) {

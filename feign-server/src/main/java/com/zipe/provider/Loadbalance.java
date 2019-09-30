@@ -13,6 +13,6 @@ public interface Loadbalance {
     @RequestMapping("/test")
     String test();
 
-    @RequestMapping(value = "/test1/{applicationName}", method = RequestMethod.GET)
-    String test1(@PathVariable(value = "applicationName") String applicationName);
+    @RequestMapping(value = "/load/{applicationName}", method = RequestMethod.GET)
+    String load(@PathVariable(value = "applicationName") String applicationName);
 }

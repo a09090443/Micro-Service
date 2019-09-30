@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hystrix-feign-server
+    name: feign-server
   cloud:
     config:
       profile: dev

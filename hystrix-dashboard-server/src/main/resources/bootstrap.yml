@@ -18,4 +18,4 @@ eureka:
       defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
 
 server:
-  port: 8091
+  port: 8095

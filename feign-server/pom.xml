@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>feign-test</artifactId>
+    <artifactId>feign-server</artifactId>
     <packaging>jar</packaging>
 
-    <name>feign-test</name>
+    <name>feign-server</name>
     <description>Feign loadbalance test</description>
 
     <parent>
