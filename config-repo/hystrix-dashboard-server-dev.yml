@@ -1,5 +1,5 @@
 properties:
-  project: feign-test
+  project: hystrix-dashboard-server
   env: dev
   log-level: INFO
 

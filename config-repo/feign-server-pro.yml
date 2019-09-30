@@ -1,6 +1,6 @@
 properties:
-  project: feign-test
-  env: dev
+  project: feign-server
+  env: production
   log-level: INFO
 
 server:
