@@ -1,6 +1,6 @@
 spring:
   application:
-    name: oauth-server-dev
+    name: oauth-server
   cloud:
     config:
       profile: dev

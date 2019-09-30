@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: hytrix-dashboard-server
+  cloud:
+    config:
+      profile: dev
+      uri: http://192.168.1.151:8888
+      label: develop
+
+eureka:
+  instance:
+    hostname: 192.168.1.151
+    port: 1111
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:admin@${eureka.instance.hostname}:${eureka.instance.port}/eureka
+
+server:
+  port: 8095
