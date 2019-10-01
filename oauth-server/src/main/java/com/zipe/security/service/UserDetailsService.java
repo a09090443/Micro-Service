@@ -1,6 +1,6 @@
 package com.zipe.security.service;
 
-import com.zipe.model.UserInfo;
+import com.zipe.exception.UserNotActivatedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zipe.model.Authority;
+import com.zipe.model.SysAuthority;
+import com.zipe.model.SysUser;
 import com.zipe.service.IUserService;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 		log.debug("Authenticating {}", login);
 		String lowercaseLogin = login.toLowerCase();
 
-		UserInfo userFromDatabase;
+		SysUser userFromDatabase;
 		if (lowercaseLogin.contains("@")) {
 			userFromDatabase = getUserService().findUserByEmail(lowercaseLogin);
 		} else {
@@ -58,8 +59,8 @@ public class UserDetailsService implements org.springframework.security.core.use
 		}
 
 		Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-		for (Authority authority : userFromDatabase.getAuthorities()) {
-			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getName());
+		for (SysAuthority sysAuthority : userFromDatabase.getAuthorities()) {
+			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(sysAuthority.getName());
 			grantedAuthorities.add(grantedAuthority);
 		}
 

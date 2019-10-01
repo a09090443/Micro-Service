@@ -1,8 +1,9 @@
 package com.zipe.service.impl;
 
-import java.util.List;
-import java.util.Objects;
-
+import com.zipe.model.SysUser;
+import com.zipe.repository.ISysUserRepository;
+import com.zipe.service.IUserService;
+import com.zipe.utils.image.ImageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.usefulness.utils.date.DateUtils;
-import com.usefulness.utils.image.ImageUtils;
-import com.zipe.model.UserInfo;
-import com.zipe.repository.IUserInfoRepository;
-import com.zipe.service.IUserService;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Transactional
 @Service("userService")
@@ -24,37 +23,37 @@ public class UserServiceImpl implements IUserService {
 	private Integer maxUserId;
 
 	@Autowired
-	private IUserInfoRepository userInfoRepository;
+	private ISysUserRepository sysUserRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public List<UserInfo> findAllUsers() throws Exception {
-		return userInfoRepository.findAll();
+	public List<SysUser> findAllUsers(){
+		return sysUserRepository.findAll();
 	}
 
 	@Override
-	public UserInfo findUserByLoginId(String loginId) {
-		UserInfo userInfo = userInfoRepository.findByLoginId(loginId);
-		return userInfo;
+	public SysUser findUserByLoginId(String loginId) {
+		SysUser SysUser = sysUserRepository.findByLoginId(loginId);
+		return SysUser;
 	}
 
 	@Override
-	public UserInfo findUserByEmail(String email) {
-		UserInfo userInfo = userInfoRepository.findByEmail(email);
-		return userInfo;
+	public SysUser findUserByEmail(String email) {
+		SysUser SysUser = sysUserRepository.findByEmail(email);
+		return SysUser;
 	}
 
 	@Override
-	public UserInfo findMaxLoginId() {
-		UserInfo userInfo = userInfoRepository.findTopByOrderByLoginIdDesc();
-		return userInfo;
+	public SysUser findMaxLoginId() {
+		SysUser SysUser = sysUserRepository.findTopByOrderByLoginIdDesc();
+		return SysUser;
 	}
 
 	@Override
-	public void saveUser(UserInfo userInfo) {
-		UserInfo checkUser = userInfoRepository.findByLoginId(userInfo.getLoginId());
+	public void saveUser(SysUser SysUser) {
+		SysUser checkUser = sysUserRepository.findByLoginId(SysUser.getLoginId());
 		if (!Objects.isNull(checkUser)) {
 			logger.error("This login_id has been registered!!");
 			return;
@@ -62,31 +61,31 @@ public class UserServiceImpl implements IUserService {
 		}
 
 		Integer newUserId = 0;
-		String currentTime;
+		Date currentTime;
 
 		if (null == maxUserId) {
-			UserInfo latestUserInfo = userInfoRepository.findTopByOrderByLoginIdDesc();
-			if (Objects.isNull(latestUserInfo)) {
+			SysUser latestSysUser = sysUserRepository.findTopByOrderByLoginIdDesc();
+			if (Objects.isNull(latestSysUser)) {
 				maxUserId = 0;
 			} else {
-				maxUserId = Integer.valueOf(latestUserInfo.getUserId());
+				maxUserId = Integer.valueOf(latestSysUser.getUserId());
 			}
 		}
 
 		newUserId = maxUserId + 1;
-		currentTime = DateUtils.getCurrentDate("yyyy-MM-dd hh:mm:ss");
+		currentTime = new Date();
 		String formatStr = "%06d";
 		String newLoginId = String.format(formatStr, newUserId);
-		userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-		userInfo.setUserId(newLoginId);
-		userInfo.setActivated(true);
-		userInfo.setRegisterTime(currentTime);
-		userInfo.setImage(newLoginId + "." + ImageUtils.IMAGE_TYPE_JPG);
+		SysUser.setPassword(passwordEncoder.encode(SysUser.getPassword()));
+		SysUser.setUserId(newLoginId);
+		SysUser.setActivated(true);
+		SysUser.setRegisterTime(currentTime);
+		SysUser.setImage(newLoginId + "." + ImageUtils.IMAGE_TYPE_JPG);
 
 		try {
-			userInfoRepository.save(userInfo);
+			sysUserRepository.save(SysUser);
 		} catch (Exception e) {
-			logger.error("Save user : " + userInfo.getFirstName() + userInfo.getLastName() + " error.");
+			logger.error("Save user : " + SysUser.getFirstName() + SysUser.getLastName() + " error.");
 			logger.error(e.getMessage());
 			return;
 		}
@@ -94,8 +93,8 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public void delUser(UserInfo userInfo) throws Exception {
-		userInfoRepository.deleteByLoginId(userInfo.getLoginId());
+	public void delUser(SysUser SysUser) {
+		sysUserRepository.deleteByLoginId(SysUser.getLoginId());
 	}
 
 }

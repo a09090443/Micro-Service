@@ -48,6 +48,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Customize utility -->
+		<dependency>
+			<groupId>com.zipe</groupId>
+			<artifactId>utility</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

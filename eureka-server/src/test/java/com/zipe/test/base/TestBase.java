@@ -1,16 +1,12 @@
-package com.zipe;
+package com.zipe.test.base;
 
-import org.junit.Test;
+import com.zipe.Application;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class EurekaServerApplicationTests {
-
-	@Test
-	public void contextLoads() {
-	}
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,classes = Application.class)
+public class TestBase {
 
 }

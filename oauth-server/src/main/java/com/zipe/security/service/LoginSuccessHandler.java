@@ -1,10 +1,11 @@
-package com.zipe.service.impl;
+package com.zipe.security.service;
 
-import com.zipe.model.UserInfo;
+import com.zipe.model.SysUser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +18,9 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException,ServletException {
-    	UserInfo userDetails = (UserInfo)authentication.getPrincipal();
+    	SysUser userDetails = (SysUser)authentication.getPrincipal();
 
-        log.info("登录用户user:" + userDetails.getLoginId() + "login"+request.getContextPath());
+        log.info("Login user:" + userDetails.getLoginId() + "login"+request.getContextPath());
         log.info("IP:" + getIpAddress(request));
         super.onAuthenticationSuccess(request, response, authentication);
     }

@@ -3,13 +3,13 @@ package com.zipe.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
+import com.zipe.enums.Role;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Authority entity. Used by OAuth2 workflow and security annotations.
@@ -17,7 +17,8 @@ import java.util.Objects;
  *
  */
 @Entity
-public class Authority implements Serializable{
+@Table(name = "sys_authority")
+public class SysAuthority implements Serializable{
 	static final long serialVersionUID = 1L;
 	
 	@Id
@@ -41,12 +42,12 @@ public class Authority implements Serializable{
         return name;
     }
 
-    public Authority setName(String name) {
+    public SysAuthority setName(String name) {
         this.name = name;
         return this;
     }
 
-    public Authority setName(Role name) {
+    public SysAuthority setName(Role name) {
         this.name = name.toString();
         return this;
     }
@@ -68,7 +69,7 @@ public class Authority implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Authority other = (Authority) obj;
+		SysAuthority other = (SysAuthority) obj;
 		if (authorityId == null) {
 			if (other.authorityId != null)
 				return false;

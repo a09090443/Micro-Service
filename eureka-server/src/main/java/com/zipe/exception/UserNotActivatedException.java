@@ -1,4 +1,4 @@
-package com.zipe.security.service;
+package com.zipe.exception;
 
 import org.springframework.security.core.AuthenticationException;
 
