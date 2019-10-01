@@ -1,11 +1,11 @@
 package com.zipe.controller;
 
-import com.zipe.vo.UserInfoVO;
 import com.zipe.base.controller.BaseController;
-import com.zipe.model.UserInfo;
-import com.zipe.model.Authority;
-import com.zipe.model.PersonalTitle;
+import com.zipe.model.SysAuthority;
+import com.zipe.model.SysUser;
+import com.zipe.model.SysUserTitle;
 import com.zipe.service.IUserService;
+import com.zipe.vo.UserInfoVO;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
@@ -28,27 +28,27 @@ public class UserController extends BaseController {
 	private IUserService userService;
 
 	@GetMapping("/users")
-	public List<UserInfo> users() throws Exception {
-		List<UserInfo> userInfoList = userService.findAllUsers();
-		return userInfoList;
+	public List<SysUser> users() throws Exception {
+		List<SysUser> sysUserList = userService.findAllUsers();
+		return sysUserList;
 	}
 
 	@GetMapping("/authorities")
-	public List<Authority> authorities() throws Exception {
-		List<Authority> authorityList = userService.getAuthorities();
-		return authorityList;
+	public List<SysAuthority> authorities() throws Exception {
+		List<SysAuthority> sysAuthorityList = userService.getAuthorities();
+		return sysAuthorityList;
 	}
 	
-	@GetMapping("/personalTitles")
-	public List<PersonalTitle> personalTitles() throws Exception {
-		List<PersonalTitle> personalTitleList = userService.getPersonalTitles();
-		return personalTitleList;
+	@GetMapping("/sysUserTitles")
+	public List<SysUserTitle> sysUserTitles() throws Exception {
+		List<SysUserTitle> sysUserTitleList = userService.getSysUserTitles();
+		return sysUserTitleList;
 	}
 
 	@GetMapping("/user/{loginId}")
-	public UserInfo user(@PathVariable String loginId) {
-		UserInfo userInfo = userService.findUserByLoginId(loginId);
-		return userInfo;
+	public SysUser user(@PathVariable String loginId) {
+		SysUser sysUser = userService.findUserByLoginId(loginId);
+		return sysUser;
 	}
 
 	@GetMapping("/test")
@@ -66,20 +66,20 @@ public class UserController extends BaseController {
 			e.printStackTrace();
 			return "error";
 		}
-		UserInfo userInfo = userService.findUserByLoginId(userInfoVO.getLoginId());
+		SysUser sysUser = userService.findUserByLoginId(userInfoVO.getLoginId());
 
-		if(null == userInfo){
+		if(null == sysUser){
 			return "user not found";
 		}
 		//Ignore null properties
-		myCopyProperties(userInfoVO, userInfo);
-		Set<Authority> authoritySet = userService.getAuthoritiesByAuthorityId(userInfoVO.getAuthorities());
-		userInfo.setAuthorities(authoritySet);
-		Set<PersonalTitle> personalTitleSet = userService.getPersonalTitlesByTitleId(userInfoVO.getPersonalTitles());
-		userInfo.setPersonalTitle(personalTitleSet);
+		myCopyProperties(userInfoVO, sysUser);
+		Set<SysAuthority> sysAuthoritySet = userService.getSysAuthoritiesByAuthorityId(userInfoVO.getAuthorities());
+		sysUser.setAuthorities(sysAuthoritySet);
+		Set<SysUserTitle> sysUserTitleSet = userService.getSysUserTitlesByTitleId(userInfoVO.getPersonalTitles());
+		sysUser.setSysUserTitle(sysUserTitleSet);
 
 		try {
-			userService.saveUser(userInfo);
+			userService.saveUser(sysUser);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return "error";
@@ -97,20 +97,20 @@ public class UserController extends BaseController {
 			e.printStackTrace();
 			return "error";
 		}
-		UserInfo userInfo = userService.findUserByLoginId(userInfoVO.getLoginId());
+		SysUser sysUser = userService.findUserByLoginId(userInfoVO.getLoginId());
 
-		if(null == userInfo){
-			userInfo = new UserInfo();
+		if(null == sysUser){
+			sysUser = new SysUser();
 		}
 		//Ignore null properties
-		myCopyProperties(userInfoVO, userInfo);
-		Set<Authority> authoritySet = userService.getAuthoritiesByAuthorityId(userInfoVO.getAuthorities());
-		userInfo.setAuthorities(authoritySet);
-		Set<PersonalTitle> personalTitleSet = userService.getPersonalTitlesByTitleId(userInfoVO.getPersonalTitles());
-		userInfo.setPersonalTitle(personalTitleSet);
+		myCopyProperties(userInfoVO, sysUser);
+		Set<SysAuthority> authoritySet = userService.getSysAuthoritiesByAuthorityId(userInfoVO.getAuthorities());
+		sysUser.setAuthorities(authoritySet);
+		Set<SysUserTitle> sysUserTitleSet = userService.getSysUserTitlesByTitleId(userInfoVO.getPersonalTitles());
+		sysUser.setSysUserTitle(sysUserTitleSet);
 		
 		try {
-			userService.saveUser(userInfo);
+			userService.saveUser(sysUser);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return "error";
@@ -125,11 +125,11 @@ public class UserController extends BaseController {
 
 	@DeleteMapping("/user/{loginId}")
 	public String delete(@PathVariable String loginId) {
-		UserInfo userInfo = new UserInfo();
-		userInfo.setLoginId(loginId);
+		SysUser sysUser = new SysUser();
+		sysUser.setLoginId(loginId);
 
 		try {
-			userService.delUser(userInfo);
+			userService.delUser(sysUser);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return "failure";

@@ -1,10 +1,13 @@
 package com.zipe.service.impl;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
+import com.zipe.model.SysAuthority;
+import com.zipe.model.SysUser;
+import com.zipe.model.SysUserTitle;
+import com.zipe.repository.ISysAuthorityRepository;
+import com.zipe.repository.ISysUserRepository;
+import com.zipe.repository.ISysUserTitleRepository;
+import com.zipe.service.IUserService;
+import com.zipe.utils.image.ImageUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,15 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zipe.model.UserInfo;
-import com.zipe.model.Authority;
-import com.zipe.model.PersonalTitle;
-import com.zipe.repository.IAuthorityRepository;
-import com.zipe.repository.IPersonalTitleRepository;
-import com.zipe.repository.IUserInfoRepository;
-import com.zipe.service.IUserService;
-import com.zipe.utils.date.DateUtils;
-import com.zipe.utils.image.ImageUtils;
+import java.util.*;
 
 @Transactional
 @Service("userService")
@@ -31,111 +26,109 @@ public class UserServiceImpl implements IUserService {
     private Integer maxUserId;
 
     @Autowired
-    private IUserInfoRepository userInfoRepository;
+    private ISysUserRepository sysUserRepository;
 
     @Autowired
-    private IAuthorityRepository authorityRepository;
+    private ISysAuthorityRepository sysAuthorityRepository;
 
     @Autowired
-    private IPersonalTitleRepository personalTitleRepository;
+    private ISysUserTitleRepository sysUserTitleRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<UserInfo> findAllUsers() throws Exception {
-        return userInfoRepository.findAll();
+    public List<SysUser> findAllUsers() {
+        return sysUserRepository.findAll();
     }
 
     @Override
-    public UserInfo findUserByLoginId(String loginId) {
-        UserInfo userInfo = userInfoRepository.findByLoginId(loginId);
-        return userInfo;
+    public SysUser findUserByLoginId(String loginId) {
+        SysUser sysUser = sysUserRepository.findByLoginId(loginId);
+        return sysUser;
     }
 
     @Override
-    public UserInfo findUserByEmail(String email) {
-        UserInfo userInfo = userInfoRepository.findByEmail(email);
-        return userInfo;
+    public SysUser findUserByEmail(String email) {
+        SysUser sysUser = sysUserRepository.findByEmail(email);
+        return sysUser;
     }
 
     @Override
-    public UserInfo findMaxLoginId() {
-        UserInfo userInfo = userInfoRepository.findTopByOrderByLoginIdDesc();
-        return userInfo;
+    public SysUser findMaxLoginId() {
+        SysUser sysUser = sysUserRepository.findTopByOrderByLoginIdDesc();
+        return sysUser;
     }
 
     @Override
-    public List<Authority> getAuthorities() {
-        List<Authority> authoritiesList = authorityRepository.findAll();
+    public List<SysAuthority> getAuthorities() {
+        List<SysAuthority> authoritiesList = sysAuthorityRepository.findAll();
         return authoritiesList;
     }
 
     @Override
-    public Set<Authority> getAuthoritiesByAuthorityId(String authorityId) {
-        Set<Authority> authoritySet = authorityRepository
-                .findAuthoritiesByAuthorityIdIn(Arrays.asList(authorityId.replaceAll(" ", "").split(",")));
-        return authoritySet;
+    public Set<SysAuthority> getSysAuthoritiesByAuthorityId(String authorityId) {
+        Set<SysAuthority> sysAuthoritySet = sysAuthorityRepository
+                .findSysAuthoritiesByAuthorityIdIn(Arrays.asList(authorityId.replaceAll(" ", "").split(",")));
+        return sysAuthoritySet;
     }
 
     @Override
-    public List<PersonalTitle> getPersonalTitles() {
-        List<PersonalTitle> personalTitleList = personalTitleRepository.findAll();
-        return personalTitleList;
+    public List<SysUserTitle> getSysUserTitles() {
+        List<SysUserTitle> sysUserTitleList = sysUserTitleRepository.findAll();
+        return sysUserTitleList;
     }
 
     @Override
-    public Set<PersonalTitle> getPersonalTitlesByTitleId(String titleId) {
-        Set<PersonalTitle> personalTitleSet = personalTitleRepository
-                .findPersonalTitleByTitleIdIn(Arrays.asList(titleId.replaceAll(" ", "").split(",")));
-        return personalTitleSet;
+    public Set<SysUserTitle> getSysUserTitlesByTitleId(String titleId) {
+        Set<SysUserTitle> sysUserTitleSet = sysUserTitleRepository
+                .findSysUserTitleByTitleIdIn(Arrays.asList(titleId.replaceAll(" ", "").split(",")));
+        return sysUserTitleSet;
     }
 
     @Override
-    public void saveUser(UserInfo userInfo) throws Exception {
-//		UserInfo checkUser = userInfoRepository.findByLoginId(userInfo.getLoginId());
+    public void saveUser(SysUser sysUser) {
+//		SysUser checkUser = SysUserRepository.findByLoginId(SysUser.getLoginId());
 //		if (!Objects.isNull(checkUser)) {
 //			logger.error("This login_id has been registered!!");
 //			throw new Exception("This login_id has been registered!!");
 //		}
 
         // Add new user
-        if (StringUtils.isBlank(userInfo.getUserId())) {
+        if (StringUtils.isBlank(sysUser.getUserId())) {
             String newUserId;
-            String currentTime;
 
             if (null == maxUserId) {
-                UserInfo latestUserInfo = userInfoRepository.findTopByOrderByLoginIdDesc();
-                if (Objects.isNull(latestUserInfo)) {
+                SysUser latestSysUser = sysUserRepository.findTopByOrderByLoginIdDesc();
+                if (Objects.isNull(latestSysUser)) {
                     maxUserId = 0;
                 } else {
-                    maxUserId = Integer.valueOf(latestUserInfo.getUserId());
+                    maxUserId = Integer.valueOf(latestSysUser.getUserId());
                 }
             }
             String formatStr = "%06d";
             newUserId = String.format(formatStr, maxUserId + 1);
-            currentTime = DateUtils.getCurrentDate("yyyy-MM-dd hh:mm:ss");
-            userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-            userInfo.setUserId(newUserId);
-            userInfo.setActivated(true);
-            userInfo.setRegisterTime(currentTime);
-            userInfo.setImage(newUserId + "." + ImageUtils.IMAGE_TYPE_JPG);
+            sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
+            sysUser.setUserId(newUserId);
+            sysUser.setActivated(true);
+            sysUser.setRegisterTime(new Date());
+            sysUser.setImage(newUserId + "." + ImageUtils.IMAGE_TYPE_JPG);
         }
 
         try {
-            userInfoRepository.save(userInfo);
+            sysUserRepository.save(sysUser);
         } catch (Exception e) {
-            logger.error("Save user : " + userInfo.getFirstName() + userInfo.getLastName() + " error.");
+            logger.error("Save user : " + sysUser.getFirstName() + sysUser.getLastName() + " error.");
             throw e;
         }
     }
 
     @Override
-    public void delUser(UserInfo userInfo) {
+    public void delUser(SysUser sysUser) {
         try {
-            userInfoRepository.deleteByLoginId(userInfo.getLoginId());
+            sysUserRepository.deleteByLoginId(sysUser.getLoginId());
         } catch (Exception e) {
-            logger.error("Delete Login Id: " + userInfo.getLoginId() + " error!!");
+            logger.error("Delete Login Id: " + sysUser.getLoginId() + " error!!");
             throw e;
         }
     }

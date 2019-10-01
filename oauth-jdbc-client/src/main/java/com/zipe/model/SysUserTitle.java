@@ -1,17 +1,17 @@
 package com.zipe.model;
 
-import java.io.Serializable;
+import com.zipe.enums.Role;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "personal_title")
-public class PersonalTitle implements Serializable {
+@Table(name = "sys_user_title")
+public class SysUserTitle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,12 +34,12 @@ public class PersonalTitle implements Serializable {
 		return titleName;
 	}
 
-	public PersonalTitle setTitleName(String titleName) {
+	public SysUserTitle setTitleName(String titleName) {
 		this.titleName = titleName;
         return this;
 	}
 
-	public PersonalTitle setTitleName(Role titleName) {
+	public SysUserTitle setTitleName(Role titleName) {
 		this.titleName = titleName.toString();
 		return this;
 	}
@@ -61,7 +61,7 @@ public class PersonalTitle implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PersonalTitle other = (PersonalTitle) obj;
+		SysUserTitle other = (SysUserTitle) obj;
 		if (titleId == null) {
 			if (other.titleId != null)
 				return false;

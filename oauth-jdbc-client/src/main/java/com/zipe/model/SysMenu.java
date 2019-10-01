@@ -5,28 +5,17 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "sys_menu")
-public class SysMenuEntity {
-    private int id;
+public class SysMenu {
     private Integer menuId;
     private String menuName;
     private String path;
     private String comment;
     private Integer orderId;
-    private Byte enabled;
+    private boolean enabled;
     private Integer parentId;
 
     @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Basic
-    @Column(name = "menu_id")
+    @Column(name = "menu_id", nullable = false, length = 2, unique=true)
     public Integer getMenuId() {
         return menuId;
     }
@@ -36,7 +25,7 @@ public class SysMenuEntity {
     }
 
     @Basic
-    @Column(name = "menu_name")
+    @Column(name = "menu_name", nullable = false, length = 100)
     public String getMenuName() {
         return menuName;
     }
@@ -46,7 +35,7 @@ public class SysMenuEntity {
     }
 
     @Basic
-    @Column(name = "path")
+    @Column(name = "path", length = 100)
     public String getPath() {
         return path;
     }
@@ -56,7 +45,7 @@ public class SysMenuEntity {
     }
 
     @Basic
-    @Column(name = "comment")
+    @Column(name = "comment", length = 200)
     public String getComment() {
         return comment;
     }
@@ -66,7 +55,7 @@ public class SysMenuEntity {
     }
 
     @Basic
-    @Column(name = "order_id")
+    @Column(name = "order_id", nullable = false, length = 2)
     public Integer getOrderId() {
         return orderId;
     }
@@ -76,17 +65,17 @@ public class SysMenuEntity {
     }
 
     @Basic
-    @Column(name = "enabled")
-    public Byte getEnabled() {
+    @Column(name = "enabled",  nullable = false, columnDefinition="BOOLEAN DEFAULT false")
+    public boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Byte enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
     @Basic
-    @Column(name = "parent_id")
+    @Column(name = "parent_id", nullable = false, length = 2)
     public Integer getParentId() {
         return parentId;
     }
@@ -99,19 +88,18 @@ public class SysMenuEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SysMenuEntity that = (SysMenuEntity) o;
-        return id == that.id &&
+        SysMenu that = (SysMenu) o;
+        return enabled == that.enabled &&
                 Objects.equals(menuId, that.menuId) &&
                 Objects.equals(menuName, that.menuName) &&
                 Objects.equals(path, that.path) &&
                 Objects.equals(comment, that.comment) &&
                 Objects.equals(orderId, that.orderId) &&
-                Objects.equals(enabled, that.enabled) &&
                 Objects.equals(parentId, that.parentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, menuId, menuName, path, comment, orderId, enabled, parentId);
+        return Objects.hash(menuId, menuName, path, comment, orderId, enabled, parentId);
     }
 }

@@ -2,7 +2,7 @@ package com.zipe.service.impl;
 
 import com.zipe.vo.SysMenuVO;
 import com.zipe.base.service.BaseService;
-import com.zipe.model.SysMenuEntity;
+import com.zipe.model.SysMenu;
 import com.zipe.repository.ISysMenuEntityRepository;
 import com.zipe.service.ISysMenuService;
 import org.slf4j.Logger;
@@ -24,23 +24,23 @@ public class SysMenuServiceImpl extends BaseService implements ISysMenuService {
     private ISysMenuEntityRepository sysMenuEntityRepository;
 
     @Override
-    public List<SysMenuEntity> findAllSysMenu() {
+    public List<SysMenu> findAllSysMenu() {
         return sysMenuEntityRepository.findAll();
     }
 
     @Override
     public List<SysMenuVO> findSysMenuTree() {
-        List<SysMenuEntity> sysMenuEntityList = sysMenuEntityRepository.findAll();
+        List<SysMenu> sysMenuEntityList = sysMenuEntityRepository.findAll();
 
         // Root_level's parentId is zero
         List<SysMenuVO> sysMenuVOList = this.getMappingMenu(sysMenuEntityList, 0);
         return sysMenuVOList;
     }
 
-    private List<SysMenuVO> getMappingMenu(List<SysMenuEntity> sysMenuEntityList, int parantId) {
+    private List<SysMenuVO> getMappingMenu(List<SysMenu> sysMenuEntityList, int parantId) {
         List<SysMenuVO> sysMenuVOList = new LinkedList<>();
-        for (SysMenuEntity sysMenuEntity : sysMenuEntityList) {
-            if (parantId == sysMenuEntity.getParentId() && sysMenuEntity.getEnabled() == 1) {
+        for (SysMenu sysMenuEntity : sysMenuEntityList) {
+            if (parantId == sysMenuEntity.getParentId() && sysMenuEntity.getEnabled()) {
                 SysMenuVO sysMenuVO = new SysMenuVO();
                 sysMenuVO.setMenuId(sysMenuEntity.getMenuId());
                 sysMenuVO.setName(sysMenuEntity.getMenuName());

@@ -151,13 +151,12 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `sys_menu` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `menu_id` int(2) DEFAULT NULL,
-  `menu_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `menu_id` int(11) NOT NULL,
+  `menu_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `path` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `comment` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order_id` int(2) DEFAULT NULL,
-  `enabled` tinyint(1) DEFAULT NULL,
-  `parent_id` int(2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `order_id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -7,12 +7,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "user_info")
-public class UserInfo {
+@Table(name = "sys_user")
+public class SysUser {
     private int id;
     private String userId;
     private String loginId;
@@ -20,14 +21,15 @@ public class UserInfo {
     private String firstName;
     private String lastName;
     private String email;
+    private String phone;
     private String address;
     private String birthday;
     private String image;
-    private String phone;
-    private boolean activated;
-    private String registerTime;
-    private Set<Authority> authorities;
-    private Set<PersonalTitle> personalTitle;
+    private Boolean activated;
+    private Date lastLoginTime;
+    private Date registerTime;
+    private Set<SysAuthority> authorities;
+    private Set<SysUserTitle> sysUserTitle;
 
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -157,68 +159,78 @@ public class UserInfo {
     }
 
     @Basic
-    @Column(name = "registerTime", length = 19)
+    @Column(name = "last_login_time")
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    public String getRegisterTime() {
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    @Basic
+    @Column(name = "register_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    public Date getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(String registerTime) {
+    public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_authority",
+            name = "sys_user_authority_mapping",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id")
     )
-    public Set<Authority> getAuthorities() {
+    public Set<SysAuthority> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<Authority> authorities) {
+    public void setAuthorities(Set<SysAuthority> authorities) {
         this.authorities = authorities;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_title",
+            name = "sys_user_title_mapping",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "title_id")
     )
-    public Set<PersonalTitle> getPersonalTitle() {
-        return personalTitle;
+    public Set<SysUserTitle> getSysUserTitle() {
+        return sysUserTitle;
     }
 
-    public void setPersonalTitle(Set<PersonalTitle> personalTitle) {
-        this.personalTitle = personalTitle;
+    public void setSysUserTitle(Set<SysUserTitle> sysUserTitle) {
+        this.sysUserTitle = sysUserTitle;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserInfo that = (UserInfo) o;
-        return activated == that.activated &&
-                Objects.equals(id, that.id) &&
+        SysUser that = (SysUser) o;
+        return id == that.id &&
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(loginId, that.loginId) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
                 Objects.equals(email, that.email) &&
+                Objects.equals(phone, that.phone) &&
                 Objects.equals(address, that.address) &&
                 Objects.equals(birthday, that.birthday) &&
                 Objects.equals(image, that.image) &&
-                Objects.equals(phone, that.phone) &&
-                Objects.equals(registerTime, that.registerTime) &&
-                Objects.equals(authorities, that.authorities) &&
-                Objects.equals(personalTitle, that.personalTitle);
+                Objects.equals(activated, that.activated) &&
+                Objects.equals(lastLoginTime, that.lastLoginTime) &&
+                Objects.equals(registerTime, that.registerTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, loginId, password, firstName, lastName, email, address, birthday, image, phone, activated, registerTime, authorities, personalTitle);
+        return Objects.hash(id, userId, loginId, password, firstName, lastName, email, phone, address, birthday, image, activated, lastLoginTime, registerTime);
     }
 }
