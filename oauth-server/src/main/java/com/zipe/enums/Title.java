@@ -1,4 +1,4 @@
-package com.zipe.model;
+package com.zipe.enums;
 
 public enum Title {
 	TEACHER,

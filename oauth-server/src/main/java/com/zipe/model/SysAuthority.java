@@ -1,14 +1,13 @@
 package com.zipe.model;
 
+import com.zipe.enums.Role;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import com.zipe.enums.Role;
-import org.hibernate.validator.constraints.NotEmpty;
-
 import java.io.Serializable;
 
 /**

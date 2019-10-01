@@ -1,9 +1,5 @@
-package com.zipe.model;
+package com.zipe.enums;
 
-/**
- * Role enumeration. Used for the {@link Authority} values.
- *
- */
 public enum Role {
     ROLE_ADMIN,
     ROLE_USER

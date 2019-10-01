@@ -1,14 +1,13 @@
 package com.zipe.model;
 
-import java.io.Serializable;
+import com.zipe.enums.Role;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.zipe.enums.Role;
-import org.hibernate.validator.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "sys_user_title")

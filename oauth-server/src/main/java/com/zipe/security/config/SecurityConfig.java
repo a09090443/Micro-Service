@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.zipe.security.service.UserDetailsService;
-import com.zipe.service.impl.LoginSuccessHandler;
+import com.zipe.security.service.LoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity

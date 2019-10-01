@@ -17,7 +17,7 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class UserInfoServiceTest extends TestBase {
+public class SysUserServiceTest extends TestBase {
 
 	@Autowired
 	private IUserService userService;
@@ -41,13 +41,13 @@ public class UserInfoServiceTest extends TestBase {
 		SysAuthority auth = new SysAuthority();
 		auth.setAuthorityId("01");
 		auth.setName("ROLE_ADMIN");
-		Set<SysAuthority> authoritySet = new HashSet<SysAuthority>();
+		Set<SysAuthority> authoritySet = new HashSet<>();
 		authoritySet.add(auth);
 
 		SysUserTitle sysUserTitle = new SysUserTitle();
 		sysUserTitle.setTitleId("01");
 		sysUserTitle.setTitleName("ADMIN");
-		Set<SysUserTitle> sysUserTitleSet = new HashSet<SysUserTitle>();
+		Set<SysUserTitle> sysUserTitleSet = new HashSet<>();
 		sysUserTitleSet.add(sysUserTitle);
 
 		sysUser.setAuthorities(authoritySet);

@@ -101,42 +101,37 @@ CREATE TABLE `oauth_refresh_token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `authority`
---
-
-DROP TABLE IF EXISTS `authority`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `authority` (
+CREATE TABLE `sys_authority` (
   `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`authority_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `personal_title`
---
+CREATE TABLE `sys_user_authority_mapping` (
+  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`user_id`,`authority_id`),
+  KEY `FKgvxjs381k6f48d5d2yi11uh89` (`authority_id`),
+  CONSTRAINT `FKal1t5uf78i79dlx2ry5qqw6c0` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`),
+  CONSTRAINT `FKgvxjs381k6f48d5d2yi11uh89` FOREIGN KEY (`authority_id`) REFERENCES `sys_authority` (`authority_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `personal_title`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `personal_title` (
+CREATE TABLE `sys_user_title` (
   `title_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `title_name` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`title_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `user_info`
---
+CREATE TABLE `sys_user_title_mapping` (
+  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `title_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`user_id`,`title_id`),
+  KEY `FK8dfrc4mibfms3tieybcdviwr2` (`title_id`),
+  CONSTRAINT `FK8dfrc4mibfms3tieybcdviwr2` FOREIGN KEY (`title_id`) REFERENCES `sys_user_title` (`title_id`),
+  CONSTRAINT `FKm32axjpdbpfyw4yrhlow01w9m` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `user_info`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_info` (
+CREATE TABLE `sys_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `login_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -149,63 +144,11 @@ CREATE TABLE `user_info` (
   `birthday` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `activated` bit(1) DEFAULT NULL,
-  `register_time` varchar(19) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_login_time` datetime DEFAULT NULL,
+  `register_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_hixwjgx0ynne0cq4tqvoawoda` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `user_authority`
---
-
-DROP TABLE IF EXISTS `user_authority`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_authority` (
-  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
-  `authority_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`user_id`,`authority_id`),
-  KEY `FKgvxjs381k6f48d5d2yi11uh89` (`authority_id`),
-  CONSTRAINT `FKal1t5uf78i79dlx2ry5qqw6c0` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`),
-  CONSTRAINT `FKgvxjs381k6f48d5d2yi11uh89` FOREIGN KEY (`authority_id`) REFERENCES `authority` (`authority_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `user_title`
---
-
-DROP TABLE IF EXISTS `user_title`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_title` (
-  `user_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
-  `title_id` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`user_id`,`title_id`),
-  KEY `FK8dfrc4mibfms3tieybcdviwr2` (`title_id`),
-  CONSTRAINT `FKm32axjpdbpfyw4yrhlow01w9m` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`user_id`),
-  CONSTRAINT `FK8dfrc4mibfms3tieybcdviwr2` FOREIGN KEY (`title_id`) REFERENCES `personal_title` (`title_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping routines for database 'dev_oauth'
---
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-04-30 15:59:26
-
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `sys_menu` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
