@@ -22,25 +22,25 @@ public class LoginUserServiceImpl extends CommonService implements ILoginUserSer
 	
 	LinkedHashMap<String, String> parametersMap = new LinkedHashMap<String, String>();
 	
-	public String getUsers() throws Exception {
-		return this.sendUrl("jdbc-api", parametersMap, URI.GET_USERS.getUri(), false, RequestMethod.GET.toString());
+	public String getSysUsers() throws Exception {
+		return this.sendUrl("jdbc-api", parametersMap, URI.GET_SYS_USERS.getUri(), false, RequestMethod.GET.toString());
 	}
 
 	@Override
-	public String getAuthorities() throws Exception {
-		return this.sendUrl("jdbc-api", parametersMap, URI.GET_AUTHORITIES.getUri(), false, RequestMethod.GET.toString());
+	public String getSysAuthorities() throws Exception {
+		return this.sendUrl("jdbc-api", parametersMap, URI.GET_SYS_AUTHORITIES.getUri(), false, RequestMethod.GET.toString());
 	}
 
 	@Override
-	public String getPersonalTitles() throws Exception {
-		return this.sendUrl("jdbc-api", parametersMap, URI.GET_PERSONALTITLES.getUri(), false, RequestMethod.GET.toString());
+	public String getSysUserTitles() throws Exception {
+		return this.sendUrl("jdbc-api", parametersMap, URI.GET_SYS_USER_TITLE.getUri(), false, RequestMethod.GET.toString());
 	}
 
 	@Override
-	public String saveUser(String content) throws Exception {
+	public String saveSysUser(String content) throws Exception {
 		parametersMap.put("userForm", content);
 		logger.info("sent user form!");
-		return this.sendUrl("jdbc-api", parametersMap, URI.SAVE_USER.getUri(), false, RequestMethod.POST.toString());
+		return this.sendUrl("jdbc-api", parametersMap, URI.SAVE_USYS_SER.getUri(), false, RequestMethod.POST.toString());
 	}
 
 }

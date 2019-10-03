@@ -1,17 +1,14 @@
 package com.zipe;
 
+import com.zipe.config.ConfigBean;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextListener;
 
-import com.zipe.config.ConfigBean;
-
-@SpringBootApplication()
+@SpringCloudApplication
 @EnableConfigurationProperties({ ConfigBean.class })
-@EnableDiscoveryClient
 public class Application {
 
 	@Bean

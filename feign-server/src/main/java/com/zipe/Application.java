@@ -17,11 +17,6 @@ public class Application {
     @Autowired
     private Loadbalance loadbalance;
 
-    @RequestMapping("/hello")
-    public String greeting() {
-        return loadbalance.test();
-    }
-
     @RequestMapping(value = "/load/{applicationName}", method = RequestMethod.GET)
     public String load(@PathVariable(value = "applicationName") String applicationName) {
         return loadbalance.load(applicationName);

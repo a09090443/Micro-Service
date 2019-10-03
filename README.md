@@ -84,12 +84,12 @@ Micro-Services Project
 
 ### Eureka Server
 ---
-#### Login Info
+#### Eureka web login info
   - Username:`admin`
   - Password:`admin`
 
 #### Eureka monitor Url:
-  - http://127.0.0.1:1111
+  - http://127.0.0.1:8001
 
 ### Config Repo
 ---
@@ -101,6 +101,11 @@ Micro-Services Project
 5. oauth-sso-client-[dev, pro].yml : oauth-sso config environment
 6. oauth-web-client-[dev, pro].yml : oauth-web config environment
 6. zuul-server-[dev, pro].yml : zuul-server config environment
+7. loadlbalance-1-[dev, pro].yml : loadbalance-1 config environment
+8. loadlbalance-2-[dev, pro].yml : loadbalance-2 config environment
+9. hystrix-dashboard-[dev, pro].yml : hystrix-dashboard config environment
+10. hystrix-feign-[dev, pro].yml : hystrix-feign config environment
+11. feign-server-[dev, pro].yml : zfeign-server config environment
 
 ### Config Server
 ---
@@ -126,7 +131,7 @@ The HTTP service has resources in the following form:
 > /{label}/{application}-{profile}.json
   - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.json
 
-### Login Info
+### Admin manage system login info
 ---
   - Username:`admin`
   - Password:`admin`
@@ -149,28 +154,46 @@ The HTTP service has resources in the following form:
 ### Get Token URL(HTTP Method:POST)
 ---
 #### 1. Authorization Url
-  - http://127.0.0.1:8081/oauth/authorize?response_type=code&redirect_uri=http://127.0.0.1:8081/api/test1&client_id=auth_test&client_secret=secret
-  
-  - http://127.0.0.1:8081/oauth/token?grant_type=authorization_code&code=ti6eIJ&redirect_uri=http://127.0.0.1:8081/api/test1&client_id=auth_test&client_secret=secret
+__Get code__
+  - http://127.0.0.1:8002/oauth/authorize?response_type=code&redirect_uri=http://127.0.0.1:8081/api/test1&client_id=auth_test&client_secret=secret
+
+__Get Token__
+  - http://127.0.0.1:8002/oauth/token?grant_type=authorization_code&code=ti6eIJ&redirect_uri=http://127.0.0.1:8081/api/test1&client_id=auth_test&client_secret=secret
 #### 2. resource owner password credentials Url
-  - http://127.0.0.1:8081/oauth/token?grant_type=password&username=admin&password=admin&client_id=password_test&client_secret=secret
+__Get Token__
+  - http://127.0.0.1:8002/oauth/token?grant_type=password&username=admin&password=admin&client_id=password_test&client_secret=secret
 #### 3. implicit Url
-  - http://127.0.0.1:8081/oauth/authorize?response_type=token&client_id=implicit_test&redirect_uri=http://127.0.0.1:8081/api/test1
+__Get Token__
+  - http://127.0.0.1:8002/oauth/authorize?response_type=token&client_id=implicit_test&redirect_uri=http://127.0.0.1:8081/api/test1
 #### 4. client credentials
-  - http://127.0.0.1:8081/oauth/token?grant_type=client_credentials&client_id=client_test&client_secret=secret
+__Get Token__
+  - http://127.0.0.1:8002/oauth/token?grant_type=client_credentials&client_id=client_test&client_secret=secret
 
 ### Request Url(HTTP Method:GET,POST)
 ---
-  - http://127.0.0.1:8082/service2?access_token=token_id
+  - http://127.0.0.1:8002/service2?access_token=token_id
 
 ### Check Token Url(HTTP Method:GET,POST)
 ---
-  - http://127.0.0.1:8081/oauth/check_token?token=token_id
+  - http://127.0.0.1:8002/oauth/check_token?token=token_id
 
 ### Refresh Token Url(HTTP Method:POST)
 ---
-  - http://127.0.0.1:8081/oauth/token?grant_type=refresh_token&refresh_token=refresh_token_id&client_id=auth_test&client_secret=secret
+  - http://127.0.0.1:8002/oauth/token?grant_type=refresh_token&refresh_token=refresh_token_id&client_id=auth_test&client_secret=secret
 
 ### Web management
 ---
-  - http://127.0.0.1:8084
+  - http://127.0.0.1:8080
+
+### Feign server Test
+---
+1. Start up loadbalance-1 and loadbalance-2 servers
+2. Start up Feign server or Hystrix Feign server
+3. Get access_token
+4. Call test Url
+
+  __Feign server__
+  - http://127.0.0.1:8102/load/feign?access_token=token_id
+  
+  __Hystrix Feign server__
+  - http://127.0.0.1:8101/load/feign?access_token=token_id

@@ -27,13 +27,13 @@ public class UserController extends BaseController {
 	@Autowired
 	private IUserService userService;
 
-	@GetMapping("/users")
+	@GetMapping("/sysUsers")
 	public List<SysUser> users() throws Exception {
 		List<SysUser> sysUserList = userService.findAllUsers();
 		return sysUserList;
 	}
 
-	@GetMapping("/authorities")
+	@GetMapping("/sysAuthorities")
 	public List<SysAuthority> authorities() throws Exception {
 		List<SysAuthority> sysAuthorityList = userService.getAuthorities();
 		return sysAuthorityList;
@@ -45,7 +45,7 @@ public class UserController extends BaseController {
 		return sysUserTitleList;
 	}
 
-	@GetMapping("/user/{loginId}")
+	@GetMapping("/sysUser/{loginId}")
 	public SysUser user(@PathVariable String loginId) {
 		SysUser sysUser = userService.findUserByLoginId(loginId);
 		return sysUser;
@@ -56,7 +56,7 @@ public class UserController extends BaseController {
 		return user;
 	}
 
-	@PatchMapping(value = "/user/{loginId}")
+	@PatchMapping(value = "/sysUser/{loginId}")
 	public String update(@PathVariable String loginId, @RequestParam("userForm") String userForm) {
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfoVO userInfoVO;
@@ -87,7 +87,7 @@ public class UserController extends BaseController {
 		return "success";
 	}
 
-	@PostMapping(value = "/user")
+	@PostMapping(value = "/sysUser")
 	public String create(@RequestParam("userForm") String userForm) {
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfoVO userInfoVO;

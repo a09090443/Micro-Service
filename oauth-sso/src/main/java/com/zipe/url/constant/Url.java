@@ -51,11 +51,11 @@ public class Url {
 
 	public enum URI {
 		OAUTH_GET_USERS("/oauthApi/users"),
-		GET_USERS("/userApi/users"),
-		GET_AUTHORITIES("/userApi/authorities"),
-		GET_PERSONALTITLES("/userApi/personalTitles"),
-		SAVE_USER("/userApi/user"),
-		GET_MENU("/menu/menuTree");
+		GET_SYS_USERS("/userApi/sysUsers"),
+		GET_SYS_AUTHORITIES("/userApi/sysAuthorities"),
+		GET_SYS_USER_TITLE("/userApi/sysUserTitles"),
+		SAVE_USYS_SER("/userApi/sysUser"),
+		GET_SYS_MENU("/menu/sysMenuTree");
 
 		private String uri;
 

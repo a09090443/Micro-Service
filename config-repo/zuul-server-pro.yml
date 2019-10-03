@@ -15,3 +15,8 @@ security:
       jwt:
         key-uri: http://${properties.server.oauth}/oauth/token_key
   sessions: stateless
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: false

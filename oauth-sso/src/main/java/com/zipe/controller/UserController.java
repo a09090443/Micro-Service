@@ -58,7 +58,7 @@ public class UserController extends BaseController {
 	public @ResponseBody String getLoginUsers() {
 		String result = null;
 		try {
-			result = loginUserService.getUsers();
+			result = loginUserService.getSysUsers();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,7 +69,7 @@ public class UserController extends BaseController {
 	public @ResponseBody String getAuthorities() {
 		String result = null;
 		try {
-			result = loginUserService.getAuthorities();
+			result = loginUserService.getSysAuthorities();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,7 +80,7 @@ public class UserController extends BaseController {
 	public @ResponseBody String getPersonalTitles() {
 		String result = null;
 		try {
-			result = loginUserService.getPersonalTitles();
+			result = loginUserService.getSysUserTitles();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,14 +92,14 @@ public class UserController extends BaseController {
 		Map<String, String> formContentMap = new HashMap<String, String>();
 		Map<String, String[]> readOnlyMap = request.getParameterMap();
 		for (Map.Entry<String, String[]> entry : readOnlyMap.entrySet()) {
-			List<String> valueList = new ArrayList<String>();
+			List<String> valueList;
 			valueList = Arrays.asList(entry.getValue());
 			formContentMap.put(entry.getKey(), StringUtils.strip(valueList.toString(), "[]"));
 		}
 
 		JSONObject json = new JSONObject(formContentMap);
 		try {
-			loginUserService.saveUser(json.toString());
+			loginUserService.saveSysUser(json.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -24,7 +24,7 @@ public class SysMenuController extends BaseController {
     private ISysMenuService sysMenuService;
 
     @ResponseBody
-    @GetMapping(value = "/menuTree")
+    @GetMapping(value = "/sysMenuTree")
     public Map getMenuTree() {
         List<SysMenuVO> sysMenuVOList = sysMenuService.findSysMenuTree();
 

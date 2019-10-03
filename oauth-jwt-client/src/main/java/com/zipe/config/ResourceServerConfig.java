@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 
 @Configuration
 @EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Value("${security.oauth2.resource.token-info-uri}")
@@ -30,26 +30,26 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Value("${security.oauth2.client.user-authorization-uri}")
     private String userAuthorizationUri;
 
-	@Value("${security.oauth2.resource.id}")
-	private static String RESOURCE_ID;
-	
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http.anonymous().disable()
-		.requestMatchers().antMatchers("/**")
-		.and().authorizeRequests()
-		.antMatchers("/jwt1").hasRole("ADMIN")
-		.antMatchers("/jwt2").authenticated()
-		.antMatchers("/jwt3").access("#oauth2.hasScope('read')")
-		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
-	}
+    @Value("${security.oauth2.resource.id}")
+    private static String RESOURCE_ID;
 
-	 @Override
-	    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		 RemoteTokenServices tokenServices = new RemoteTokenServices();
-		    tokenServices.setCheckTokenEndpointUrl(tokenInfoUri);
-		    tokenServices.setClientId(clientId);
-		    tokenServices.setClientSecret(clientSecret);
-	        resources.resourceId(RESOURCE_ID).tokenServices(tokenServices);
-	    }
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.anonymous().disable()
+                .requestMatchers().antMatchers("/**")
+                .and().authorizeRequests()
+                .antMatchers("/jwt1/**").hasRole("ADMIN")
+                .antMatchers("/jwt2/**").authenticated()
+                .antMatchers("/jwt3/**").access("#oauth2.hasScope('read')")
+                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+    }
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        RemoteTokenServices tokenServices = new RemoteTokenServices();
+        tokenServices.setCheckTokenEndpointUrl(tokenInfoUri);
+        tokenServices.setClientId(clientId);
+        tokenServices.setClientSecret(clientSecret);
+        resources.resourceId(RESOURCE_ID).tokenServices(tokenServices);
+    }
 }
