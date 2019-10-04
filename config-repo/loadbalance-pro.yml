@@ -4,17 +4,19 @@ properties:
   log-level: INFO
 
 server:
-    session:
-      cookie:
-        name: UISESSION
+  session:
+    cookie:
+      name: UISESSION
 
 security:
   oauth2:
-    client:
-      accessTokenUri: http://${properties.server.oauth}/oauth/token
-      userAuthorizationUri: http://${properties.server.oauth}/oauth/authorize
-      client-id: loadbalance
-      client-secret: secret
     resource:
+      id: oauth2-resource
       token-info-uri: http://${properties.server.oauth}/oauth/check_token
-      user-info-uri: http://${properties.server.oauth}/user
+      prefer-token-info: true
+      filter-order: 3
+    client:
+      client-id: api_service
+      client-secret: secret
+      access-token-uri: http://${properties.server.oauth}/oauth/token
+      user-authorization-uri: http://${properties.server.oauth}/oauth/authorize
