@@ -29,7 +29,8 @@
       <module name="eureka-server" options="-extdirs $PROJECT_DIR$/eureka-server/src/main/webapp/WEB-INF/lib" />
       <module name="hystrix-dashboard-server" options="-extdirs $PROJECT_DIR$/hystrix-dashboard-server/src/main/webapp/WEB-INF/lib" />
       <module name="hystrix-feign-server" options="-extdirs $PROJECT_DIR$/hystrix-feign-server/src/main/webapp/WEB-INF/lib" />
-      <module name="loadbalance-2" options="-parameters" />
+      <module name="loadbalance-1" options="-extdirs $PROJECT_DIR$/loadbalance-1/src/main/webapp/WEB-INF/lib" />
+      <module name="loadbalance-2" options="-extdirs $PROJECT_DIR$/loadbalance-2/src/main/webapp/WEB-INF/lib" />
       <module name="oauth-jdbc-client" options="-extdirs $PROJECT_DIR$/oauth-jdbc-client/src/main/webapp/WEB-INF/lib" />
       <module name="oauth-jwt-client" options="-extdirs $PROJECT_DIR$/oauth-jwt-client/src/main/webapp/WEB-INF/lib" />
       <module name="oauth-server" options="-extdirs $PROJECT_DIR$/oauth-server/src/main/webapp/WEB-INF/lib" />
