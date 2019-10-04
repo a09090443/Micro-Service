@@ -1,5 +1,5 @@
 properties:
-  project: loadbalance-1
+  project: loadbalance
   env: dev
   log-level: INFO
 
