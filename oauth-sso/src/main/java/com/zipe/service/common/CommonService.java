@@ -53,15 +53,21 @@ public abstract class CommonService {
 		}
 
 		try {
-			switch(httpMethod) {
-			case "POST":
-				HttpUtility.sendPostRequest(fullRequestUrl, parametersMap);
-				break;
-			case "GET":
-				HttpUtility.sendGetRequest(fullRequestUrl);
-				break;
+			switch (httpMethod) {
+				case "POST":
+					HttpUtility.sendPostRequest(fullRequestUrl, parametersMap);
+					break;
+				case "GET":
+					HttpUtility.sendGetRequest(fullRequestUrl);
+					break;
+				case "PUT":
+					HttpUtility.sendPutRequest(fullRequestUrl, parametersMap);
+					break;
+				case "DELETE":
+					HttpUtility.sendDeleteRequest(fullRequestUrl, parametersMap);
+					break;
 			}
-			
+
 			result = HttpUtility.readSingleLineRespone();
 			// result = http.readMultipleLinesRespone();
 		} catch (IOException e) {

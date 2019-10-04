@@ -1,6 +1,6 @@
 package com.zipe.controller;
 
-import com.zipe.VO.UserInfoVO;
+import com.zipe.vo.UserInfoVO;
 import com.zipe.base.controller.BaseController;
 import com.zipe.model.UserInfo;
 import com.zipe.model.Authority;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -26,37 +27,68 @@ public class UserController extends BaseController {
 	@Autowired
 	private IUserService userService;
 
-	@GetMapping("/GET/users")
+	@GetMapping("/users")
 	public List<UserInfo> users() throws Exception {
 		List<UserInfo> userInfoList = userService.findAllUsers();
 		return userInfoList;
 	}
 
-	@GetMapping("/GET/authorities")
+	@GetMapping("/authorities")
 	public List<Authority> authorities() throws Exception {
 		List<Authority> authorityList = userService.getAuthorities();
 		return authorityList;
 	}
 	
-	@GetMapping("/GET/personalTitles")
+	@GetMapping("/personalTitles")
 	public List<PersonalTitle> personalTitles() throws Exception {
 		List<PersonalTitle> personalTitleList = userService.getPersonalTitles();
 		return personalTitleList;
 	}
 
-	@GetMapping("/GET/user/{loginId}")
+	@GetMapping("/user/{loginId}")
 	public UserInfo user(@PathVariable String loginId) {
 		UserInfo userInfo = userService.findUserByLoginId(loginId);
 		return userInfo;
 	}
 
-	@GetMapping("/GET/test")
+	@GetMapping("/test")
 	public Authentication test(Authentication user) {
 		return user;
 	}
 
-	@RequestMapping(value = "/POST/user", method = RequestMethod.POST)
-	public String updateAndCreate(@RequestParam("userForm") String userForm) {
+	@PatchMapping(value = "/user/{loginId}")
+	public String update(@PathVariable String loginId, @RequestParam("userForm") String userForm) {
+		ObjectMapper mapper = new ObjectMapper();
+		UserInfoVO userInfoVO;
+		try {
+			userInfoVO = mapper.readValue(userForm, UserInfoVO.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "error";
+		}
+		UserInfo userInfo = userService.findUserByLoginId(userInfoVO.getLoginId());
+
+		if(null == userInfo){
+			return "user not found";
+		}
+		//Ignore null properties
+		myCopyProperties(userInfoVO, userInfo);
+		Set<Authority> authoritySet = userService.getAuthoritiesByAuthorityId(userInfoVO.getAuthorities());
+		userInfo.setAuthorities(authoritySet);
+		Set<PersonalTitle> personalTitleSet = userService.getPersonalTitlesByTitleId(userInfoVO.getPersonalTitles());
+		userInfo.setPersonalTitle(personalTitleSet);
+
+		try {
+			userService.saveUser(userInfo);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+		return "success";
+	}
+
+	@PostMapping(value = "/user")
+	public String create(@RequestParam("userForm") String userForm) {
 		ObjectMapper mapper = new ObjectMapper();
 		UserInfoVO userInfoVO;
 		try {
@@ -86,12 +118,12 @@ public class UserController extends BaseController {
 		return "success";
 	}
 
-	@GetMapping("/POST/users")
-	public Authentication update(Authentication user) {
-		return user;
-	}
+//	@GetMapping(value = "/users")
+//	public Authentication update(Authentication user) {
+//		return user;
+//	}
 
-	@GetMapping("/DELETE/user/{loginId}")
+	@DeleteMapping("/user/{loginId}")
 	public String delete(@PathVariable String loginId) {
 		UserInfo userInfo = new UserInfo();
 		userInfo.setLoginId(loginId);
@@ -107,10 +139,10 @@ public class UserController extends BaseController {
 	
 	public static String[] getNullPropertyNames (Object source) {
 	    final BeanWrapper src = new BeanWrapperImpl(source);
-	    java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+	    PropertyDescriptor[] pds = src.getPropertyDescriptors();
 
 	    Set<String> emptyNames = new HashSet<String>();
-	    for(java.beans.PropertyDescriptor pd : pds) {
+	    for(PropertyDescriptor pd : pds) {
 	        Object srcValue = src.getPropertyValue(pd.getName());
 	        if (srcValue == null) emptyNames.add(pd.getName());
 	    }

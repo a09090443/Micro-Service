@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,14 +30,15 @@ public class UserController extends BaseController {
 	@Autowired
 	private ILoginUserService loginUserService;
 
-	@RequestMapping(value = "/oauth", method = RequestMethod.GET)
+	@GetMapping(value = "/oauth")
 	public ModelAndView oauthIndex() {
 		ModelAndView modelAndView = new ModelAndView("pages/user/oauth");
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/oauth/users", method = RequestMethod.GET)
-	public @ResponseBody String getOauthUsers() {
+	@GetMapping(value = "/oauth/users")
+	@ResponseBody
+	public String getOauthUsers() {
 		String result = null;
 		try {
 			result = oauthService.getOauthUsers();
@@ -46,13 +48,13 @@ public class UserController extends BaseController {
 		return result;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@GetMapping(value = "/login")
 	public ModelAndView userListIndex() {
 		ModelAndView modelAndView = new ModelAndView("pages/user/userList");
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/login/users", method = RequestMethod.GET)
+	@GetMapping(value = "/login/users")
 	public @ResponseBody String getLoginUsers() {
 		String result = null;
 		try {
@@ -63,7 +65,7 @@ public class UserController extends BaseController {
 		return result;
 	}
 
-	@RequestMapping(value = "/login/authorities", method = RequestMethod.GET)
+	@GetMapping(value = "/login/authorities")
 	public @ResponseBody String getAuthorities() {
 		String result = null;
 		try {
@@ -74,7 +76,7 @@ public class UserController extends BaseController {
 		return result;
 	}
 
-	@RequestMapping(value = "/login/personalTitles", method = RequestMethod.GET)
+	@GetMapping(value = "/login/personalTitles")
 	public @ResponseBody String getPersonalTitles() {
 		String result = null;
 		try {
@@ -85,7 +87,7 @@ public class UserController extends BaseController {
 		return result;
 	}
 
-	@RequestMapping(value = "/login/save", method = RequestMethod.POST)
+	@GetMapping(value = "/login/save")
 	public String save() {
 		Map<String, String> formContentMap = new HashMap<String, String>();
 		Map<String, String[]> readOnlyMap = request.getParameterMap();

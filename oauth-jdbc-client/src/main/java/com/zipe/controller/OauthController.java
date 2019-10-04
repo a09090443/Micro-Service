@@ -1,30 +1,30 @@
 package com.zipe.controller;
 
-import java.util.List;
-
+import com.zipe.model.OauthClientDetails;
+import com.zipe.service.IOauthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zipe.model.OauthClientDetails;
-import com.zipe.service.IOauthService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/oauthApi")
 public class OauthController {
 
-	@Autowired
-	private IOauthService oauthService;
+    @Autowired
+    private IOauthService oauthService;
 
-	@RequestMapping("/GET/users")
-	public List<OauthClientDetails> getOauthUsers() throws Exception {
+    @GetMapping(value = "/users")
+    public List<OauthClientDetails> getOauthUsers() throws Exception {
 //		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		return oauthService.findAllOauthClientDetails();
-	}
+        return oauthService.findAllOauthClientDetails();
+    }
 
-	// @RequestMapping("/user/me")
-	// public Principal user(Principal principal) {
-	// System.out.println(principal);
-	// return principal;
-	// }
+    // @RequestMapping("/user/me")
+    // public Principal user(Principal principal) {
+    // System.out.println(principal);
+    // return principal;
+    // }
 }

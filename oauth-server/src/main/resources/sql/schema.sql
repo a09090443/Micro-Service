@@ -205,3 +205,16 @@ CREATE TABLE `user_title` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-04-30 15:59:26
+
+
+CREATE TABLE `sys_menu` (
+  `id` int(2) NOT NULL AUTO_INCREMENT,
+  `menu_id` int(2) DEFAULT NULL,
+  `menu_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `path` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `order_id` int(2) DEFAULT NULL,
+  `enabled` tinyint(1) DEFAULT NULL,
+  `parent_id` int(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

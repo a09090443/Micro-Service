@@ -50,11 +50,12 @@ public class Url {
 	}
 
 	public enum URI {
-		OAUTH_GET_USERS("/oauthApi/GET/users"), 
-		GET_USERS("/userApi/GET/users"),
-		GET_AUTHORITIES("/userApi/GET/authorities"),
-		GET_PERSONALTITLES("/userApi/GET/personalTitles"),
-		SAVE_USER("/userApi/POST/user");
+		OAUTH_GET_USERS("/oauthApi/users"),
+		GET_USERS("/userApi/users"),
+		GET_AUTHORITIES("/userApi/authorities"),
+		GET_PERSONALTITLES("/userApi/personalTitles"),
+		SAVE_USER("/userApi/user"),
+		GET_MENU("/menu/menuTree");
 
 		private String uri;
 

@@ -15,7 +15,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@127.0.0.1:1111/eureka
+      defaultZone: http://admin:admin@192.168.1.154:1111/eureka
       
 management:
   security: 

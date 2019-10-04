@@ -1,10 +1,10 @@
 spring:
   application:
-    name: oauth-server-dev
+    name: oauth-server
   cloud:
     config:
       profile: dev
-      uri: http://192.168.1.151:8888
+      uri: http://192.168.1.154:8888
       label: develop
 
 server:
