@@ -18,7 +18,7 @@ public class SysMenuServiceImpl extends CommonService implements ISysMenuService
     public String getMenuTree() throws Exception {
 
         LinkedHashMap<String, String> parametersMap = new LinkedHashMap<String, String>();
-        String result = this.sendUrl("jdbc-api", parametersMap, URI.GET_MENU.getUri(), false, RequestMethod.GET.toString());
+        String result = this.sendUrl("jdbc-api", parametersMap, URI.GET_SYS_MENU.getUri(), false, RequestMethod.GET.toString());
         return result;
     }
 }
