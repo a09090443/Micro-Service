@@ -20,8 +20,8 @@
 		<module>zuul-server</module>
         <module>config-server</module>
         <module>oauth-server</module>
-        <module>oauth-jdbc-client</module>
-        <module>oauth-jwt-client</module>
+		<module>resource-api-jdbc-server</module>
+		<module>resource-api-jwt-server</module>
         <module>oauth-sso</module>
 		<module>oauth-web</module>
 		<module>loadbalance-1</module>

@@ -9,9 +9,8 @@
         <module name="config-server" />
         <module name="utility" />
         <module name="oauth-server" />
-        <module name="oauth-jwt-client" />
+        <module name="resource-api-jwt-server" />
         <module name="zuul-server" />
-        <module name="oauth-jdbc-client" />
         <module name="loadbalance-2" />
         <module name="loadbalance-1" />
         <module name="hystrix-feign-server" />
@@ -19,9 +18,13 @@
         <module name="eureka-server" />
         <module name="oauth-sso" />
         <module name="feign-server" />
+        <module name="resource-api-jdbc-server" />
         <module name="oauth-web" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="oauth-jdbc-client" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -32,10 +35,11 @@
       <module name="loadbalance-1" options="-extdirs $PROJECT_DIR$/loadbalance-1/src/main/webapp/WEB-INF/lib" />
       <module name="loadbalance-2" options="-extdirs $PROJECT_DIR$/loadbalance-2/src/main/webapp/WEB-INF/lib" />
       <module name="oauth-jdbc-client" options="-extdirs $PROJECT_DIR$/oauth-jdbc-client/src/main/webapp/WEB-INF/lib" />
-      <module name="oauth-jwt-client" options="-extdirs $PROJECT_DIR$/oauth-jwt-client/src/main/webapp/WEB-INF/lib" />
       <module name="oauth-server" options="-extdirs $PROJECT_DIR$/oauth-server/src/main/webapp/WEB-INF/lib" />
       <module name="oauth-sso" options="-extdirs $PROJECT_DIR$/oauth-sso/src/main/webapp/WEB-INF/lib" />
       <module name="oauth-web" options="-extdirs $PROJECT_DIR$/oauth-web/src/main/webapp/WEB-INF/lib" />
+      <module name="resource-api-jdbc-server" options="-extdirs $PROJECT_DIR$/resource-api-jdbc-server/src/main/webapp/WEB-INF/lib" />
+      <module name="resource-api-jwt-server" options="-extdirs $PROJECT_DIR$/resource-api-jwt-server/src/main/webapp/WEB-INF/lib" />
       <module name="zuul-server" options="-extdirs $PROJECT_DIR$/zuul-server/src/main/webapp/WEB-INF/lib" />
     </option>
   </component>

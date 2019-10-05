@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: resource-api-jdbc-server
+  cloud:
+    config:
+      profile: dev
+      uri: http://192.168.1.154:8000
+      label: develop
+
+server:
+  port: 8010

@@ -14,6 +14,9 @@
     <file url="file://$PROJECT_DIR$/oauth-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/oauth-sso" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/oauth-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resource-api-jdbc-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resource-api-jdbc-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resource-api-jwt-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/utility" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zuul-server" charset="UTF-8" />
   </component>

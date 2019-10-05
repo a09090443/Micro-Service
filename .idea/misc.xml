@@ -7,10 +7,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/loadbalance-1/pom.xml" />
         <option value="$PROJECT_DIR$/loadbalance-2/pom.xml" />
+        <option value="$PROJECT_DIR$/resource-api-jdbc-server/pom.xml" />
+        <option value="$PROJECT_DIR$/resource-api-jwt-server/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

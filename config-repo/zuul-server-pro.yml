@@ -1,6 +1,6 @@
 properties:
   project: zuul-server
-  env: pro
+  env: production
   log-level: INFO
 
 security:

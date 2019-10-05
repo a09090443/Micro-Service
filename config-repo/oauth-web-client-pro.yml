@@ -1,6 +1,6 @@
 properties:
   project: oauth-web-client
-  env: prduction
+  env: production
   log-level: INFO
 
 server:
