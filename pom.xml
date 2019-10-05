@@ -24,6 +24,8 @@
         <module>oauth-jwt-client</module>
         <module>oauth-sso</module>
 		<module>oauth-web</module>
+		<module>loadbalance-1</module>
+		<module>loadbalance-2</module>
 		<module>feign-server</module>
 		<module>hystrix-dashboard-server</module>
 		<module>hystrix-feign-server</module>
