@@ -15,4 +15,13 @@ public interface Loadbalance {
 
     @RequestMapping(value = "/load/{applicationName}", method = RequestMethod.GET)
     String load(@PathVariable(value = "applicationName") String applicationName);
+
+    @RequestMapping(value = "/jwt1", method = RequestMethod.GET)
+    String jwt1();
+
+    @RequestMapping(value = "/jwt2", method = RequestMethod.GET)
+    String jwt2();
+
+    @RequestMapping(value = "/jwt3", method = RequestMethod.GET)
+    String jwt3();
 }

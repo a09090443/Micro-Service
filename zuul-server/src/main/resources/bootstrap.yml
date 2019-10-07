@@ -21,3 +21,4 @@ zuul:
     jwt:
       path: /jwt/**
       serviceId: OAUTH-JWT-CLIENT
+  sensitiveHeaders: Cookie,Set-Cookie

@@ -53,6 +53,11 @@
 			<groupId>com.fasterxml</groupId>
 			<artifactId>classmate</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.github.openfeign.form</groupId>
+			<artifactId>feign-form-spring</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

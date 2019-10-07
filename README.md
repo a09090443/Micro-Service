@@ -28,10 +28,10 @@ Micro-Services Project
    1. eureka-server:`java -jar ./eureka-server/target/eureka-server-0.0.1-SNAPSHOT.jar`
    2. config-server:`java -jar ./config-server/target/config-server-0.0.1-SNAPSHOT.jar`
    3. oauth-server:`java -jar ./oauth-server/target/oauth-server-0.0.1-SNAPSHOT.jar`
-   4. oauth-jdbc-client:`java -jar ./oauth-jdbc-client/target/oauth-jdbc-client-0.0.1-SNAPSHOT.jar`
-   5. oauth-jwt-client:`java -jar ./oauth-jwt-client/target/oauth-jwt-client-0.0.1-SNAPSHOT.jar`
+   4. resource-api-jdbc-server:`java -jar ./resource-api-jdbc-server/target/oauth-jdbc-client-0.0.1-SNAPSHOT.jar`
+   5. resource-api-jwt-server:`java -jar ./resource-api-jwt-server/target/oauth-jwt-client-0.0.1-SNAPSHOT.jar`
    6. oauth-sso:`java -jar ./oauth-sso/target/oauth-sso-0.0.1-SNAPSHOT.jar`
-   7. oauth-web:`java -jar ./oauth-sso/target/oauth-web-0.0.1-SNAPSHOT.jar`
+   7. oauth-web:`java -jar ./oauth-web/target/oauth-web-0.0.1-SNAPSHOT.jar`
    8. zuul-server:`java -jar ./zuul-server/target/zuul-server-0.0.1-SNAPSHOT.jar`
 
 
@@ -51,10 +51,10 @@ Micro-Services Project
 <td>oauth-server</td>  <td>Securing access server</td>  <td>8002</td>
 </tr>
 <tr>
-<td>oauth-jdbc-client</td>  <td>Provider RESTFul API by JDBC access</td>  <td>8010</td>
+<td>resource-api-jdbc-server</td>  <td>Provider RESTFul API via JDBC access</td>  <td>8010</td>
 </tr>
 <tr>
-<td>oauth-jwt-client</td>  <td>Provider RESTFul API by JWT access</td>  <td>8011</td>
+<td>resource-api-jwt-server</td>  <td>Provider RESTFul API via JWT access</td>  <td>8011</td>
 </tr>
 <tr>
 <td>loadbalance-1</td>  <td>Load balance server 1</td>  <td>8012</td>
@@ -96,8 +96,8 @@ Micro-Services Project
 ##### Config file list
 1. application.yml : common config environment
 2. oauth-server-[dev, pro].yml : oauth-server config environment
-3. oauth-jdbc-client-[dev, pro].yml : oauth-jdbc-client config environment
-4. oauth-jwt-client-[dev, pro].yml : oauth-jwt-client config environment
+3. resource-api-jdbc-server-[dev, pro].yml : resource-api-jdbc-server config environment
+4. resource-api-jwt-server-[dev, pro].yml : resource-api-jwt-server config environment
 5. oauth-sso-client-[dev, pro].yml : oauth-sso config environment
 6. oauth-web-client-[dev, pro].yml : oauth-web config environment
 6. zuul-server-[dev, pro].yml : zuul-server config environment
@@ -111,25 +111,25 @@ Micro-Services Project
 ---
 The HTTP service has resources in the following form:
 > /{application}/{profile}[/{label}]
-  - http://127.0.0.1:8888/oauth-jdbc-client/dev/develop
+  - http://127.0.0.1:8000/resource-api-jdbc-server/dev/develop
 
 > /{application}-{profile}.yml
-  - http://127.0.0.1:8888/oauth-jdbc-client-dev.yml
+  - http://127.0.0.1:8000/resource-api-jdbc-server-dev.yml
 
 > /{label}/{application}-{profile}.yml
-  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.yml
+  - http://127.0.0.1:8000/develop/resource-api-jdbc-server-dev.yml
 
 > /{application}-{profile}.properties
-  - http://127.0.0.1:8888/oauth-jdbc-client-dev.properties
+  - http://127.0.0.1:8000/resource-api-jdbc-server-dev.properties
 
 > /{label}/{application}-{profile}.properties
-  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.properties
+  - http://127.0.0.1:8000/develop/oauth-jdbc-client-dev.properties
 
 > /{application}-{profile}.json
-  - http://127.0.0.1:8888/oauth-jdbc-client-dev.json
+  - http://127.0.0.1:8000/oauth-jdbc-client-dev.json
 
 > /{label}/{application}-{profile}.json
-  - http://127.0.0.1:8888/develop/oauth-jdbc-client-dev.json
+  - http://127.0.0.1:8000/develop/oauth-jdbc-client-dev.json
 
 ### Admin manage system login info
 ---

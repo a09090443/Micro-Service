@@ -46,6 +46,7 @@
         <hicari.version>3.2.0</hicari.version>
 		<json.version>20180813</json.version>
 		<jettison.version>1.4.0</jettison.version>
+		<feign-form-spring.version>3.8.0</feign-form-spring.version>
 		<utility.version>${project.version}</utility.version>
 	</properties>
 
@@ -96,7 +97,11 @@
 				<artifactId>jettison</artifactId>
 				<version>${jettison.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>io.github.openfeign.form</groupId>
+				<artifactId>feign-form-spring</artifactId>
+				<version>${feign-form-spring.version}</version>
+			</dependency>
 		    <dependency>
 			    <groupId>com.zipe</groupId>
 			    <artifactId>utility</artifactId>
