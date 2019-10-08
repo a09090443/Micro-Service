@@ -4,6 +4,8 @@ properties:
   log-level: INFO
 
 security:
+  basic:
+    enabled: false
   oauth2:
     client:
       clientId: zuul_service
