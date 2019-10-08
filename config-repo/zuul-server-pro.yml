@@ -7,18 +7,20 @@ security:
   basic:
     enabled: false
   oauth2:
-    client:
-      clientId: zuul_service
-      clientSecret: secret
     resource:
       token-info-uri: http://${properties.server.oauth}/oauth/check_token
       prefer-token-info: true
       filter-order: 3
       jwt:
         key-uri: http://${properties.server.oauth}/oauth/token_key
+    client:
+      clientId: zuul_service
+      clientSecret: secret
+      access-token-uri: http://${properties.server.oauth}/oauth/token
+      user-authorization-uri: http://${properties.server.oauth}/oauth/authorize
   sessions: stateless
 
 eureka:
   client:
     fetch-registry: true
-    register-with-eureka: false
+    register-with-eureka: true
