@@ -3,6 +3,11 @@ properties:
   env: dev
   log-level: INFO
 
+server:
+  session:
+    cookie:
+      name: UISESSION
+
 security:
   basic:
     enabled: false

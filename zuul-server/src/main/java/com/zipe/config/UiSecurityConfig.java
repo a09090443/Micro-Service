@@ -14,7 +14,7 @@ public class UiSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
             .antMatcher("/**")
             .authorizeRequests()
-            .antMatchers("/", "/login**")
+            .antMatchers("/", "/load/**", "/login")
             .permitAll()
             .anyRequest()
             .authenticated();
