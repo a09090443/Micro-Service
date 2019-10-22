@@ -12,4 +12,17 @@ public class TestController {
     public String load(@PathVariable String applicationName) {
         return "loadbalance1:" + applicationName;
     }
+
+    @RequestMapping(value = "/jwt1", method = RequestMethod.GET)
+    public String jwt1() {
+        return "loadbalance1:jwt1";
+    }
+    @RequestMapping(value = "/jwt2", method = RequestMethod.GET)
+    public String jwt2() {
+        return "loadbalance1:jwt2";
+    }
+    @RequestMapping(value = "/jwt3", method = RequestMethod.GET)
+    public String jwt3() {
+        return "loadbalance1:jwt3";
+    }
 }

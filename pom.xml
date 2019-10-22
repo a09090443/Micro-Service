@@ -20,10 +20,12 @@
 		<module>zuul-server</module>
         <module>config-server</module>
         <module>oauth-server</module>
-        <module>oauth-jdbc-client</module>
-        <module>oauth-jwt-client</module>
+		<module>resource-api-jdbc-server</module>
+		<module>resource-api-jwt-server</module>
         <module>oauth-sso</module>
 		<module>oauth-web</module>
+		<module>loadbalance-1</module>
+		<module>loadbalance-2</module>
 		<module>feign-server</module>
 		<module>hystrix-dashboard-server</module>
 		<module>hystrix-feign-server</module>
@@ -44,6 +46,7 @@
         <hicari.version>3.2.0</hicari.version>
 		<json.version>20180813</json.version>
 		<jettison.version>1.4.0</jettison.version>
+		<feign-form-spring.version>3.8.0</feign-form-spring.version>
 		<utility.version>${project.version}</utility.version>
 	</properties>
 
@@ -94,7 +97,11 @@
 				<artifactId>jettison</artifactId>
 				<version>${jettison.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>io.github.openfeign.form</groupId>
+				<artifactId>feign-form-spring</artifactId>
+				<version>${feign-form-spring.version}</version>
+			</dependency>
 		    <dependency>
 			    <groupId>com.zipe</groupId>
 			    <artifactId>utility</artifactId>

@@ -10,12 +10,12 @@ spring:
 #         username:
 #         password:
 server:
-  port: 8888
+  port: 8000
   
 eureka:
   client:
     service-url:
-      defaultZone: http://admin:admin@192.168.1.154:1111/eureka
+      defaultZone: http://admin:admin@192.168.1.154:8001/eureka
       
 management:
   security: 

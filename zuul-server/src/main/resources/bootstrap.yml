@@ -4,20 +4,29 @@ spring:
   cloud:
     config:
       profile: dev
-      uri: http://192.168.1.154:8888
+      uri: http://192.168.1.154:8000
       label: develop
 
 server:
-  port: 2020
+  port: 8090
+
+management:
+  security:
+    enabled: false # http://localhost:8090/routes or http://localhost:8090/routes?format=details
 
 zuul:
+  ignored-services: '*'
+  sensitiveHeaders: Cookie,Set-Cookie
   routes:
-    config:
-      path: /config/**
-      serviceId: CONFIG-SERVER
-    jdbc:
-      path: /jdbc/**
-      serviceId: OAUTH-JDBC-CLIENT
+    loadbalance_load:
+      path: /load/**
+      serviceId: LOADBALANCE
+      stripPrefix: false #重要：須關閉才不會隱藏 /load 前綴字串
+    feign:
+      path: /jwt2/**
+      serviceId: LOADBALANCE
+      stripPrefix: false
     jwt:
       path: /jwt/**
       serviceId: OAUTH-JWT-CLIENT
+      stripPrefix: false

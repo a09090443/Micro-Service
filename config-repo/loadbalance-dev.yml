@@ -1,0 +1,22 @@
+properties:
+  project: loadbalance
+  env: dev
+  log-level: INFO
+
+server:
+  session:
+    cookie:
+      name: UISESSION
+
+security:
+  oauth2:
+    resource:
+      id: loadbalance-resource
+      token-info-uri: http://${properties.server.oauth}/oauth/check_token
+      prefer-token-info: true
+      filter-order: 3
+    client:
+      client-id: loadbalance
+      client-secret: secret
+      access-token-uri: http://${properties.server.oauth}/oauth/token
+      user-authorization-uri: http://${properties.server.oauth}/oauth/authorize

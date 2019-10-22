@@ -59,8 +59,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Bean  
     public TokenEnhancer tokenEnhancer() {  
         return new CustomTokenEnhancer();  
-    }  
-  
+    }
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 //		security.allowFormAuthenticationForClients();

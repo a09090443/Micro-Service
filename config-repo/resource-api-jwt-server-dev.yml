@@ -1,0 +1,17 @@
+properties:
+  project: resource-api-jwt-server
+  env: dev
+  log-level: INFO
+
+security:
+  oauth2:
+    resource:
+      id: oauth2-resource
+      token-info-uri: http://${properties.server.oauth}/oauth/check_token
+      prefer-token-info: true
+      filter-order: 3
+    client:
+      client-id: api_service
+      client-secret: secret
+      access-token-uri: http://${properties.server.oauth}/oauth/token
+      user-authorization-uri: http://${properties.server.oauth}/oauth/authorize

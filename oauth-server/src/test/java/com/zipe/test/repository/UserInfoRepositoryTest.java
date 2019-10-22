@@ -1,19 +1,18 @@
 package com.zipe.test.repository;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import com.zipe.model.UserInfo;
+import com.zipe.model.SysUser;
+import com.zipe.repository.ISysUserRepository;
+import com.zipe.test.base.TestBase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.zipe.repository.IUserInfoRepository;
-import com.zipe.test.base.TestBase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class UserInfoRepositoryTest extends TestBase {
 
 	@Autowired
-	private IUserInfoRepository userInfoRepository;
+	private ISysUserRepository sysUserRepository;
 	
 	private String LOGING_ID = "Junit";
 	private String EMAIL = "Junit@localhost.com";
@@ -22,22 +21,22 @@ public class UserInfoRepositoryTest extends TestBase {
 	@Test
 	public void testFindByLoginId() {
 		String loginId = LOGING_ID;
-		UserInfo userInfo = userInfoRepository.findByLoginId(loginId);
-		assertEquals(loginId, userInfo.getLoginId());
+		SysUser sysUser = sysUserRepository.findByLoginId(loginId);
+		assertEquals(loginId, sysUser.getLoginId());
 	}
 	
 	// @Ignore
 	@Test
 	public void testFindByEmail() {
 		String email = EMAIL;
-		UserInfo userInfo = userInfoRepository.findByEmail(email);
-		assertEquals(email, userInfo.getEmail());
+		SysUser sysUser = sysUserRepository.findByEmail(email);
+		assertEquals(email, sysUser.getEmail());
 	}
 	
 	// @Ignore
 	@Test
 	public void testFindLastUserInfo() {
-		UserInfo userInfo = userInfoRepository.findTopByOrderByLoginIdDesc();
-		assertNotNull(userInfo);
+		SysUser sysUser = sysUserRepository.findTopByOrderByLoginIdDesc();
+		assertNotNull(sysUser);
 	}
 }

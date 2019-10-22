@@ -1,6 +1,6 @@
 # 服务注册中心 (单节点)
 server:
-  port: 1111
+  port: 8001
 
 security:
   basic:
@@ -11,14 +11,14 @@ security:
 
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.151:3306/dev_oauth?characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
     username: dev
     password: 1qaz@WSX
     driver-class-name: com.mysql.jdbc.Driver
     
 eureka:
   instance:
-    hostname: localhost
+    hostname: 127.0.0.1
   client:
     fetch-registry: false # 表示是否从Eureka Server获取注册信息,默认为true.因为这是一个单点的Eureka Server,不需要同步其他的Eureka Server节点的数据,这里设置为false
     register-with-eureka: false # 表示是否将自己注册到Eureka Server,默认为true.由于当前应用就是Eureka Server,故而设置为false.

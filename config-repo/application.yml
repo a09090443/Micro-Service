@@ -1,8 +1,8 @@
 properties:
   server:
-    oauth: 192.168.1.151:8081
-    jdbc-api: 192.168.1.151:8082
-    api-gateway: 192.168.1.151:2020
+    oauth: 192.168.1.154:8002
+    jdbc-api: 192.168.1.154:8010
+    api-gateway: 192.168.1.154:8090
 
 spring:
   jpa:
@@ -27,8 +27,9 @@ security:
 
 eureka:
   instance:
-    hostname: 192.168.1.151
-    port: 1111
+    hostname: 192.168.1.154
+    port: 8001
+    register-with-eureka: true # Auto register Eureka server, default is true.
     preferIpAddress: true
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2

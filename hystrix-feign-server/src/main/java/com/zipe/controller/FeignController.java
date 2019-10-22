@@ -17,4 +17,19 @@ public class FeignController {
     public String load(@PathVariable(value = "applicationName") String applicationName) {
         return loadbalance.load(applicationName);
     }
+
+    @RequestMapping(value = "/jwt1", method = RequestMethod.GET)
+    public String jwt1() {
+        return loadbalance.jwt1();
+    }
+
+    @RequestMapping(value = "/jwt2", method = RequestMethod.GET)
+    public String jwt2() {
+        return loadbalance.jwt2();
+    }
+
+    @RequestMapping(value = "/jwt3", method = RequestMethod.GET)
+    public String jwt3() {
+        return loadbalance.jwt3();
+    }
 }

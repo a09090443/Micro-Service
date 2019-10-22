@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Component
 @FeignClient(name = "loadbalance", configuration = FeignConfig.class)
 public interface Loadbalance {
-    @RequestMapping("/test")
-    String test();
-
     @RequestMapping(value = "/load/{applicationName}", method = RequestMethod.GET)
     String load(@PathVariable(value = "applicationName") String applicationName);
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/feign-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hystrix-dashboard-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hystrix-feign-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loadbalance-1" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/loadbalance-2" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth-jdbc-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth-jwt-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth-sso" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resource-api-jdbc-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resource-api-jdbc-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resource-api-jwt-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utility" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-server" charset="UTF-8" />
+  </component>
+</project>

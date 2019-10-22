@@ -1,20 +1,20 @@
 package com.zipe.service;
 
-import java.util.List;
+import com.zipe.model.SysUser;
 
-import com.zipe.model.UserInfo;
+import java.util.List;
 
 public interface IUserService {
 	
-	public List<UserInfo> findAllUsers() throws Exception;
+	public List<SysUser> findAllUsers() throws Exception;
 	
-	public UserInfo findUserByLoginId(String loginId);
+	public SysUser findUserByLoginId(String loginId);
 	
-	public UserInfo findUserByEmail(String email);
+	public SysUser findUserByEmail(String email);
 
-	public UserInfo findMaxLoginId();
+	public SysUser findMaxLoginId();
 	
-	public void saveUser(UserInfo userInfo) throws Exception;
+	public void saveUser(SysUser userInfo) throws Exception;
 	
-	public void delUser(UserInfo userInfo) throws Exception;
+	public void delUser(SysUser userInfo) throws Exception;
 }

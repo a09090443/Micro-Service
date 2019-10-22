@@ -273,7 +273,7 @@
                     includeSelectAllOption: true,
                     buttonWidth: 260
                 });
-                oriData.personalTitle.forEach(function (element) {
+                oriData.sysUserTitle.forEach(function (element) {
                     $('#personalTitles').multiselect('select', element.titleId);
                 });
             });
@@ -351,7 +351,7 @@
         let personalTitleIds = "";
         let j = 0;
 
-        d.personalTitle.forEach(function (element) {
+        d.sysUserTitle.forEach(function (element) {
             if (j > 0) {
                 personalTitles += ",";
                 personalTitleIds += ",";
