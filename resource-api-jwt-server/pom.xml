@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>oauth-jwt-client</artifactId>
+	<artifactId>resource-api-jwt-server</artifactId>
 	<packaging>jar</packaging>
 
-	<name>oauth-jwt-client</name>
+	<name>resource-api-jwt-server</name>
 	<description>Srping Oauth Rest Server via jwt</description>
 
 	<parent>
