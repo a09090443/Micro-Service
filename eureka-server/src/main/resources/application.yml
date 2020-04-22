@@ -9,13 +9,6 @@ security:
 #    name: root
 #    password: root
 
-spring:
-  datasource:
-    url: jdbc:mysql://192.168.1.154:3306/dev_oauth?characterEncoding=UTF-8
-    username: dev
-    password: 1qaz@WSX
-    driver-class-name: com.mysql.jdbc.Driver
-    
 eureka:
   instance:
     hostname: 127.0.0.1
